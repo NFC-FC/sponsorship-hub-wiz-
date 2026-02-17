@@ -48,7 +48,6 @@ export const SplashScreen: React.FC<Props> = ({ config, onComplete }) => {
           />
           <div className="hidden md:block w-[1px] h-10 bg-white/10"></div>
           
-          {/* Replaced broken local image with City Branding Label */}
           <div className="flex flex-col items-center">
               <span className="text-[10px] text-zinc-500 font-black uppercase tracking-widest">Official City Partner</span>
               <span className="text-xl font-black text-white italic tracking-tighter uppercase">{config.projectCity}</span>
@@ -62,11 +61,11 @@ export const SplashScreen: React.FC<Props> = ({ config, onComplete }) => {
           />
         </div>
 
-        {/* Center Text */}
-        <h1 className="text-xl md:text-2xl lg:text-3xl text-white font-light leading-relaxed md:leading-snug tracking-wide mb-14">
-          You have been invited on behalf of the <br />
-          <span className="font-bold text-white uppercase italic tracking-tighter">Mayor of {config.projectCity}</span>,<br />
-          and the <span className="font-bold text-[#009cdc] drop-shadow-[0_0_15px_rgba(0,156,220,0.5)] italic uppercase">National Fitness Campaign</span>.
+        {/* Center Text - Updated per user request */}
+        <h1 className="text-xl md:text-2xl lg:text-3xl text-white font-light leading-relaxed md:leading-snug tracking-wide mb-14 uppercase">
+          On behalf of the City of {config.projectCity}, <br />
+          the <span className="font-bold text-white uppercase italic tracking-tighter">{config.projectCity} Mayor and Council</span>,<br />
+          and <span className="font-bold text-[#009cdc] drop-shadow-[0_0_15px_rgba(0,156,220,0.5)] italic uppercase">National Fitness Campaign…</span>
         </h1>
 
         {/* Enter Button */}

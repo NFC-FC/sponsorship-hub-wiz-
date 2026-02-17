@@ -1,4 +1,3 @@
-
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
@@ -58,14 +57,11 @@ const Section3Reality: React.FC<Props> = ({ config }) => {
               Building Healthier Communities by Redesigning the Built Environment for Every-Day Outdoor Movement, Health and Happiness.
             </p>
             
-            <div className="flex items-center gap-6 mt-6">
-              <div className="p-4 rounded-2xl glass flex items-center gap-4 border-white/10">
-                <div className="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg ring-2 ring-white/10" style={{ background: `linear-gradient(135deg, ${config.primaryColor}, ${config.secondaryColor})` }}>NFC</div>
-                <div>
-                  <div className="text-white font-bold tracking-tight">Public Priority</div>
-                  <div className="text-xs text-white/50 tracking-wider">Health Equity Redefined</div>
-                </div>
-              </div>
+            <div className="mt-2 space-y-2">
+              <h4 className="text-white font-bold text-xl md:text-2xl uppercase tracking-tighter">Healthy infrastructure</h4>
+              <p className="text-white/40 text-base md:text-lg font-medium italic leading-relaxed">
+                Reducing healthcare costs by changing the built environment.
+              </p>
             </div>
           </motion.div>
         </div>

@@ -14,40 +14,44 @@ const SponsorEntryPage: React.FC<Props> = ({ projects }) => {
   const [error, setError] = useState(false);
   const navigate = useNavigate();
 
+  const handlePortalAccess = () => {
+    const query = accessKey.trim();
+    if (!query) return;
+
+    // Special handling for Master Admin Access Key
+    if (query === 'nfc-admin-2026' || query.toUpperCase() === 'NFC-ADMIN') {
+      navigate('/admin');
+      return;
+    }
+
+    /**
+     * Secure Match:
+     * Check against individual sponsor passwords configured in the Admin Panel.
+     */
+    const match = projects.find(p => p.sponsorPassword === query);
+
+    if (match) {
+      navigate(`/site/${match.id}`);
+    } else {
+      // Fallback for demo: if no password matches, check if it matches City/Sponsor name (case insensitive)
+      const fallbackMatch = projects.find(p => 
+        p.id.toLowerCase() === query.toLowerCase() || 
+        p.projectCity.toLowerCase() === query.toLowerCase() ||
+        p.sponsorName.toLowerCase() === query.toLowerCase()
+      );
+
+      if (fallbackMatch) {
+        navigate(`/site/${fallbackMatch.id}`);
+      } else {
+        setError(true);
+        setTimeout(() => setError(false), 2000);
+      }
+    }
+  };
+
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
-      const query = accessKey.trim();
-      if (!query) return;
-
-      // Special handling for Master Admin Access Key
-      if (query === 'nfc-admin-2026') {
-        navigate('/admin');
-        return;
-      }
-
-      /**
-       * Secure Match:
-       * Check against individual sponsor passwords configured in the Admin Panel.
-       */
-      const match = projects.find(p => p.sponsorPassword === query);
-
-      if (match) {
-        navigate(`/site/${match.id}`);
-      } else {
-        // Fallback for demo: if no password matches, check if it matches City/Sponsor name (case insensitive)
-        const fallbackMatch = projects.find(p => 
-          p.id.toLowerCase() === query.toLowerCase() || 
-          p.projectCity.toLowerCase() === query.toLowerCase() ||
-          p.sponsorName.toLowerCase() === query.toLowerCase()
-        );
-
-        if (fallbackMatch) {
-          navigate(`/site/${fallbackMatch.id}`);
-        } else {
-          setError(true);
-          setTimeout(() => setError(false), 2000);
-        }
-      }
+      handlePortalAccess();
     }
   };
 
@@ -79,7 +83,7 @@ const SponsorEntryPage: React.FC<Props> = ({ projects }) => {
             alt="National Fitness Campaign" 
           />
           <h1 className="text-4xl md:text-7xl font-black italic uppercase tracking-tighter text-center leading-[0.85]">
-            INNOVATION <br/> <span className="text-[#009cdc]">ZONE.</span>
+            National Wellness <br/> <span className="text-[#009cdc]">Innovation Zone.</span>
           </h1>
           <p className="mt-6 text-zinc-500 font-bold uppercase tracking-[0.4em] text-[10px] md:text-xs">
             Public-Private Partnership Briefing Portal
@@ -87,7 +91,7 @@ const SponsorEntryPage: React.FC<Props> = ({ projects }) => {
         </div>
 
         {/* Access Key Input */}
-        <div className="w-full relative group mb-8">
+        <div className="w-full relative group mb-12">
           <div className={`absolute inset-0 bg-[#009cdc] blur-3xl opacity-10 transition-opacity duration-500 ${isFocused ? 'opacity-30' : 'opacity-10'}`} />
           
           <input 
@@ -101,7 +105,7 @@ const SponsorEntryPage: React.FC<Props> = ({ projects }) => {
             onBlur={() => setIsFocused(false)}
             onChange={(e) => setAccessKey(e.target.value)}
             onKeyDown={handleKeyDown}
-            className={`w-full bg-white/5 border rounded-2xl px-8 py-6 text-xl font-bold tracking-[0.2em] outline-none backdrop-blur-xl transition-all relative z-10 placeholder:text-zinc-600 text-center uppercase shadow-2xl ${
+            className={`w-full bg-white/5 border rounded-2xl px-8 py-6 text-xl font-bold tracking-[0.2em] outline-none backdrop-blur-xl transition-all relative z-10 placeholder:text-zinc-600 text-center shadow-2xl ${
               error ? 'border-red-500/50 text-red-400' : isFocused ? 'border-[#009cdc]' : 'border-white/10'
             }`}
           />
@@ -111,22 +115,30 @@ const SponsorEntryPage: React.FC<Props> = ({ projects }) => {
           </div>
         </div>
 
-        {/* Direct Admin Access Button */}
+        {/* Access Portal Button */}
         <motion.button
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          onClick={() => navigate('/admin')}
-          className="group relative px-10 py-4 bg-white/5 hover:bg-[#009cdc]/10 border border-white/10 hover:border-[#009cdc]/50 rounded-2xl transition-all duration-300 backdrop-blur-md"
+          transition={{ delay: 0.3 }}
+          onClick={handlePortalAccess}
+          className="group relative w-full px-10 py-6 bg-[#009cdc] hover:bg-[#007ba8] rounded-2xl transition-all duration-300 shadow-[0_0_40px_rgba(0,156,220,0.2)]"
         >
-          <span className="relative z-10 text-[10px] font-black uppercase tracking-widest text-zinc-400 group-hover:text-white transition-colors">
-            Access Admin Console
+          <span className="relative z-10 text-xs md:text-sm font-black uppercase tracking-[0.3em] text-white">
+            Access Portal
           </span>
-          <div className="absolute inset-0 bg-gradient-to-r from-[#009cdc]/0 via-[#009cdc]/5 to-[#009cdc]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         </motion.button>
 
-        <div className={`mt-12 text-center transition-opacity duration-1000 ${isFocused && !accessKey ? 'opacity-40' : 'opacity-0'}`}>
-          <p className="text-[9px] font-black uppercase tracking-[0.5em] text-white">Enter credential to unlock portal</p>
+        <div className="mt-12 text-center">
+          <div className={`transition-opacity duration-1000 ${isFocused && !accessKey ? 'opacity-40' : 'opacity-0'}`}>
+            <p className="text-[9px] font-black uppercase tracking-[0.5em] text-white mb-4">Enter credential to unlock portal</p>
+          </div>
+          <button 
+            onClick={() => navigate('/admin')}
+            className="text-[8px] font-black uppercase tracking-[0.4em] text-white opacity-20 hover:opacity-60 transition-opacity cursor-pointer border-none bg-transparent"
+          >
+            Internal NFC Admin Login
+          </button>
         </div>
       </motion.div>
     </div>

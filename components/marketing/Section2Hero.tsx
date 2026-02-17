@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
@@ -8,8 +7,8 @@ interface Props {
     sponsorName: string;
     projectCity: string;
     primaryColor: string;
-    // Fix: Added missing secondaryColor property to resolve TS error
     secondaryColor: string;
+    projectName: string;
   };
 }
 
@@ -27,15 +26,15 @@ const Section2Hero: React.FC<Props> = ({ config }) => {
           muted 
           loop 
           playsInline
-          className="w-full h-full object-cover grayscale contrast-[1.2] brightness-75 opacity-50 transition-opacity duration-1000"
+          className="w-full h-full object-cover contrast-[1.1] brightness-100 opacity-80 transition-opacity duration-1000"
         >
           <source src={config.heroVideo} type="video/mp4" />
         </video>
         
-        <div className="absolute inset-0 bg-black/40 mix-blend-multiply" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#020617] via-transparent to-[#020617] opacity-60" />
+        <div className="absolute inset-0 bg-black/10 mix-blend-multiply" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#020617] via-transparent to-[#020617] opacity-30" />
       </div>
-
+      
       {/* Overlay Content */}
       <motion.div 
         style={{ y: yTranslate, opacity }}
