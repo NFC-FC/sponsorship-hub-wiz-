@@ -1,8 +1,7 @@
-
 import React, { useMemo, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import type { CityGroup, SponsorRecord } from "../App";
+import type { CityGroup, SponsorRecord, CityTemplate } from "../App";
 
 interface Props {
   cities: CityGroup[];
@@ -11,7 +10,7 @@ interface Props {
   onEditCityTemplate: (cityId: string) => void;
 }
 
-const normalizeCity = (s: string) => s.trim().toUpperCase();
+const normalizeCity = (s: string) => s.trim();
 const makeId = (prefix: string) =>
   `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
 
@@ -43,10 +42,35 @@ export const Dashboard: React.FC<Props> = ({ cities, setCities, onEditSponsor, o
     const name = normalizeCity(newCityName);
     if (!name) return;
 
+    // Initialize with a clean slate of placeholder text instead of copying existing data
+    const blankTemplate: CityTemplate = {
+      projectName: 'Community Wellness Innovation',
+      cityLogo: 'https://via.placeholder.com/400x400?text=City+Seal+Link',
+      nfcLogo: 'https://github.com/NFC-FC/NFC-image-hosting/blob/main/01-Main-Shield.png?raw=true',
+      primaryColor: '#009cdc',
+      accentColor: '#FF5432',
+      secondaryColor: '#FBAB18',
+      investmentAmount: '$0',
+      courtCount: '0',
+      wardCount: '1',
+      wardType: 'Wards',
+      wardNames: ['Enter Council Member Name'],
+      heroVideo: 'https://cdn.prod.website-files.com/638a20d9b98c2f709f1402cb/63efc95f26ac7b6b0e192a29_V14%20(1920%20%C3%97%20650%20px)-transcode.mp4',
+      secondaryVideo: 'https://cdn.prod.website-files.com/638a20d9b98c2f709f1402cb/63efc95f26ac7b6b0e192a29_V14%20(1920%20%C3%97%20650%20px)-transcode.mp4',
+      masterPlanBackground: 'https://via.placeholder.com/1920x1080?text=Map+Layer+Background+Link',
+      sponsorRender: 'https://nationalfitnesscampaign.com/wp-content/uploads/2023/06/LV_ALLEGIANT_RENDER_HQ.png',
+      leaders: [],
+      endorsementQuote: '"Enter the official city leadership quote here. This is a placeholder for your partnership endorsement."',
+      endorsementName: 'NAME OF SPEAKER',
+      endorsementImage: 'https://via.placeholder.com/600x800?text=Leader+Portrait+Link',
+      markers: [],
+      callouts: [],
+    };
+
     const newCity: CityGroup = {
       id: makeId("city"),
       name,
-      template: { ...cities[0].template }, // Inherit template from first city as a starting point
+      template: blankTemplate,
       sponsors: [],
       isArchived: false,
     };
@@ -194,7 +218,7 @@ export const Dashboard: React.FC<Props> = ({ cities, setCities, onEditSponsor, o
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0 bg-black/95 backdrop-blur-xl" onClick={() => setIsCreateCityOpen(false)} />
               <motion.form initial={{ scale: 0.9 }} animate={{ scale: 1 }} exit={{ scale: 0.9 }} onSubmit={handleCreateCity} className="relative w-full max-w-lg bg-zinc-900 border border-white/10 p-10 rounded-[3rem]">
                 <h2 className="text-2xl font-black italic uppercase text-center mb-8 tracking-tighter">Initialize City Hub</h2>
-                <input required autoFocus type="text" placeholder="e.g. SAN FRANCISCO" value={newCityName} onChange={(e) => setNewCityName(e.target.value)} className="w-full bg-black border border-white/10 rounded-2xl px-6 py-4 text-white uppercase tracking-widest outline-none focus:border-[#009cdc] mb-6" />
+                <input required autoFocus type="text" placeholder="e.g. San Francisco" value={newCityName} onChange={(e) => setNewCityName(e.target.value)} className="w-full bg-black border border-white/10 rounded-2xl px-6 py-4 text-white tracking-widest outline-none focus:border-[#009cdc] mb-6" />
                 <button type="submit" className="w-full bg-[#009cdc] text-white py-5 rounded-2xl text-[10px] font-black uppercase tracking-widest">Create Hub</button>
               </motion.form>
             </div>
@@ -212,7 +236,7 @@ export const Dashboard: React.FC<Props> = ({ cities, setCities, onEditSponsor, o
                   <select value={selectedCityId} onChange={(e) => setSelectedCityId(e.target.value)} className="w-full bg-black border border-white/10 rounded-2xl px-6 py-4 text-white uppercase tracking-widest outline-none">
                     {activeCities.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
                   </select>
-                  <input required type="text" placeholder="Sponsor Name" value={newSponsorName} onChange={(e) => setNewSponsorName(e.target.value)} className="w-full bg-black border border-white/10 rounded-2xl px-6 py-4 text-white uppercase tracking-widest outline-none focus:border-[#009cdc]" />
+                  <input required type="text" placeholder="Sponsor Name" value={newSponsorName} onChange={(e) => setNewSponsorName(e.target.value)} className="w-full bg-black border border-white/10 rounded-2xl px-6 py-4 text-white tracking-widest outline-none focus:border-[#009cdc]" />
                 </div>
                 <button type="submit" className="w-full bg-[#009cdc] text-white py-5 rounded-2xl text-[10px] font-black uppercase tracking-widest mt-8">Add Sponsor</button>
               </motion.form>

@@ -54,16 +54,16 @@ const Section1Splash: React.FC<SplashProps> = ({ onEnter, config }) => {
           />
         </motion.div>
 
-        {/* Elegant Typography */}
+        {/* Elegant Typography - Updated per user request */}
         <motion.h1 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 1.5 }}
           className="text-white text-xl md:text-2xl font-light tracking-[0.15em] leading-relaxed mb-12 uppercase"
         >
-          You have been invited on behalf of the <br/>
-          <span className="font-bold text-white">{config.projectCity} Mayor</span>, City Council, <br/>
-          and <span className="font-bold" style={{ color: config.primaryColor }}>National Fitness Campaign</span>.
+          On behalf of the City of {config.projectCity}, <br/>
+          the <span className="font-bold text-white">{config.projectCity} Mayor and Council</span>, <br/>
+          and <span className="font-bold" style={{ color: config.primaryColor }}>National Fitness Campaign</span>
         </motion.h1>
 
         {/* Enter Button */}

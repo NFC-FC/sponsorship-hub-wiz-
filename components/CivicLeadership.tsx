@@ -8,12 +8,14 @@ interface Props {
 export const CivicLeadership: React.FC<Props> = ({ config }) => {
   // Generate dynamic ward list based on wardCount
   const count = parseInt(config.wardCount) || 1;
+  const wardNames = config.wardNames || [];
+  
   const wards = Array.from({ length: count }, (_, i) => ({
     id: i + 1,
     name: config.projectCity === 'ATLANTA' ? `District ${i + 1}` : `Ward ${i + 1}`,
-    focus: i % 2 === 0 ? "Innovation Zone" : "Equity Priority",
+    memberName: wardNames[i] || 'TBD',
+    focus: "Innovation Zone",
     color: i % 3 === 0 ? config.primaryColor : i % 3 === 1 ? config.secondaryColor : config.accentColor,
-    detail: "Deployment optimized for high-traffic public corridors and community hubs."
   }));
 
   return (
@@ -28,16 +30,12 @@ export const CivicLeadership: React.FC<Props> = ({ config }) => {
 
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-24">
-          <div className="inline-flex items-center gap-3 bg-[#009cdc]/10 text-[#009cdc] font-black text-[10px] tracking-[0.3em] uppercase mb-6 px-6 py-2 rounded-full border border-[#009cdc]/20">
-            <span className="w-2 h-2 rounded-full bg-[#009cdc] animate-ping"></span>
-            Legislative Breakthrough: Unanimous Approval
-          </div>
           <h2 className="text-5xl md:text-8xl font-black text-white italic uppercase tracking-tighter leading-none mb-8">
-            CITY OF <br/><span style={{ color: config.primaryColor }}>{config.projectCity.toUpperCase()}</span> ADOPTED.
+            CITY OF <br/><span style={{ color: config.primaryColor }}>{config.projectCity.toUpperCase()}</span> SELECTED.
           </h2>
           <div className="max-w-3xl mx-auto">
               <p className="text-gray-400 text-xl font-medium leading-relaxed mb-10">
-                The {config.projectCity} City Council officially approved the {config.projectName} Master Plan, authorizing the deployment of {config.courtCount} sites to create a world-class health network reachable within a <span className="text-white">10-minute bike ride</span> for residents.
+                One national search. Six cities selected. Defining the future of community wellness.
               </p>
               
               <div className="flex flex-wrap justify-center gap-4">
@@ -65,10 +63,10 @@ export const CivicLeadership: React.FC<Props> = ({ config }) => {
                 style={{ color: item.color }}
               ></div>
               <h3 className="text-3xl font-black text-white uppercase italic tracking-tighter mb-2">{item.name}</h3>
+              <div className="text-white font-bold text-sm mb-4 tracking-tight uppercase opacity-80">
+                {item.memberName}
+              </div>
               <p style={{ color: config.primaryColor }} className="text-[10px] font-black uppercase tracking-widest mb-6">{item.focus}</p>
-              <p className="text-gray-500 text-sm leading-relaxed mb-8">
-                {item.detail}
-              </p>
               <div className="flex items-center gap-2">
                  <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
                  <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Council Verified</span>

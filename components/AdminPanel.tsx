@@ -15,6 +15,8 @@ import { Impact } from './marketing/Impact';
 import Section4Product from './marketing/Section4Product';
 import Section5Ecosystem from './marketing/Section5Ecosystem';
 import Section6Endorsement from './marketing/Section6Endorsement';
+import Section7SponsorshipLevels from './marketing/Section7SponsorshipLevels';
+import { Section8Timeline } from './marketing/Section8Timeline';
 import { CampaignVideo } from './marketing/CampaignVideo';
 import { Footer } from './marketing/Footer';
 
@@ -75,7 +77,7 @@ const SidebarInput = ({
             type="text" 
             value={value} 
             onChange={(e) => onChange(e.target.value)}
-            className="flex-1 bg-zinc-900 border border-white/5 rounded-xl p-3 text-[10px] text-white font-mono uppercase"
+            className="flex-1 bg-zinc-900 border border-white/5 rounded-xl p-3 text-[10px] text-white font-mono"
           />
         </div>
       ) : type === 'textarea' ? (
@@ -140,7 +142,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ city, sponsorId, isOpen,
     : mergeSponsorConfig({ ...city, name: localCityName, template: localTemplate }, { 
         id: 'preview', 
         sponsorName: 'PREVIEW MODE', 
-        sponsorLogo: city.sponsors[0]?.sponsorLogo || '', 
+        sponsorLogo: city.sponsors[0]?.sponsorLogo || city.template.nfcLogo, 
         overrides: {} 
       });
 
@@ -210,6 +212,12 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ city, sponsorId, isOpen,
     }
   };
 
+  const handleUpdateWardName = (index: number, name: string) => {
+    const nextWardNames = [...(isEditingSponsor ? (localSponsor?.overrides.wardNames || localTemplate.wardNames) : localTemplate.wardNames)];
+    nextWardNames[index] = name;
+    handleUpdateField('wardNames', nextWardNames);
+  };
+
   const handleSave = () => {
     if (isEditingSponsor) {
       onUpdate(localSponsor);
@@ -222,6 +230,11 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ city, sponsorId, isOpen,
   const leadersToRender = isEditingSponsor 
     ? (localSponsor?.overrides.leaders || localTemplate.leaders)
     : localTemplate.leaders;
+
+  const wardCountNum = parseInt(localTemplate.wardCount) || 0;
+  const currentWardNames = isEditingSponsor 
+    ? (localSponsor?.overrides.wardNames || localTemplate.wardNames)
+    : localTemplate.wardNames;
 
   return (
     <motion.div 
@@ -308,7 +321,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ city, sponsorId, isOpen,
                   <h3 className="text-[10px] font-black text-[#009cdc] uppercase tracking-[0.4em] border-b border-white/5 pb-4">Hub Configuration</h3>
                   <div className="space-y-2">
                     <label className="text-[9px] font-black uppercase text-zinc-500 tracking-widest">City Hub Name</label>
-                    <input type="text" value={localCityName} onChange={(e) => setLocalCityName(e.target.value.toUpperCase())} className="w-full bg-zinc-900 border border-white/5 rounded-xl p-3 text-xs text-white outline-none focus:border-[#009cdc]" />
+                    <input type="text" value={localCityName} onChange={(e) => setLocalCityName(e.target.value)} className="w-full bg-zinc-900 border border-white/5 rounded-xl p-3 text-xs text-white outline-none focus:border-[#009cdc]" />
                   </div>
                   <SidebarInput 
                     label="City Logo Link" 
@@ -356,6 +369,24 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ city, sponsorId, isOpen,
                 </section>
 
                 <section className="space-y-8">
+                  <h3 className="text-[10px] font-black text-[#009cdc] uppercase tracking-[0.4em] border-b border-white/5 pb-4">Ward Council Members</h3>
+                  <div className="space-y-4">
+                    {Array.from({ length: wardCountNum }).map((_, i) => (
+                      <div key={i} className="space-y-2">
+                        <label className="text-[7px] font-black uppercase text-zinc-600 tracking-widest">{localTemplate.wardType.slice(0, -1)} {i + 1} Member Name</label>
+                        <input 
+                          type="text" 
+                          value={currentWardNames[i] || ''}
+                          onChange={(e) => handleUpdateWardName(i, e.target.value)}
+                          placeholder="Council Member Name"
+                          className="w-full bg-zinc-900 border border-white/5 rounded-xl p-3 text-xs text-white outline-none focus:border-[#009cdc]"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </section>
+
+                <section className="space-y-8">
                   <div className="flex justify-between items-center border-b border-white/5 pb-4">
                     <h3 className="text-[10px] font-black text-[#009cdc] uppercase tracking-[0.4em]">Key Leaders</h3>
                     <button 
@@ -381,7 +412,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ city, sponsorId, isOpen,
                             <input 
                               type="text" 
                               value={leader.name}
-                              onChange={(e) => handleSidebarUpdateLeader(leader.id, { name: e.target.value.toUpperCase() })}
+                              onChange={(e) => handleSidebarUpdateLeader(leader.id, { name: e.target.value })}
                               className="w-full bg-black/40 border border-white/5 rounded-lg p-2 text-[11px] text-white outline-none focus:border-[#009cdc]"
                             />
                           </div>
@@ -436,62 +467,51 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ city, sponsorId, isOpen,
                     onChange={(val) => handleUpdateField('endorsementQuote', val)}
                     type="textarea" 
                   />
+                  {/* Fixed Speaker Name SidebarInput by adding missing value and onChange props */}
                   <SidebarInput 
-                    label="Speaker Name" 
+                    label="Speaker Name"
                     value={localTemplate.endorsementName}
                     onChange={(val) => handleUpdateField('endorsementName', val)}
                   />
                   <SidebarInput 
-                    label="Endorsement Image URL" 
+                    label="Speaker Photo URL" 
                     value={localTemplate.endorsementImage}
                     onChange={(val) => handleUpdateField('endorsementImage', val)}
                   />
                 </section>
               </>
             )}
-
-            <div className="pt-8 opacity-20 pointer-events-none">
-              <p className="text-[8px] font-black uppercase tracking-[0.3em] text-center">NFC System Config v4.2.1</p>
-            </div>
           </div>
         </aside>
 
-        <main className="flex-1 overflow-hidden relative p-8 md:p-16 flex justify-center bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]">
-          <div className="w-full max-w-5xl h-full bg-[#020617] rounded-[3.5rem] shadow-[0_100px_200px_rgba(0,0,0,0.9)] border border-white/10 overflow-y-auto overflow-x-hidden relative" id="studio-canvas">
-            <div style={{ 
-              ['--brand-primary' as any]: previewConfig.primaryColor, 
-              ['--brand-accent' as any]: previewConfig.accentColor, 
-              ['--brand-secondary' as any]: previewConfig.secondaryColor 
-            } as any}>
-              <Section2Hero config={previewConfig} />
-              <FullWidthVideo />
-              <Section3Reality config={previewConfig} />
-              <CivicLeadership config={previewConfig} />
-              <MasterPlan 
-                config={previewConfig} 
-                isEditMode={!isEditingSponsor}
-                onUpdateMap={handleUpdateMapData}
-              />
-              <Impact config={previewConfig} />
-              <Section4Product config={previewConfig} />
-              <Section5Ecosystem config={previewConfig} />
-              <Section6Endorsement 
-                config={previewConfig} 
-                isEditMode={true} 
-                onUpdateField={handleUpdateField}
-              />
-              <CampaignVideo config={previewConfig} />
-              <Footer config={previewConfig} />
-            </div>
+        <main className="flex-1 bg-zinc-900 overflow-y-auto relative custom-scrollbar">
+          {/* Live Preview Area */}
+          <div className="min-w-[1200px] origin-top transform scale-[0.6] md:scale-[0.8] lg:scale-1 origin-top-left p-20">
+             <div className="bg-[#020617] shadow-[0_0_100px_rgba(0,0,0,0.5)] rounded-[4rem] overflow-hidden">
+                <Section2Hero config={previewConfig} />
+                <FullWidthVideo config={previewConfig} />
+                <Section3Reality config={previewConfig} />
+                <CivicLeadership config={previewConfig} />
+                <MasterPlan config={previewConfig} isEditMode={true} onUpdateMap={handleUpdateMapData} />
+                <Impact config={previewConfig} />
+                <Section4Product config={previewConfig} />
+                <Section5Ecosystem config={previewConfig} />
+                <Section6Endorsement config={previewConfig} isEditMode={true} onUpdateField={handleUpdateField} />
+                <Section7SponsorshipLevels config={previewConfig} />
+                <CampaignVideo config={previewConfig} />
+                <Section8Timeline config={previewConfig} />
+                <Footer config={previewConfig} />
+             </div>
+          </div>
+          
+          <div className="fixed top-24 right-12 z-50 pointer-events-none">
+             <div className="glass px-6 py-3 rounded-2xl border-white/10 shadow-2xl">
+                <span className="text-[10px] font-black uppercase text-[#009cdc] tracking-widest">Live Editor Preview</span>
+             </div>
           </div>
         </main>
-      </div>
 
-      <style>{`
-        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
-        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #222; border-radius: 10px; }
-      `}</style>
+      </div>
     </motion.div>
   );
 };

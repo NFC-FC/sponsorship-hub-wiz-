@@ -1,4 +1,3 @@
-
 import React, { useEffect, useMemo, useState } from 'react';
 import {
   Routes,
@@ -24,10 +23,11 @@ import { Impact } from './components/marketing/Impact';
 import Section4Product from './components/marketing/Section4Product';
 import Section5Ecosystem from './components/marketing/Section5Ecosystem';
 import Section6Endorsement from './components/marketing/Section6Endorsement';
+import Section7SponsorshipLevels from './components/marketing/Section7SponsorshipLevels';
+import { Section8Timeline } from './components/marketing/Section8Timeline';
 import { CampaignVideo } from './components/marketing/CampaignVideo';
 import { Footer } from './components/marketing/Footer';
 
-import { ChatBot } from './components/ChatBot';
 import { AdminPanel } from './components/AdminPanel';
 import { Dashboard } from './components/Dashboard';
 
@@ -79,6 +79,7 @@ export interface SiteConfig {
   courtCount: string;
   wardCount: string;
   wardType: string;
+  wardNames: string[];
   heroVideo: string;
   secondaryVideo: string;
   masterPlanBackground: string;
@@ -105,6 +106,7 @@ export interface CityTemplate {
   courtCount: string;
   wardCount: string;
   wardType: string;
+  wardNames: string[];
   heroVideo: string;
   secondaryVideo: string;
   masterPlanBackground: string;
@@ -169,7 +171,7 @@ const initialCities: CityGroup[] = [
     id: 'city-vegas',
     name: 'LAS VEGAS',
     template: {
-      projectName: 'HEALTHY',
+      projectName: 'National Wellness Innovation',
       cityLogo: defaultCityLogo,
       nfcLogo: nfcShield,
       primaryColor: '#009cdc',
@@ -179,6 +181,7 @@ const initialCities: CityGroup[] = [
       courtCount: '30+',
       wardCount: '6',
       wardType: 'Wards',
+      wardNames: ['Shelley Berkley', 'Brian Knudsen', 'Victoria Seaman', 'Olivia Diaz', 'Cedric Crear', 'Nancy Brune'],
       heroVideo: defaultVideo,
       secondaryVideo: defaultVideo,
       masterPlanBackground: 'https://github.com/NFC-FC/NFC-image-hosting/blob/04b9dee17b734ea8e2b55df7ce56a6ef817d0b01/vegas-MP.png?raw=true',
@@ -296,15 +299,20 @@ const SitePreview: React.FC<{ config: SiteConfig }> = ({ config }) => {
         } transition-opacity duration-1000`}
       >
         <Section2Hero config={config} />
-        <FullWidthVideo />
+        {/* New Feature Video below Hero */}
+        <FullWidthVideo config={config} />
+        {/* Reordered: Reality (Impact/Infrastructure) with rotating GIF now follows Hero immediately */}
         <Section3Reality config={config} />
+        {/* Adoption Section (Legislative Approval) follows impact */}
         <CivicLeadership config={config} />
         <MasterPlan config={config} />
         <Impact config={config} />
         <Section4Product config={config} />
         <Section5Ecosystem config={config} />
         <Section6Endorsement config={config} />
+        <Section7SponsorshipLevels config={config} />
         <CampaignVideo config={config} />
+        <Section8Timeline config={config} />
         <Footer config={config} />
       </div>
 
@@ -319,14 +327,15 @@ const SitePreview: React.FC<{ config: SiteConfig }> = ({ config }) => {
               onClick={() => navigate('/')}
               className="text-white/40 text-[10px] font-black tracking-[0.3em] uppercase cursor-pointer hover:text-white transition-colors"
             >
-              Innovation Hub
+              National Wellness Innovation Zone
             </span>
           </div>
 
           <div className="flex items-center gap-6 md:gap-10">
+            {/* Header Logos - Original brand colors with no filters */}
             <img
               src={config.sponsorLogo}
-              className="h-6 md:h-8 object-contain"
+              className="h-6 md:h-8 object-contain transition-transform hover:scale-105"
               alt={config.sponsorName}
             />
             
@@ -335,27 +344,19 @@ const SitePreview: React.FC<{ config: SiteConfig }> = ({ config }) => {
             <img 
               src={config.cityLogo}
               alt="City Seal" 
-              className="h-10 md:h-14 object-contain"
+              className="h-10 md:h-14 object-contain transition-transform hover:scale-105"
             />
 
             <div className="w-px h-10 bg-white/10 hidden sm:block" />
             
             <img
               src={config.nfcLogo}
-              className="h-8 md:h-10 object-contain"
+              className="h-8 md:h-10 object-contain transition-transform hover:scale-105"
               alt="NFC"
             />
           </div>
         </motion.div>
       )}
-
-      <div
-        className={`transition-opacity duration-1000 ${
-          isEntered ? 'opacity-100' : 'opacity-0 pointer-events-none'
-        }`}
-      >
-        <ChatBot config={config} />
-      </div>
     </div>
   );
 };

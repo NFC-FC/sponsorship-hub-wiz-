@@ -29,12 +29,12 @@ export const CampaignVideo: React.FC<Props> = ({ config }) => {
           className="relative aspect-video w-full rounded-[2rem] overflow-hidden shadow-[0_50px_100px_rgba(0,0,0,0.5)] border border-white/10 bg-black"
         >
           <iframe 
+            id="js_video_iframe"
             className="absolute inset-0 w-full h-full"
-            src="https://www.youtube.com/embed/2iaa8jRzcCc?si=qzNf0_o_btQN5bWj" 
-            title="YouTube video player" 
+            src="https://jumpshare.com/embed/tZtAdGc0oJiQyCRHnYTp" 
+            title="Campaign Video" 
             frameBorder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-            referrerPolicy="strict-origin-when-cross-origin" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
             allowFullScreen
           ></iframe>
         </motion.div>

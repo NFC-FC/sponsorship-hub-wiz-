@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 
@@ -14,154 +13,86 @@ interface Props {
   };
 }
 
-// Fix: Use named export to align with MasterPlan and Impact components, and resolve import issues in App.tsx
 export const Footer: React.FC<Props> = ({ config }) => {
   return (
-    <footer className="relative bg-[#020617] pt-32 pb-24 border-t border-white/5 overflow-hidden">
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-gradient-to-t from-white/5 to-transparent pointer-events-none" />
-      
-      <div className="container mx-auto px-6 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          className="text-center mb-16"
-        >
-          <h2 className="font-display text-4xl md:text-7xl text-white font-black uppercase tracking-tight leading-none mb-4">
-            SPONSORSHIP NEXT STEPS
-          </h2>
-          <p className="text-[#009cdc] font-black uppercase tracking-[0.4em] text-xs md:text-sm italic">
-            National Wellness Innovation Zone
-          </p>
-        </motion.div>
+    <footer className="relative bg-[#020617] overflow-hidden">
+      {/* FULL-BLEED GRADIENT SECTION */}
+      <section 
+        className="w-full relative py-20 md:py-32 flex flex-col items-center overflow-hidden"
+        style={{ background: `linear-gradient(135deg, #0072ce 0%, #00AEEF 50%, #FBAB18 100%)` }}
+      >
+        {/* Grain/Texture Overlay */}
+        <div className="absolute inset-0 opacity-[0.08] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
+        
+        <div className="container mx-auto px-6 relative z-10 flex justify-center">
+          {/* Main White Card matching the user's provided image format */}
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="bg-white rounded-[4rem] md:rounded-[6rem] p-10 md:p-20 shadow-[0_40px_100px_rgba(0,0,0,0.3)] max-w-7xl w-full flex flex-col items-center"
+          >
+            {/* 1. Impact Statement (Large Bold Blue Text) */}
+            <div className="text-center mb-12 px-4 md:px-12">
+              <h3 
+                className="text-2xl md:text-4xl lg:text-5xl font-black italic uppercase tracking-tighter leading-[0.95]"
+                style={{ color: '#00AEEF' }}
+              >
+                {config.sponsorName.toUpperCase()} DELIVERS $10M OF HEALTHY INFRASTRUCTURE COSTS TO {config.projectCity.toUpperCase()}, MAKING WORLD-CLASS FITNESS FREE FOR HUNDREDS OF THOUSANDS OF RESIDENTS.
+              </h3>
+            </div>
 
-        {/* Timeline Arrow & Content Container */}
-        <div className="max-w-6xl mx-auto">
-          {/* The City Arrow */}
-          <div className="relative flex justify-center mb-12">
-            <div className="relative flex items-center">
-              {/* Shield Icon Decoration (Simulated) */}
-              <div className="absolute left-0 -translate-x-1/2 z-20 w-16 h-16 bg-[#009cdc] border-4 border-white rounded-xl flex flex-col items-center justify-center shadow-xl rotate-0">
-                <div className="flex gap-1 mb-1">
-                  {[1, 2, 3].map(i => <div key={i} className="w-1.5 h-1.5 bg-white rounded-full" />)}
-                </div>
-                <div className="w-10 h-0.5 bg-white/50" />
-              </div>
+            {/* 2. Centered Divider */}
+            <div className="w-full h-px bg-slate-100 mb-12 max-w-5xl" />
+
+            {/* 3. Partnership Logos Row (Sponsor | City Seal | NFC) */}
+            <div className="flex flex-wrap items-center justify-center gap-6 md:gap-12 mb-12">
+              <img 
+                src={config.sponsorLogo} 
+                alt={config.sponsorName} 
+                className="h-8 md:h-12 object-contain" 
+              />
               
-              {/* Arrow Body */}
-              <div className="bg-[#0f172a] h-16 md:h-20 flex items-center justify-center px-16 md:px-24 rounded-l-lg">
-                <span className="text-white font-black uppercase tracking-[0.3em] text-lg md:text-2xl italic">
-                  {config.projectCity}
-                </span>
-              </div>
+              <div className="w-px h-10 bg-slate-200 hidden md:block" />
               
-              {/* Arrow Tip */}
-              <div 
-                className="w-0 h-0 border-t-[32px] md:border-t-[40px] border-t-transparent border-l-[40px] md:border-l-[50px] border-l-[#0f172a] border-b-[32px] md:border-b-[40px] border-b-transparent"
+              <img 
+                src={config.cityLogo} 
+                alt="City Seal" 
+                className="h-14 md:h-20 object-contain" 
+              />
+              
+              <div className="w-px h-10 bg-slate-200 hidden md:block" />
+              
+              <img 
+                src={config.nfcLogo} 
+                alt="NFC" 
+                className="h-10 md:h-14 object-contain" 
               />
             </div>
-          </div>
 
-          {/* Timeline Cards Grid */}
-          <div className="bg-[#cbd5e1] rounded-[2rem] p-6 md:p-10 shadow-2xl">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {/* Step 1 */}
-              <motion.div 
-                whileHover={{ y: -5 }}
-                className="bg-white rounded-3xl p-8 shadow-lg flex flex-col items-center text-center min-h-[320px]"
-              >
-                <div className="text-[#0f172a] font-black italic uppercase tracking-tighter text-2xl mb-8">STEP 1</div>
-                <div className="flex-1 flex flex-col justify-center">
-                  <h4 className="text-[#0f172a] text-xl md:text-2xl font-black italic uppercase leading-tight mb-6">
-                    30-60 Day <br/> Mutual Review Period
-                  </h4>
-                  <p className="text-slate-500 text-sm font-bold italic leading-relaxed">
-                    First right of refusal provided or category exclusivity on first-come, first served basis for qualified invitees.
-                  </p>
-                </div>
-              </motion.div>
+            {/* 4. Contact Info */}
+            <div className="text-center">
+              <p className="text-[10px] md:text-xs font-black text-slate-400 uppercase tracking-[0.2em]">
+                FOR NEXT STEPS, CONTACT TRENT (<a href="mailto:trent@NFCHQ.com" className="text-slate-900 hover:text-[#00AEEF] transition-colors underline underline-offset-4 decoration-slate-300">TRENT@NFCHQ.COM</a>) OR YOUR NFC REPRESENTATIVE.
+              </p>
+            </div>
+          </motion.div>
+        </div>
 
-              {/* Step 2 */}
-              <motion.div 
-                whileHover={{ y: -5 }}
-                className="bg-white rounded-3xl p-8 shadow-lg flex flex-col items-center text-center min-h-[320px]"
-              >
-                <div className="text-[#0f172a] font-black italic uppercase tracking-tighter text-2xl mb-8">STEP 2</div>
-                <div className="flex-1 flex flex-col justify-center">
-                  <h4 className="text-[#0f172a] text-xl md:text-2xl font-black italic uppercase leading-tight mb-6">
-                    Notice required on or <br/> before April 15th 2026
-                  </h4>
-                  <p className="text-slate-500 text-sm font-bold italic leading-relaxed">
-                    Final internal review, funding source identification, board approval as required.
-                  </p>
-                </div>
-              </motion.div>
-
-              {/* Step 3 */}
-              <motion.div 
-                whileHover={{ y: -5 }}
-                className="bg-white rounded-3xl p-8 shadow-lg flex flex-col items-center text-center min-h-[320px]"
-              >
-                <div className="text-[#0f172a] font-black italic uppercase tracking-tighter text-2xl mb-8">STEP 3</div>
-                <div className="flex-1 flex flex-col justify-center">
-                  <h4 className="text-[#0f172a] text-xl md:text-2xl font-black italic uppercase leading-tight mb-6">
-                    Sponsorships Confirmed <br/> by June 1st 2026.
-                  </h4>
-                  <div className="mt-6 pt-6 border-t border-slate-100">
-                    <span className="text-[#0f172a] text-lg font-black italic uppercase">Phase 1 Infrastructure</span>
-                  </div>
-                </div>
-              </motion.div>
+        {/* Legal Strip (Subtle Footer) */}
+        <div className="w-full mt-20">
+          <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-[9px] text-white/40 font-black uppercase tracking-[0.4em]">
+              © {new Date().getFullYear()} National Fitness Campaign • Public-Private Infrastructure Briefing
+            </p>
+            <div className="flex gap-6 opacity-40 text-[8px] font-black uppercase tracking-[0.15em] text-white">
+              <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+              <a href="#" className="hover:text-white transition-colors">Terms of Use</a>
+              <a href="#" className="hover:text-white transition-colors">Accessibility</a>
             </div>
           </div>
         </div>
-
-        {/* Brand Partnership Bottom Section - Reordered/Restyled to match splash screen */}
-        <div className="mt-40 pt-16 border-t border-white/5">
-           <motion.div 
-             initial={{ opacity: 0 }}
-             whileInView={{ opacity: 1 }}
-             className="flex flex-col items-center gap-12"
-           >
-              <div className="flex flex-wrap items-center justify-center gap-10 md:gap-20">
-                {/* Sponsor Logo */}
-                <img 
-                  src={config.sponsorLogo} 
-                  alt={config.sponsorName}
-                  className="h-8 md:h-10 object-contain"
-                />
-                
-                <div className="w-px h-16 bg-white/10 hidden md:block" />
-                
-                {/* City Seal */}
-                <img 
-                  src={config.cityLogo}
-                  alt="City Seal" 
-                  className="h-12 md:h-16 object-contain"
-                />
-
-                <div className="w-px h-16 bg-white/10 hidden md:block" />
-                
-                {/* NFC Logo */}
-                <img 
-                  src={config.nfcLogo}
-                  alt="NFC" 
-                  className="h-12 md:h-16 object-contain"
-                />
-              </div>
-
-              <div className="flex flex-col items-center text-center gap-2">
-                <p className="text-[10px] text-white/20 font-black uppercase tracking-[0.5em]">
-                  © {new Date().getFullYear()} National Fitness Campaign • Public-Private Infrastructure Briefing
-                </p>
-                <div className="flex gap-8 opacity-20 text-[9px] font-black uppercase tracking-widest text-white">
-                  <span>Privacy Policy</span>
-                  <span>Terms of Use</span>
-                  <span>Accessibility</span>
-                </div>
-              </div>
-           </motion.div>
-        </div>
-      </div>
+      </section>
     </footer>
   );
 };

@@ -1,5 +1,5 @@
 {
-  "name": "sponsorship-hub_national-wellness-innovation-zone_live",
+  "name": "copy-of-the-allegiant-wellness-innovation-zone_v1.6---ea",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@google/genai": "^1.41.0",
-    "@supabase/supabase-js": "^2.95.3",
+    "@supabase/supabase-js": "^2.96.0",
     "@vitejs/plugin-react": "^5.1.4",
     "framer-motion": "^12.34.0",
     "gsap": "^3.14.2",

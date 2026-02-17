@@ -72,11 +72,16 @@ export const MasterPlan: React.FC<Props> = ({ config, isEditMode, onUpdateMap })
             Deployment Roadmap
           </div>
           <h2 className="text-5xl md:text-7xl font-black text-white mb-6 uppercase italic tracking-tighter">
-            {config.projectCity.toUpperCase()} MASTER <span style={{ color: config.primaryColor }}>PLAN.</span>
+            HEALTHY INFRASTRUCTURE <span style={{ color: config.primaryColor }}>MASTER PLAN.</span>
           </h2>
-          <p className="text-gray-400 text-lg font-medium leading-relaxed max-w-2xl">
-            Our vision for a <span className="text-white">Healthy {config.projectCity}</span> involves the strategic placement of {config.courtCount} <span className="text-white">Fitness Courts</span> to ensure total city-wide coverage.
-          </p>
+          <div className="max-w-3xl">
+            <p className="text-white text-xl font-bold uppercase tracking-tight mb-2">
+              Prioritizing High-Need Neighborhoods
+            </p>
+            <p className="text-gray-400 text-lg font-medium leading-relaxed">
+              Each proposed location in this network is positioned to serve high-need areas. These sites help form a cohesive and balanced coverage plan, offering consistent access across different parts of the city.
+            </p>
+          </div>
         </div>
 
         {/* The Interactive Map Component */}
@@ -85,7 +90,7 @@ export const MasterPlan: React.FC<Props> = ({ config, isEditMode, onUpdateMap })
           className="relative aspect-[16/18] md:aspect-[16/14] lg:aspect-[16/11] bg-[#1a1a1a] rounded-[3rem] overflow-hidden border border-white/5 shadow-[0_0_100px_rgba(0,156,220,0.15)]"
         >
           
-          {/* Base Map Image - Stylized Las Vegas Grid */}
+          {/* Base Map Image - Stylized Grid */}
           <div 
             className="absolute inset-0 opacity-100 transition-all duration-700 bg-center bg-cover"
             style={{ 
@@ -97,36 +102,36 @@ export const MasterPlan: React.FC<Props> = ({ config, isEditMode, onUpdateMap })
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/graphy-dark.png')] opacity-20 pointer-events-none"></div>
 
           {/* KEY (Legend) */}
-          <div className="absolute top-6 left-6 z-30 w-56 md:w-64 glass p-4 md:p-6 rounded-2xl border-white/10 shadow-2xl scale-90 md:scale-100 origin-top-left pointer-events-none">
-            <div className="text-[9px] font-black text-gray-500 tracking-[0.4em] uppercase mb-4 border-b border-white/5 pb-2">KEY</div>
+          <div className="absolute top-6 left-6 z-30 w-56 md:w-64 bg-white/90 backdrop-blur-xl p-4 md:p-6 rounded-2xl border border-white/10 shadow-2xl scale-90 md:scale-100 origin-top-left pointer-events-none">
+            <div className="text-[9px] font-black text-zinc-500 tracking-[0.4em] uppercase mb-4 border-b border-black/10 pb-2">KEY</div>
             <div className="space-y-3">
               <div className="flex items-center gap-3">
                 <div className="w-5 h-5 rounded-full bg-[#002D72] flex items-center justify-center border border-white/20 shadow-lg shadow-[#002D72]/40">
                   <div className="w-2 h-2 bg-white rounded-full"></div>
                 </div>
-                <span className="text-[8px] font-bold text-gray-500 uppercase tracking-widest">Proposed Fitness Court Studio</span>
+                <span className="text-[8px] font-bold text-zinc-700 uppercase tracking-widest">Proposed Fitness Court Studio</span>
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-5 h-5 rounded-full flex items-center justify-center border border-white/20 shadow-lg" style={{ backgroundColor: config.primaryColor }}>
                   <div className="w-2 h-2 bg-white rounded-full"></div>
                 </div>
-                <span className="text-[8px] font-bold text-gray-500 uppercase tracking-widest">Proposed Fitness Court</span>
+                <span className="text-[8px] font-bold text-zinc-700 uppercase tracking-widest">Proposed Fitness Court</span>
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-5 h-5 rounded-full bg-gray-600 flex items-center justify-center border border-white/20">
                   <div className="w-2 h-2 bg-white rounded-full"></div>
                 </div>
-                <span className="text-[8px] font-bold text-gray-500 uppercase tracking-widest">Existing Fitness Court</span>
+                <span className="text-[8px] font-bold text-zinc-700 uppercase tracking-widest">Existing Fitness Court</span>
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-5 h-5 rounded-full bg-[#1DBBB4] flex items-center justify-center border border-white/20 shadow-lg shadow-[#1DBBB4]/40">
                   <div className="w-2 h-2 bg-white rounded-full"></div>
                 </div>
-                <span className="text-[8px] font-bold text-gray-500 uppercase tracking-widest">Proposed Fitness Court Pod</span>
+                <span className="text-[8px] font-bold text-zinc-700 uppercase tracking-widest">Proposed Fitness Court Pod</span>
               </div>
               <div className="flex items-center gap-3 pt-1">
                 <div className="w-5 h-5 rounded-full border border-white/20" style={{ backgroundColor: `${config.primaryColor}33` }}></div>
-                <span className="text-[8px] font-bold text-gray-500 uppercase tracking-widest leading-tight">10 Min Bike Radius Accessibility</span>
+                <span className="text-[8px] font-bold text-zinc-700 uppercase tracking-widest leading-tight">10 Min Bike Radius Accessibility</span>
               </div>
             </div>
           </div>
@@ -167,8 +172,11 @@ export const MasterPlan: React.FC<Props> = ({ config, isEditMode, onUpdateMap })
               
               {(hovered === m.id || (dragItem && dragItem.id === m.id)) && (
                 <div className="absolute top-10 left-1/2 -translate-x-1/2 glass p-4 rounded-xl border-white/10 shadow-2xl min-w-[150px] z-50 pointer-events-none">
-                  <div className="text-[9px] font-black uppercase tracking-widest mb-1" style={{ color: config.primaryColor }}>{m.type}</div>
-                  <div className="text-[11px] font-bold text-white whitespace-nowrap">{m.name}</div>
+                  <div className="text-[9px] font-black uppercase tracking-widest mb-1" style={{ color: config.primaryColor }}>
+                    {m.type === 'studio' ? 'Proposed Fitness Court Studio' : 
+                     m.type === 'pod' ? 'Proposed Fitness Court Pod' :
+                     m.type === 'existing' ? 'Existing Fitness Court' : 'Proposed Fitness Court'}
+                  </div>
                   <div className="mt-2 h-[1px] bg-white/10 w-full"></div>
                   <div className="text-[8px] text-gray-500 mt-2 uppercase font-black">Active Zone</div>
                   {isEditMode && <div className="text-[7px] text-[#009cdc] font-black uppercase mt-1">Dragging Enabled</div>}
@@ -208,13 +216,6 @@ export const MasterPlan: React.FC<Props> = ({ config, isEditMode, onUpdateMap })
             </div>
           ))}
 
-        </div>
-
-        <div className="mt-12 flex justify-center lg:justify-start">
-          <button className="nfc-btn-primary px-10 py-5 text-[11px] font-black shadow-nfc flex items-center gap-4 transition-transform hover:scale-105" style={{ backgroundColor: config.primaryColor }}>
-            <span>EXPLORE DETAILED MASTER PLAN</span>
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-          </button>
         </div>
       </div>
     </div>
