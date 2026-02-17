@@ -9,6 +9,7 @@ import {
   useLocation,
 } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
+import { supabase } from './src/supabaseClient';
 
 import SponsorEntryPage from './pages/SponsorEntryPage';
 
@@ -432,23 +433,94 @@ const AdminRoute: React.FC<{
 const STORAGE_KEY = 'nfc-cities-v4';
 
 const App: React.FC = () => {
-  const [cities, setCities] = useState<CityGroup[]>(() => {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (!saved) return initialCities;
+  const [cities, setCities] = useState<CityGroup[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  async function loadData() {
     try {
-      const parsed = JSON.parse(saved);
-      return Array.isArray(parsed) ? (parsed as CityGroup[]) : initialCities;
-    } catch {
-      return initialCities;
+      const { data: citiesData, error: citiesError } = await supabase
+        .from('cities')
+        .select('*');
+      
+      const { data: sponsorsData, error: sponsorsError } = await supabase
+        .from('sponsors')
+        .select('*');
+
+      if (citiesError) throw citiesError;
+      if (sponsorsError) throw sponsorsError;
+
+      if (citiesData && sponsorsData) {
+        const mergedCities: CityGroup[] = citiesData.map(city => ({
+          id: city.id,
+          name: city.name,
+          isArchived: city.is_archived,
+          template: city.template,
+          sponsors: sponsorsData
+            .filter(s => s.city_id === city.id)
+            .map(s => ({
+              id: s.id,
+              sponsorName: s.sponsor_name,
+              sponsorLogo: s.sponsor_logo,
+              sponsorPassword: s.sponsor_password,
+              sponsorRender: s.sponsor_render,
+              isArchived: s.is_archived,
+              overrides: s.overrides || {},
+            }))
+        }));
+
+        setCities(mergedCities);
+      }
+    } catch (error) {
+      console.error('Error loading data:', error);
+      setCities(initialCities);
+    } finally {
+      setLoading(false);
     }
-  });
+  }
 
   const [activeEdit, setActiveEdit] = useState<{ cityId: string; sponsorId?: string } | null>(null);
   const [isAdminAuthenticated, setIsAdminAuthenticated] = useState<boolean>(false);
 
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(cities));
-  }, [cities]);
+    if (loading) return;
+    saveCities();
+  }, [cities, loading]);
+
+  async function saveCities() {
+    try {
+      for (const city of cities) {
+        await supabase
+          .from('cities')
+          .upsert({
+            id: city.id,
+            name: city.name,
+            is_archived: city.isArchived,
+            template: city.template,
+          });
+
+        for (const sponsor of city.sponsors) {
+          await supabase
+            .from('sponsors')
+            .upsert({
+              id: sponsor.id,
+              city_id: city.id,
+              sponsor_name: sponsor.sponsorName,
+              sponsor_logo: sponsor.sponsorLogo,
+              sponsor_password: sponsor.sponsorPassword,
+              sponsor_render: sponsor.sponsorRender,
+              is_archived: sponsor.isArchived,
+              overrides: sponsor.overrides,
+            });
+        }
+      }
+    } catch (error) {
+      console.error('Error saving data:', error);
+    }
+  }
 
   // Derived: Merged public sponsors
   const allSponsorsMerged = useMemo(() => {
