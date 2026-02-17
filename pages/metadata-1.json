@@ -1,0 +1,7 @@
+{
+  "name": "Copy of EA - Allegiant Fitness Vegas - Master Plan",
+  "description": "An immersive landing page showcasing the Las Vegas Master Plan for 30+ Allegiant Airline Fitness Courts in partnership with the National Fitness Campaign.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}

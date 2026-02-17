@@ -1,0 +1,7 @@
+{
+  "name": "Sponsorship Hub_National Wellness Innovation Zone_LIVE",
+  "description": "V1.7 --- 2026.02.16 JS version from EM",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}

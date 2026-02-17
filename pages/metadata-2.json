@@ -1,0 +1,7 @@
+{
+  "name": "NFC GIS Performance Reporter",
+  "description": "A professional GIS analysis dashboard for the National Fitness Campaign. Visualize 10-minute bike radii (2.5 miles) around Fitness Courts, integrate ArcGIS census boundaries, and generate performance reports using Gemini AI.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}

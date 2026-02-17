@@ -1,0 +1,20 @@
+Merged on 2026-02-13T21:59:06
+Base: admin.zip (41 files)
+Overlay from layout.zip: replaced 11 files, added 2 files.
+
+Added files from layout:
+  + components/marketing/FullWidthVideo.tsx
+  + components/marketing/Section3bPitch.tsx
+
+Replaced files with layout versions:
+  ~ App.tsx
+  ~ components/AdminPanel.tsx
+  ~ components/FitnessApp.tsx
+  ~ components/marketing/CivicLeadership.tsx
+  ~ components/marketing/Footer.tsx
+  ~ components/marketing/Impact.tsx
+  ~ components/marketing/Section1Splash.tsx
+  ~ components/marketing/Section2Hero.tsx
+  ~ components/marketing/Section3Reality.tsx
+  ~ components/marketing/Section6Endorsement.tsx
+  ~ metadata.json
