@@ -290,7 +290,7 @@ const AdminRoute: React.FC<{
       >
         <div className="text-center">
           <h2 className="text-2xl font-black text-white italic uppercase tracking-tighter">
-            Admin Portal
+            Admin Access Panel
           </h2>
           <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-[0.2em] mt-2">
             Authentication Required
@@ -307,7 +307,7 @@ const AdminRoute: React.FC<{
           type="submit"
           className="bg-[#009cdc] hover:bg-[#007ba8] transition-colors text-white px-4 py-3 rounded-xl font-bold uppercase text-xs tracking-widest shadow-[0_0_20px_rgba(0,156,220,0.3)]"
         >
-          Access Console
+          Enter Portal
         </button>
         <button
           type="button"

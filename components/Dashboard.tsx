@@ -164,7 +164,8 @@ export const Dashboard: React.FC<Props> = ({ cities, setCities, onEditSponsor, o
                 </h2>
                 <div className="flex-1 h-px bg-gradient-to-r from-white/10 to-transparent"></div>
                 <div className="flex gap-3">
-                  <button 
+                  <button
+                    type="button"
                     onClick={() => onEditCityTemplate(city.id)}
                     className="bg-[#009cdc]/10 text-[#009cdc] hover:bg-[#009cdc]/20 px-6 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest border border-[#009cdc]/20"
                   >

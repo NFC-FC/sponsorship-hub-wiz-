@@ -91,7 +91,7 @@ const SponsorEntryPage: React.FC<Props> = ({ projects }) => {
         </div>
 
         {/* Access Key Input */}
-        <div className="w-full relative group mb-12">
+        <div className="w-full relative group mb-2">
           <div className={`absolute inset-0 bg-[#009cdc] blur-3xl opacity-10 transition-opacity duration-500 ${isFocused ? 'opacity-30' : 'opacity-10'}`} />
           
           <input 
@@ -121,7 +121,7 @@ const SponsorEntryPage: React.FC<Props> = ({ projects }) => {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
           onClick={handlePortalAccess}
-          className="group relative w-full px-10 py-6 bg-[#009cdc] hover:bg-[#007ba8] rounded-2xl transition-all duration-300 shadow-[0_0_40px_rgba(0,156,220,0.2)]"
+          className="group relative w-1/2 mx-auto px-10 py-6 bg-[#009cdc] hover:bg-[#007ba8] rounded-2xl transition-all duration-300 shadow-[0_0_40px_rgba(0,156,220,0.2)]"
         >
           <span className="relative z-10 text-xs md:text-sm font-black uppercase tracking-[0.3em] text-white">
             Access Portal
@@ -129,7 +129,7 @@ const SponsorEntryPage: React.FC<Props> = ({ projects }) => {
           <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         </motion.button>
 
-        <div className="mt-12 text-center">
+        <div className="mt-4 text-center">
           <div className={`transition-opacity duration-1000 ${isFocused && !accessKey ? 'opacity-40' : 'opacity-0'}`}>
             <p className="text-[9px] font-black uppercase tracking-[0.5em] text-white mb-4">Enter credential to unlock portal</p>
           </div>
