@@ -102,7 +102,7 @@ export const MasterPlan: React.FC<Props> = ({ config, isEditMode, onUpdateMap })
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/graphy-dark.png')] opacity-20 pointer-events-none"></div>
 
           {/* KEY (Legend) */}
-          <div className="absolute top-6 left-6 z-30 w-56 md:w-64 bg-white/90 backdrop-blur-xl p-4 md:p-6 rounded-2xl border border-white/10 shadow-2xl scale-90 md:scale-100 origin-top-left pointer-events-none">
+          <div className="absolute top-3 left-3 sm:top-6 sm:left-6 z-30 w-56 md:w-64 bg-white/90 backdrop-blur-xl p-4 md:p-6 rounded-2xl border border-white/10 shadow-2xl scale-[0.55] sm:scale-90 md:scale-100 origin-top-left pointer-events-none">
             <div className="text-[9px] font-black text-zinc-500 tracking-[0.4em] uppercase mb-4 border-b border-black/10 pb-2">KEY</div>
             <div className="space-y-3">
               <div className="flex items-center gap-3">

@@ -185,14 +185,14 @@ const Section4Product: React.FC<Props> = ({ config }) => {
                     initial={{ opacity: 0, y: -20, scale: 0.95 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -20, scale: 0.95 }}
-                    className="absolute top-4 right-4 sm:top-8 sm:right-8 w-56 sm:w-80 glass bg-white/98 p-5 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] border-slate-100 shadow-[0_40px_80px_-15px_rgba(0,0,0,0.1)] pointer-events-auto"
+                    className="absolute top-3 right-3 sm:top-8 sm:right-8 w-32 sm:w-80 glass bg-white/98 p-3 sm:p-8 rounded-xl sm:rounded-[2.5rem] border-slate-100 shadow-[0_40px_80px_-15px_rgba(0,0,0,0.1)] pointer-events-auto"
                   >
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="w-10 h-10 rounded-2xl flex items-center justify-center text-white font-black text-sm shadow-lg" style={{ backgroundColor: activeHotspot.color }}>
+                    <div className="flex items-center gap-2 sm:gap-4 mb-2 sm:mb-6">
+                      <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl flex items-center justify-center text-white font-black text-xs sm:text-sm shadow-lg flex-shrink-0" style={{ backgroundColor: activeHotspot.color }}>
                         {activeHotspot.number}
                       </div>
                       <div className="h-1 flex-grow rounded-full bg-slate-100 overflow-hidden">
-                        <motion.div 
+                        <motion.div
                           initial={{ x: '-100%' }}
                           animate={{ x: 0 }}
                           className="h-full w-full rounded-full"
@@ -200,8 +200,8 @@ const Section4Product: React.FC<Props> = ({ config }) => {
                         />
                       </div>
                     </div>
-                    <h4 className="text-slate-900 font-black text-sm uppercase tracking-widest mb-3 leading-tight">{activeHotspot.title}</h4>
-                    <p className="text-slate-500 text-sm leading-relaxed font-light">
+                    <h4 className="text-slate-900 font-black text-[9px] sm:text-sm uppercase tracking-widest mb-1 sm:mb-3 leading-tight">{activeHotspot.title}</h4>
+                    <p className="hidden sm:block text-slate-500 text-sm leading-relaxed font-light">
                       {activeHotspot.description}
                     </p>
                   </motion.div>
