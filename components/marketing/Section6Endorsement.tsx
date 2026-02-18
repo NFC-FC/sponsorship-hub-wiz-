@@ -69,7 +69,7 @@ const Section6Endorsement: React.FC<Props> = ({ config, isEditMode, onUpdateFiel
               whileInView={{ opacity: 1, y: 0 }}
             >
               <h3 
-                className={`text-2xl md:text-4xl lg:text-5xl font-light italic leading-snug text-slate-800 mb-8 ${isEditMode ? 'cursor-pointer hover:bg-slate-50' : ''}`}
+                className={`text-base sm:text-2xl md:text-4xl lg:text-5xl font-light italic leading-snug text-slate-800 mb-8 ${isEditMode ? 'cursor-pointer hover:bg-slate-50' : ''}`}
                 onClick={() => {
                   if (isEditMode && onUpdateField) {
                     const quote = prompt("Enter endorsement quote:", config.endorsementQuote);
