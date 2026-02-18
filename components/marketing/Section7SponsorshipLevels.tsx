@@ -21,7 +21,7 @@ const Section7SponsorshipLevels: React.FC<Props> = ({ config }) => {
       description: 'The highest tier of community alignment, providing permanent name-in-title visibility across the entire city-wide network.',
       detailsImage: 'https://raw.githubusercontent.com/NFC-FC/NFC-image-hosting/main/TITLE%20SPONSOR.png',
       icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-white w-8 h-8 sm:w-16 sm:h-16">
           <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>
         </svg>
       ),
@@ -37,7 +37,7 @@ const Section7SponsorshipLevels: React.FC<Props> = ({ config }) => {
         <img 
           src="https://raw.githubusercontent.com/NFC-FC/NFC-image-hosting/79f217a46638bf99776ee5f17fb2151b8cb5cf39/Medal.png" 
           alt="Presenting Icon" 
-          className="w-24 h-24 object-contain brightness-0 invert"
+          className="w-10 h-10 sm:w-24 sm:h-24 object-contain brightness-0 invert"
         />
       ),
       color: '#009cdc'
@@ -45,9 +45,9 @@ const Section7SponsorshipLevels: React.FC<Props> = ({ config }) => {
   ];
 
   return (
-    <section className="relative bg-slate-50 py-32 overflow-hidden border-t border-slate-200">
+    <section className="relative bg-slate-50 py-12 sm:py-32 overflow-hidden border-t border-slate-200">
       <div className="container mx-auto px-6 relative z-10">
-        <div className="text-center mb-20">
+        <div className="text-center mb-6 sm:mb-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -69,7 +69,7 @@ const Section7SponsorshipLevels: React.FC<Props> = ({ config }) => {
               initial={{ opacity: 0, x: idx === 0 ? -30 : 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               onClick={() => setSelectedLevel(level.id as any)}
-              className="group cursor-pointer bg-white rounded-[3.5rem] overflow-hidden shadow-xl border border-slate-100 flex flex-col hover:-translate-y-2 transition-transform duration-500"
+              className="group cursor-pointer bg-white rounded-2xl sm:rounded-[3.5rem] overflow-hidden shadow-xl border border-slate-100 flex flex-col hover:-translate-y-2 transition-transform duration-500"
             >
               <div 
                 className="aspect-[16/10] flex items-center justify-center relative overflow-hidden"
@@ -89,14 +89,14 @@ const Section7SponsorshipLevels: React.FC<Props> = ({ config }) => {
                 </div>
               </div>
               <div className="p-4 sm:p-10 flex flex-col flex-1">
-                <p className="text-slate-500 font-medium leading-relaxed mb-4 flex-1 text-sm">
+                <p className="text-slate-500 font-medium leading-relaxed mb-2 sm:mb-4 flex-1 text-[9px] sm:text-sm">
                   {level.description}
                 </p>
-                <div 
-                  className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em]"
+                <div
+                  className="flex items-center gap-1 sm:gap-2 text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em]"
                   style={{ color: level.color }}
                 >
-                  View Level Details <span className="group-hover:translate-x-1 transition-transform">→</span>
+                  View Details <span className="group-hover:translate-x-1 transition-transform">→</span>
                 </div>
               </div>
             </motion.div>
