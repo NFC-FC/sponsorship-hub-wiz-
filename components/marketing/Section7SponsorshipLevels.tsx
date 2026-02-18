@@ -19,7 +19,7 @@ const Section7SponsorshipLevels: React.FC<Props> = ({ config }) => {
       title: 'Title Sponsor',
       subtitle: 'Primary Infrastructure Partner',
       description: 'The highest tier of community alignment, providing permanent name-in-title visibility across the entire city-wide network.',
-      detailsImage: 'https://github.com/NFC-FC/NFC-image-hosting/blob/165dc7ec27b56a52e300d87b07381ff6821af2f5/TITLE%20SPONSOR.pdf',
+      detailsImage: 'https://github.com/NFC-FC/NFC-image-hosting/blob/5e56c3340120acc87a2f99cb60b68ce4d158ca10/TITLE%20SPONSOR.png',
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-white">
           <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>
@@ -32,7 +32,7 @@ const Section7SponsorshipLevels: React.FC<Props> = ({ config }) => {
       title: 'Presenting Sponsor',
       subtitle: 'Program Tier Partner',
       description: 'Strategic alignment with specific neighborhood hubs and program-based activation opportunities city-wide.',
-      detailsImage: 'https://github.com/NFC-FC/NFC-image-hosting/blob/165dc7ec27b56a52e300d87b07381ff6821af2f5/PRESENTING%20SPONSOR.pdf',
+      detailsImage: 'https://github.com/NFC-FC/NFC-image-hosting/blob/5e56c3340120acc87a2f99cb60b68ce4d158ca10/PRESENTING%20SPONSOR.png',
       icon: (
         <img 
           src="https://raw.githubusercontent.com/NFC-FC/NFC-image-hosting/79f217a46638bf99776ee5f17fb2151b8cb5cf39/Medal.png" 
