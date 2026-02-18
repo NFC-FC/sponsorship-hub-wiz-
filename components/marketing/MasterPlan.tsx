@@ -178,7 +178,7 @@ export const MasterPlan: React.FC<Props> = ({ config, isEditMode, onUpdateMap })
                      m.type === 'existing' ? 'Existing Fitness Court' : 'Proposed Fitness Court'}
                   </div>
                   <div className="mt-2 h-[1px] bg-white/10 w-full"></div>
-                  <div className="text-[8px] text-gray-500 mt-2 uppercase font-black">Active Zone</div>
+                  <div className="text-[8px] text-gray-500 mt-2 uppercase font-black">{m.name}</div>
                   {isEditMode && <div className="text-[7px] text-[#009cdc] font-black uppercase mt-1">Dragging Enabled</div>}
                 </div>
               )}
