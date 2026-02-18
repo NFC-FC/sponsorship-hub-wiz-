@@ -78,7 +78,7 @@ const Section7SponsorshipLevels: React.FC<Props> = ({ config }) => {
                 <div className="absolute right-0 bottom-0 w-full h-full opacity-10 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
                 <motion.div
                   whileHover={{ scale: 1.1, rotate: 5 }}
-                  className="relative z-10"
+                  className="relative z-10 hidden sm:block"
                 >
                   {level.icon}
                 </motion.div>
