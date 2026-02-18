@@ -18,7 +18,7 @@ export const Section8Timeline: React.FC<Props> = ({ config }) => {
         <motion.h2 
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          className="text-4xl md:text-7xl font-black text-white uppercase tracking-tighter mb-4"
+          className="text-3xl sm:text-4xl md:text-7xl font-black text-white uppercase tracking-tighter mb-4"
         >
           SPONSORSHIP NEXT STEPS
         </motion.h2>
@@ -72,7 +72,7 @@ export const Section8Timeline: React.FC<Props> = ({ config }) => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           
           {/* STEP 1 */}
-          <div className="bg-white rounded-[2rem] p-8 md:p-12 flex flex-col items-center text-center shadow-lg min-h-[400px] justify-center">
+          <div className="bg-white rounded-[2rem] p-6 sm:p-8 md:p-12 flex flex-col items-center text-center shadow-lg min-h-[280px] sm:min-h-[400px] justify-center">
             <span className="text-xs font-black italic uppercase tracking-widest text-slate-800 mb-10">STEP 1</span>
             <h3 className="text-2xl md:text-3xl font-black text-slate-900 uppercase italic leading-none tracking-tighter mb-8">
               30-60 DAY<br/>MUTUAL REVIEW<br/>PERIOD
@@ -83,7 +83,7 @@ export const Section8Timeline: React.FC<Props> = ({ config }) => {
           </div>
 
           {/* STEP 2 */}
-          <div className="bg-white rounded-[2rem] p-8 md:p-12 flex flex-col items-center text-center shadow-lg min-h-[400px] justify-center">
+          <div className="bg-white rounded-[2rem] p-6 sm:p-8 md:p-12 flex flex-col items-center text-center shadow-lg min-h-[280px] sm:min-h-[400px] justify-center">
             <span className="text-xs font-black italic uppercase tracking-widest text-slate-800 mb-10">STEP 2</span>
             <h3 className="text-2xl md:text-3xl font-black text-slate-900 uppercase italic leading-none tracking-tighter mb-8">
               NOTICE TO PROCEED<br/>REQUESTED ON OR<br/>BEFORE APRIL 15TH<br/>2026
@@ -94,7 +94,7 @@ export const Section8Timeline: React.FC<Props> = ({ config }) => {
           </div>
 
           {/* STEP 3 */}
-          <div className="bg-white rounded-[2rem] p-8 md:p-12 flex flex-col items-center text-center shadow-lg min-h-[400px] justify-center relative">
+          <div className="bg-white rounded-[2rem] p-6 sm:p-8 md:p-12 flex flex-col items-center text-center shadow-lg min-h-[280px] sm:min-h-[400px] justify-center relative">
             <span className="text-xs font-black italic uppercase tracking-widest text-slate-800 mb-10">STEP 3</span>
             <h3 className="text-2xl md:text-3xl font-black text-slate-900 uppercase italic leading-none tracking-tighter mb-8">
               CORE SPONSORSHIPS<br/>CONFIRMED<br/>JUNE 15

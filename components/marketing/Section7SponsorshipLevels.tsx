@@ -54,7 +54,7 @@ const Section7SponsorshipLevels: React.FC<Props> = ({ config }) => {
             transition={{ duration: 0.8 }}
           >
             <span className="font-bold tracking-[0.4em] text-[10px] uppercase block mb-4" style={{ color: config.primaryColor }}>Investment Roadmap</span>
-            <h2 className="font-display text-4xl md:text-6xl text-slate-900 font-black uppercase mb-6 leading-none tracking-tighter">
+            <h2 className="font-display text-3xl sm:text-4xl md:text-6xl text-slate-900 font-black uppercase mb-6 leading-none tracking-tighter">
               Sponsorship Levels <br/>
               <span style={{ color: config.primaryColor }}>for Consideration</span>
             </h2>
@@ -154,7 +154,7 @@ const Section7SponsorshipLevels: React.FC<Props> = ({ config }) => {
                   </div>
 
                   {/* Enhanced Footer to match Screenshot Aesthetic */}
-                  <div className="p-10 md:p-14 border-t border-slate-50 flex flex-col items-start justify-between bg-white text-left">
+                  <div className="p-6 sm:p-10 md:p-14 border-t border-slate-50 flex flex-col items-start justify-between bg-white text-left">
                     <div className="mb-4">
                       <h4 className="text-[#020617] font-black text-2xl md:text-3xl uppercase tracking-tighter italic leading-none mb-3">
                         {selected.title} Details

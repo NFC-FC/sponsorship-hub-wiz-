@@ -18,7 +18,7 @@ export const CampaignVideo: React.FC<Props> = ({ config }) => {
           className="mb-12"
         >
           <span className="text-[10px] font-black uppercase tracking-[0.4em] mb-4 block" style={{ color: config.primaryColor }}>The Movement</span>
-          <h2 className="text-4xl md:text-6xl font-black text-white italic uppercase tracking-tighter">
+          <h2 className="text-3xl sm:text-4xl md:text-6xl font-black text-white italic uppercase tracking-tighter">
             WATCH THE <span style={{ color: config.primaryColor }}>CAMPAIGN VIDEO.</span>
           </h2>
         </motion.div>

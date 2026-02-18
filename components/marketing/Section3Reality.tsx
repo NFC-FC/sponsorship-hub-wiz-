@@ -50,10 +50,10 @@ const Section3Reality: React.FC<Props> = ({ config }) => {
             className="flex flex-col gap-6"
           >
             <span className="font-bold tracking-[0.3em] text-xs uppercase" style={{ color: config.primaryColor }}>Community Impact</span>
-            <h3 className="font-display text-5xl md:text-7xl text-white font-black leading-none">
+            <h3 className="font-display text-3xl sm:text-5xl md:text-7xl text-white font-black leading-none">
               MAKING WORLD CLASS FITNESS FREE FOR HUNDREDS OF THOUSANDS OF PEOPLE.
             </h3>
-            <p className="text-lg md:text-xl text-white/60 font-light leading-relaxed max-w-lg">
+            <p className="text-base sm:text-lg md:text-xl text-white/60 font-light leading-relaxed max-w-lg">
               Building Healthier Communities by Redesigning the Built Environment for Every-Day Outdoor Movement, Health and Happiness.
             </p>
             

@@ -51,7 +51,7 @@ const Section2Hero: React.FC<Props> = ({ config }) => {
           <span className="tracking-[0.7em] font-black text-[10px] md:text-xs uppercase mb-8 block drop-shadow-[0_0_10px_rgba(251,171,24,0.3)]" style={{ color: config.primaryColor }}>
             The Vision
           </span>
-            <h2 className="font-display text-3xl md:text-6xl lg:text-[5.5vw] text-white font-black leading-[0.95] w-full uppercase tracking-tighter drop-shadow-2xl">
+            <h2 className="font-display text-2xl sm:text-3xl md:text-6xl lg:text-[5.5vw] text-white font-black leading-[0.95] w-full uppercase tracking-tighter drop-shadow-2xl">
               {config.sponsorName.toUpperCase()} DELIVERS <br/>
                <span
                className="text-transparent bg-clip-text"
@@ -65,7 +65,7 @@ const Section2Hero: React.FC<Props> = ({ config }) => {
             </h2>
 
 
-          <div className="w-60 h-1.5 mx-auto mt-16 shadow-[0_0_45px_rgba(0,85,135,1)] rounded-full" style={{ backgroundColor: config.primaryColor }} />
+          <div className="w-32 sm:w-60 h-1.5 mx-auto mt-10 sm:mt-16 shadow-[0_0_45px_rgba(0,85,135,1)] rounded-full" style={{ backgroundColor: config.primaryColor }} />
         </motion.div>
       </motion.div>
 

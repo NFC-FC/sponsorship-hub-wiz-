@@ -90,10 +90,10 @@ const Section5Ecosystem: React.FC<Props> = ({ config }) => {
               whileInView={{ opacity: 1, x: 0 }}
             >
               <span className="font-bold tracking-[0.4em] text-[10px] uppercase block mb-4" style={{ color: config.primaryColor }}>The Digital Portal</span>
-              <h2 className="font-display text-5xl md:text-6xl font-black leading-none mb-6 uppercase tracking-tighter">
+              <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-black leading-none mb-6 uppercase tracking-tighter">
                 THE DIGITAL<br/>WELLNESS <span style={{ color: config.primaryColor }}>ECOSYSTEM</span>
               </h2>
-              <p className="text-xl text-slate-600 font-light leading-relaxed max-w-lg">
+              <p className="text-base sm:text-xl text-slate-600 font-light leading-relaxed max-w-lg">
                 The Fitness Court App is the ultimate companion to the physical infrastructure, providing world-class coaching to every resident of {config.projectCity}.
               </p>
             </motion.div>
@@ -127,7 +127,7 @@ const Section5Ecosystem: React.FC<Props> = ({ config }) => {
                      {i + 1}
                   </div>
                   <div>
-                    <h4 className="text-xl font-black uppercase italic tracking-tight mb-1">{item.title}</h4>
+                    <h4 className="text-lg sm:text-xl font-black uppercase italic tracking-tight mb-1">{item.title}</h4>
                     <p className="text-slate-500 font-medium text-sm leading-relaxed max-w-md">{item.desc}</p>
                   </div>
                 </motion.li>

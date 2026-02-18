@@ -35,14 +35,14 @@ export const Impact: React.FC<Props> = ({ config }) => {
           <div className="inline-block px-4 py-1 rounded-full text-[9px] font-black uppercase tracking-[0.2em] mb-4" style={{ backgroundColor: `${config.primaryColor}1A`, color: config.primaryColor }}>
             Legacy of Wellness
           </div>
-          <h2 className="text-4xl md:text-7xl font-black text-white mb-6 uppercase italic tracking-tighter leading-none">THE IMPACT <span style={{ color: config.primaryColor }}>OVER A DECADE.</span></h2>
-          <p className="text-gray-500 max-w-2xl mx-auto text-lg md:text-xl font-medium leading-relaxed">
+          <h2 className="text-3xl sm:text-4xl md:text-7xl font-black text-white mb-6 uppercase italic tracking-tighter leading-none">THE IMPACT <span style={{ color: config.primaryColor }}>OVER A DECADE.</span></h2>
+          <p className="text-gray-500 max-w-2xl mx-auto text-base sm:text-lg md:text-xl font-medium leading-relaxed">
             A permanent catalyst for community health growth. By transforming the built environment, we unlock multi-generational health benefits.
           </p>
         </div>
 
         <div className="grid lg:grid-cols-3 gap-8 items-stretch">
-          <div className="lg:col-span-2 glass p-8 rounded-[3rem] h-[500px] border-white/5 shadow-2xl flex flex-col">
+          <div className="lg:col-span-2 glass p-8 rounded-[3rem] h-[300px] sm:h-[500px] border-white/5 shadow-2xl flex flex-col">
             <div className="flex justify-between items-center mb-8">
               <div>
                 <h3 className="text-sm font-black uppercase tracking-[0.4em] text-white" style={{ color: config.primaryColor }}>Projected Healthcare Savings</h3>
@@ -99,21 +99,21 @@ export const Impact: React.FC<Props> = ({ config }) => {
 
           <div className="flex flex-col gap-6">
             <div className="glass p-8 rounded-[2.5rem] flex-1 flex flex-col justify-center border-white/5 relative overflow-hidden group">
-              <div className="text-5xl font-black text-white mb-1 tracking-tighter">650k+</div>
+              <div className="text-4xl sm:text-5xl font-black text-white mb-1 tracking-tighter">650k+</div>
               <div className="uppercase text-[9px] font-black tracking-[0.4em]" style={{ color: config.primaryColor }}>Community Access</div>
               <p className="text-[10px] text-gray-500 mt-3 leading-relaxed">Residents served by 10 min accessibility radius.</p>
               <div className="absolute top-0 right-0 w-24 h-24 bg-white/5 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-transform duration-700 pointer-events-none" />
             </div>
             
             <div className="glass p-8 rounded-[2.5rem] flex-1 flex flex-col justify-center border-white/5 relative overflow-hidden group">
-              <div className="text-5xl font-black text-white mb-1 tracking-tighter">250k+</div>
+              <div className="text-4xl sm:text-5xl font-black text-white mb-1 tracking-tighter">250k+</div>
               <div className="uppercase text-[9px] font-black tracking-[0.4em]" style={{ color: config.secondaryColor }}>Annual Uses</div>
               <p className="text-[10px] text-gray-500 mt-3 leading-relaxed">Projected annual workout sessions across the city-wide network.</p>
               <div className="absolute top-0 right-0 w-24 h-24 bg-white/5 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-transform duration-700 pointer-events-none" />
             </div>
 
             <div className="glass p-8 rounded-[2.5rem] flex-1 flex flex-col justify-center border-white/5 relative overflow-hidden group">
-              <div className="text-5xl font-black text-white mb-1 tracking-tighter">25M+</div>
+              <div className="text-4xl sm:text-5xl font-black text-white mb-1 tracking-tighter">25M+</div>
               <div className="uppercase text-[9px] font-black tracking-[0.4em]" style={{ color: config.accentColor }}>Calories Burned</div>
               <p className="text-[10px] text-gray-500 mt-3 leading-relaxed">Cumulative active energy expenditure contributing to lower BMI city-wide.</p>
               <div className="absolute top-0 right-0 w-24 h-24 bg-white/5 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-transform duration-700 pointer-events-none" />
