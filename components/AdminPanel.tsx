@@ -171,6 +171,51 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ city, sponsorId, isOpen,
     handleUpdateField('callouts', callouts);
   };
 
+  const handleAddMarker = () => {
+    const newMarker: MapMarker = {
+      id: `marker-${Date.now()}`,
+      x: 50,
+      y: 50,
+      name: 'New Location',
+      type: 'standard',
+    };
+    setLocalTemplate(prev => ({ ...prev, markers: [...(prev.markers || []), newMarker] }));
+  };
+
+  const handleRemoveMarker = (id: string) => {
+    setLocalTemplate(prev => ({ ...prev, markers: prev.markers.filter(m => m.id !== id) }));
+  };
+
+  const handleUpdateMarker = (id: string, updates: Partial<MapMarker>) => {
+    setLocalTemplate(prev => ({
+      ...prev,
+      markers: prev.markers.map(m => m.id === id ? { ...m, ...updates } : m),
+    }));
+  };
+
+  const handleAddCallout = () => {
+    const newCallout: MapCallout = {
+      id: `callout-${Date.now()}`,
+      x: 50,
+      y: 30,
+      title: 'NEW CALLOUT',
+      image: '',
+      colorType: 'primary',
+    };
+    setLocalTemplate(prev => ({ ...prev, callouts: [...(prev.callouts || []), newCallout] }));
+  };
+
+  const handleRemoveCallout = (id: string) => {
+    setLocalTemplate(prev => ({ ...prev, callouts: prev.callouts.filter(c => c.id !== id) }));
+  };
+
+  const handleUpdateCallout = (id: string, updates: Partial<MapCallout>) => {
+    setLocalTemplate(prev => ({
+      ...prev,
+      callouts: prev.callouts.map(c => c.id === id ? { ...c, ...updates } : c),
+    }));
+  };
+
   const handleAddLeader = () => {
     const newLeader: Leader = {
       id: `leader-${Date.now()}`,
@@ -330,13 +375,128 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ city, sponsorId, isOpen,
                   />
                 </section>
 
-                <section className="space-y-6">
-                   <h3 className="text-[10px] font-black text-[#009cdc] uppercase tracking-[0.4em] border-b border-white/5 pb-4">Map Editor Hints</h3>
-                   <div className="p-4 bg-white/5 rounded-2xl border border-white/5">
-                      <p className="text-[10px] text-zinc-400 font-bold leading-relaxed">
-                        Drag pins and callout images directly on the map preview to reposition them for this city hub.
-                      </p>
-                   </div>
+                <section className="space-y-8">
+                  <div className="flex justify-between items-center border-b border-white/5 pb-4">
+                    <h3 className="text-[10px] font-black text-[#009cdc] uppercase tracking-[0.4em]">Map Markers</h3>
+                    <button
+                      onClick={handleAddMarker}
+                      className="text-[8px] font-black uppercase tracking-widest px-3 py-1 bg-white/5 hover:bg-white/10 rounded-lg text-zinc-400 hover:text-white transition-colors"
+                    >
+                      + Add
+                    </button>
+                  </div>
+                  <div className="p-3 bg-white/5 rounded-xl border border-white/5 -mt-4">
+                    <p className="text-[9px] text-zinc-500 font-bold leading-relaxed">Drag pins on the map preview to reposition.</p>
+                  </div>
+                  <div className="space-y-6">
+                    {(localTemplate.markers || []).map((marker) => (
+                      <div key={marker.id} className="p-4 bg-white/5 rounded-2xl border border-white/5 relative group/marker-card">
+                        <button
+                          onClick={() => handleRemoveMarker(marker.id)}
+                          className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white flex items-center justify-center transition-all opacity-0 group-hover/marker-card:opacity-100"
+                        >
+                          ✕
+                        </button>
+                        <div className="space-y-3">
+                          <div className="space-y-1">
+                            <label className="text-[7px] font-black uppercase text-zinc-600 tracking-widest">Name</label>
+                            <input
+                              type="text"
+                              value={marker.name}
+                              onChange={(e) => handleUpdateMarker(marker.id, { name: e.target.value })}
+                              className="w-full bg-black/40 border border-white/5 rounded-lg p-2 text-[11px] text-white outline-none focus:border-[#009cdc]"
+                            />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-[7px] font-black uppercase text-zinc-600 tracking-widest">Type</label>
+                            <select
+                              value={marker.type}
+                              onChange={(e) => handleUpdateMarker(marker.id, { type: e.target.value as MapMarker['type'] })}
+                              className="w-full bg-black/40 border border-white/5 rounded-lg p-2 text-[11px] text-white outline-none focus:border-[#009cdc]"
+                            >
+                              <option value="standard">Fitness Court</option>
+                              <option value="studio">Fitness Court Studio</option>
+                              <option value="pod">Fitness Court Pod</option>
+                              <option value="existing">Existing Fitness Court</option>
+                            </select>
+                          </div>
+                          <div className="flex gap-3 text-[7px] font-black text-zinc-700 uppercase tracking-widest">
+                            <span>X: {marker.x.toFixed(1)}%</span>
+                            <span>Y: {marker.y.toFixed(1)}%</span>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                    {(localTemplate.markers || []).length === 0 && (
+                      <p className="text-[9px] text-zinc-700 font-bold uppercase tracking-widest text-center py-2">No markers yet — click + Add above.</p>
+                    )}
+                  </div>
+                </section>
+
+                <section className="space-y-8">
+                  <div className="flex justify-between items-center border-b border-white/5 pb-4">
+                    <h3 className="text-[10px] font-black text-[#009cdc] uppercase tracking-[0.4em]">Map Callouts</h3>
+                    <button
+                      onClick={handleAddCallout}
+                      className="text-[8px] font-black uppercase tracking-widest px-3 py-1 bg-white/5 hover:bg-white/10 rounded-lg text-zinc-400 hover:text-white transition-colors"
+                    >
+                      + Add
+                    </button>
+                  </div>
+                  <div className="p-3 bg-white/5 rounded-xl border border-white/5 -mt-4">
+                    <p className="text-[9px] text-zinc-500 font-bold leading-relaxed">Drag callout cards on the map preview to reposition.</p>
+                  </div>
+                  <div className="space-y-6">
+                    {(localTemplate.callouts || []).map((callout) => (
+                      <div key={callout.id} className="p-4 bg-white/5 rounded-2xl border border-white/5 relative group/callout-card">
+                        <button
+                          onClick={() => handleRemoveCallout(callout.id)}
+                          className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white flex items-center justify-center transition-all opacity-0 group-hover/callout-card:opacity-100"
+                        >
+                          ✕
+                        </button>
+                        <div className="space-y-3">
+                          <div className="space-y-1">
+                            <label className="text-[7px] font-black uppercase text-zinc-600 tracking-widest">Title</label>
+                            <input
+                              type="text"
+                              value={callout.title}
+                              onChange={(e) => handleUpdateCallout(callout.id, { title: e.target.value })}
+                              className="w-full bg-black/40 border border-white/5 rounded-lg p-2 text-[11px] text-white outline-none focus:border-[#009cdc]"
+                            />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-[7px] font-black uppercase text-zinc-600 tracking-widest">Image URL</label>
+                            <input
+                              type="text"
+                              value={callout.image}
+                              onChange={(e) => handleUpdateCallout(callout.id, { image: e.target.value })}
+                              className="w-full bg-black/40 border border-white/5 rounded-lg p-2 text-[10px] text-zinc-400 outline-none focus:border-[#009cdc]"
+                            />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-[7px] font-black uppercase text-zinc-600 tracking-widest">Color</label>
+                            <select
+                              value={callout.colorType}
+                              onChange={(e) => handleUpdateCallout(callout.id, { colorType: e.target.value as MapCallout['colorType'] })}
+                              className="w-full bg-black/40 border border-white/5 rounded-lg p-2 text-[11px] text-white outline-none focus:border-[#009cdc]"
+                            >
+                              <option value="primary">Primary Color</option>
+                              <option value="secondary">Secondary Color</option>
+                              <option value="pod">Pod Teal</option>
+                            </select>
+                          </div>
+                          <div className="flex gap-3 text-[7px] font-black text-zinc-700 uppercase tracking-widest">
+                            <span>X: {callout.x.toFixed(1)}%</span>
+                            <span>Y: {callout.y.toFixed(1)}%</span>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                    {(localTemplate.callouts || []).length === 0 && (
+                      <p className="text-[9px] text-zinc-700 font-bold uppercase tracking-widest text-center py-2">No callouts yet — click + Add above.</p>
+                    )}
+                  </div>
                 </section>
 
                 <section className="space-y-6">
