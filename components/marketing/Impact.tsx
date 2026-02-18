@@ -97,25 +97,25 @@ export const Impact: React.FC<Props> = ({ config }) => {
             </div>
           </div>
 
-          <div className="flex flex-col gap-6">
-            <div className="glass p-8 rounded-[2.5rem] flex-1 flex flex-col justify-center border-white/5 relative overflow-hidden group">
-              <div className="text-4xl sm:text-5xl font-black text-white mb-1 tracking-tighter">650k+</div>
-              <div className="uppercase text-[9px] font-black tracking-[0.4em]" style={{ color: config.primaryColor }}>Community Access</div>
-              <p className="text-[10px] text-gray-500 mt-3 leading-relaxed">Residents served by 10 min accessibility radius.</p>
-              <div className="absolute top-0 right-0 w-24 h-24 bg-white/5 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-transform duration-700 pointer-events-none" />
-            </div>
-            
-            <div className="glass p-8 rounded-[2.5rem] flex-1 flex flex-col justify-center border-white/5 relative overflow-hidden group">
-              <div className="text-4xl sm:text-5xl font-black text-white mb-1 tracking-tighter">250k+</div>
-              <div className="uppercase text-[9px] font-black tracking-[0.4em]" style={{ color: config.secondaryColor }}>Annual Uses</div>
-              <p className="text-[10px] text-gray-500 mt-3 leading-relaxed">Projected annual workout sessions across the city-wide network.</p>
+          <div className="grid grid-cols-3 lg:flex lg:flex-col gap-3 lg:gap-6">
+            <div className="glass p-4 sm:p-8 rounded-[1.5rem] sm:rounded-[2.5rem] flex-1 flex flex-col justify-center border-white/5 relative overflow-hidden group">
+              <div className="text-2xl sm:text-4xl lg:text-5xl font-black text-white mb-1 tracking-tighter">650k+</div>
+              <div className="uppercase text-[8px] sm:text-[9px] font-black tracking-[0.4em]" style={{ color: config.primaryColor }}>Community Access</div>
+              <p className="hidden sm:block text-[10px] text-gray-500 mt-3 leading-relaxed">Residents served by 10 min accessibility radius.</p>
               <div className="absolute top-0 right-0 w-24 h-24 bg-white/5 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-transform duration-700 pointer-events-none" />
             </div>
 
-            <div className="glass p-8 rounded-[2.5rem] flex-1 flex flex-col justify-center border-white/5 relative overflow-hidden group">
-              <div className="text-4xl sm:text-5xl font-black text-white mb-1 tracking-tighter">25M+</div>
-              <div className="uppercase text-[9px] font-black tracking-[0.4em]" style={{ color: config.accentColor }}>Calories Burned</div>
-              <p className="text-[10px] text-gray-500 mt-3 leading-relaxed">Cumulative active energy expenditure contributing to lower BMI city-wide.</p>
+            <div className="glass p-4 sm:p-8 rounded-[1.5rem] sm:rounded-[2.5rem] flex-1 flex flex-col justify-center border-white/5 relative overflow-hidden group">
+              <div className="text-2xl sm:text-4xl lg:text-5xl font-black text-white mb-1 tracking-tighter">250k+</div>
+              <div className="uppercase text-[8px] sm:text-[9px] font-black tracking-[0.4em]" style={{ color: config.secondaryColor }}>Annual Uses</div>
+              <p className="hidden sm:block text-[10px] text-gray-500 mt-3 leading-relaxed">Projected annual workout sessions across the city-wide network.</p>
+              <div className="absolute top-0 right-0 w-24 h-24 bg-white/5 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-transform duration-700 pointer-events-none" />
+            </div>
+
+            <div className="glass p-4 sm:p-8 rounded-[1.5rem] sm:rounded-[2.5rem] flex-1 flex flex-col justify-center border-white/5 relative overflow-hidden group">
+              <div className="text-2xl sm:text-4xl lg:text-5xl font-black text-white mb-1 tracking-tighter">25M+</div>
+              <div className="uppercase text-[8px] sm:text-[9px] font-black tracking-[0.4em]" style={{ color: config.accentColor }}>Calories Burned</div>
+              <p className="hidden sm:block text-[10px] text-gray-500 mt-3 leading-relaxed">Cumulative active energy expenditure contributing to lower BMI city-wide.</p>
               <div className="absolute top-0 right-0 w-24 h-24 bg-white/5 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-transform duration-700 pointer-events-none" />
             </div>
           </div>

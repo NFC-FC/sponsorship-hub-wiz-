@@ -62,7 +62,7 @@ const Section7SponsorshipLevels: React.FC<Props> = ({ config }) => {
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-6xl mx-auto">
+        <div className="grid grid-cols-2 gap-4 sm:gap-10 max-w-6xl mx-auto">
           {levels.map((level, idx) => (
             <motion.div
               key={level.id}
@@ -83,12 +83,12 @@ const Section7SponsorshipLevels: React.FC<Props> = ({ config }) => {
                   {level.icon}
                 </motion.div>
                 
-                <div className="absolute bottom-8 left-8">
-                  <span className="text-white/60 font-black uppercase tracking-[0.3em] text-[10px] block mb-2">{level.subtitle}</span>
-                  <h3 className="text-white text-3xl font-black uppercase italic tracking-tighter leading-none">{level.title}</h3>
+                <div className="absolute bottom-4 sm:bottom-8 left-4 sm:left-8">
+                  <span className="text-white/60 font-black uppercase tracking-[0.3em] text-[9px] sm:text-[10px] block mb-1 sm:mb-2">{level.subtitle}</span>
+                  <h3 className="text-white text-lg sm:text-3xl font-black uppercase italic tracking-tighter leading-none">{level.title}</h3>
                 </div>
               </div>
-              <div className="p-10 flex flex-col flex-1">
+              <div className="p-4 sm:p-10 flex flex-col flex-1">
                 <p className="text-slate-500 font-medium leading-relaxed mb-4 flex-1 text-sm">
                   {level.description}
                 </p>
