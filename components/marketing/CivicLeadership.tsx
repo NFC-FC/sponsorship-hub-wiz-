@@ -94,16 +94,16 @@ export const CivicLeadership: React.FC<Props> = ({ config }) => {
         </div>
 
         {/* Ward Row */}
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-8">
+        <div className="grid grid-cols-3 gap-2 sm:gap-8">
           {wards.map((item, i) => (
-            <div key={i} className="glass p-4 sm:p-10 rounded-[2rem] sm:rounded-[3rem] border-white/5 group hover:border-[#009cdc]/30 transition-all duration-500 hover:-translate-y-2">
-              <div className="w-8 sm:w-12 h-1 bg-current mb-4 sm:mb-8 opacity-40 group-hover:opacity-100 transition-opacity" style={{ color: item.color }}></div>
-              <h3 className="text-lg sm:text-3xl font-black text-white uppercase italic tracking-tighter mb-1">{item.name}</h3>
-              <div className="text-white font-bold text-sm mb-4 tracking-tight uppercase opacity-80">{item.memberName}</div>
-              <p style={{ color: config.primaryColor }} className="text-[10px] font-black uppercase tracking-widest mb-6">{item.focus}</p>
-              <div className="flex items-center gap-2">
-                 <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-                 <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Council Verified</span>
+            <div key={i} className="glass p-3 sm:p-10 rounded-xl sm:rounded-[3rem] border-white/5 group hover:border-[#009cdc]/30 transition-all duration-500 hover:-translate-y-2">
+              <div className="w-6 sm:w-12 h-[2px] sm:h-1 bg-current mb-2 sm:mb-8 opacity-40 group-hover:opacity-100 transition-opacity" style={{ color: item.color }}></div>
+              <h3 className="text-[11px] sm:text-3xl font-black text-white uppercase italic tracking-tighter mb-0.5 sm:mb-1 leading-tight">{item.name}</h3>
+              <div className="text-white font-bold text-[9px] sm:text-sm mb-2 sm:mb-4 tracking-tight uppercase opacity-60 leading-tight truncate">{item.memberName}</div>
+              <p style={{ color: config.primaryColor }} className="hidden sm:block text-[10px] font-black uppercase tracking-widest mb-6">{item.focus}</p>
+              <div className="flex items-center gap-1 sm:gap-2">
+                 <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-green-500 animate-pulse flex-shrink-0"></div>
+                 <span className="text-[7px] sm:text-[10px] font-bold text-gray-400 uppercase tracking-widest">Verified</span>
               </div>
             </div>
           ))}
