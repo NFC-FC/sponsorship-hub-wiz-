@@ -442,6 +442,11 @@ const App: React.FC = () => {
   }, []);
 
   async function loadData() {
+    if (!supabase) {
+      setCities(initialCities);
+      setLoading(false);
+      return;
+    }
     try {
       const { data: citiesData, error: citiesError } = await supabase
         .from('cities')
@@ -492,6 +497,7 @@ const App: React.FC = () => {
   }, [cities, loading]);
 
   async function saveCities() {
+    if (!supabase) return;
     try {
       for (const city of cities) {
         await supabase

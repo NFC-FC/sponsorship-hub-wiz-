@@ -19,7 +19,7 @@ const Section7SponsorshipLevels: React.FC<Props> = ({ config }) => {
       title: 'Title Sponsor',
       subtitle: 'Primary Infrastructure Partner',
       description: 'The highest tier of community alignment, providing permanent name-in-title visibility across the entire city-wide network.',
-      detailsImage: 'https://i.postimg.cc/GHG4psM3/title.png',
+      detailsImage: 'https://github.com/NFC-FC/NFC-image-hosting/blob/165dc7ec27b56a52e300d87b07381ff6821af2f5/TITLE%20SPONSOR.pdf',
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-white">
           <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>
@@ -32,10 +32,10 @@ const Section7SponsorshipLevels: React.FC<Props> = ({ config }) => {
       title: 'Presenting Sponsor',
       subtitle: 'Program Tier Partner',
       description: 'Strategic alignment with specific neighborhood hubs and program-based activation opportunities city-wide.',
-      detailsImage: 'https://i.postimg.cc/V53S1FFy/presenting.png',
+      detailsImage: 'https://github.com/NFC-FC/NFC-image-hosting/blob/165dc7ec27b56a52e300d87b07381ff6821af2f5/PRESENTING%20SPONSOR.pdf',
       icon: (
         <img 
-          src="https://i.postimg.cc/Pf0gHTr3/pngtree-medal-line-icon-png-image-9062220.png" 
+          src="https://raw.githubusercontent.com/NFC-FC/NFC-image-hosting/79f217a46638bf99776ee5f17fb2151b8cb5cf39/Medal.png" 
           alt="Presenting Icon" 
           className="w-24 h-24 object-contain brightness-0 invert"
         />
@@ -75,7 +75,7 @@ const Section7SponsorshipLevels: React.FC<Props> = ({ config }) => {
                 className="aspect-[16/10] flex items-center justify-center relative overflow-hidden"
                 style={{ backgroundColor: level.color }}
               >
-                <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
+                <div className="absolute right-0 bottom-0 w-full h-full opacity-10 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
                 <motion.div
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   className="relative z-10"
@@ -114,49 +114,66 @@ const Section7SponsorshipLevels: React.FC<Props> = ({ config }) => {
             className="fixed inset-0 z-[100] flex items-start justify-center p-4 md:p-12 bg-slate-950/95 backdrop-blur-xl overflow-y-auto"
             onClick={() => setSelectedLevel(null)}
           >
-            <motion.div
-              initial={{ scale: 0.95, opacity: 0, y: 20 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.95, opacity: 0, y: 20 }}
-              className="relative max-w-5xl w-full bg-white rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl my-auto"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button 
-                onClick={() => setSelectedLevel(null)}
-                className="absolute top-6 right-6 z-50 w-10 h-10 rounded-full bg-slate-900/10 hover:bg-slate-900/20 text-slate-900 flex items-center justify-center transition-colors backdrop-blur-md"
-              >
-                ✕
-              </button>
-              
-              {/* Flexible Image Container Optimized for Tall PDF-style Documents */}
-              <div className="w-full bg-white flex items-center justify-center p-4 md:p-8">
-                <img 
-                  src={levels.find(l => l.id === selectedLevel)?.detailsImage} 
-                  className="w-full max-h-[85vh] h-auto object-contain shadow-md rounded-lg"
-                  style={{ imageRendering: 'auto' }}
-                  alt="Sponsorship Detail Slide" 
-                />
-              </div>
+            {(() => {
+              const selected = levels.find(l => l.id === selectedLevel);
+              if (!selected) return null;
 
-              {/* Enhanced Footer to match Screenshot Aesthetic */}
-              <div className="p-10 md:p-14 border-t border-slate-50 flex flex-col items-start justify-between bg-white text-left">
-                <div className="mb-4">
-                  <h4 className="text-[#020617] font-black text-2xl md:text-3xl uppercase tracking-tighter italic leading-none mb-3">
-                    {levels.find(l => l.id === selectedLevel)?.title} Details
-                  </h4>
-                  <p className="text-slate-400 font-bold uppercase tracking-[0.3em] text-[9px] md:text-[10px]">Reference: NFC Partnership Prospectus 2026</p>
-                </div>
-                
-                <div className="w-full flex justify-end">
-                   <button 
+              const isPdf = selected.detailsImage.toLowerCase().endsWith('.pdf');
+
+              return (
+                <motion.div
+                  initial={{ scale: 0.95, opacity: 0, y: 20 }}
+                  animate={{ scale: 1, opacity: 1, y: 0 }}
+                  exit={{ scale: 0.95, opacity: 0, y: 20 }}
+                  className="relative max-w-5xl w-full bg-white rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl my-auto"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <button 
                     onClick={() => setSelectedLevel(null)}
-                    className="px-10 py-4 bg-[#020617] text-white rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] hover:scale-105 transition-transform shadow-xl"
-                   >
-                     Exit Viewer
-                   </button>
-                </div>
-              </div>
-            </motion.div>
+                    className="absolute top-6 right-6 z-50 w-10 h-10 rounded-full bg-slate-900/10 hover:bg-slate-900/20 text-slate-900 flex items-center justify-center transition-colors backdrop-blur-md"
+                  >
+                    ✕
+                  </button>
+                  
+                  {/* Flexible Container: supports both image and PDF content */}
+                  <div className="w-full bg-white flex items-center justify-center p-4 md:p-8">
+                    {isPdf ? (
+                      <iframe
+                        src={selected.detailsImage}
+                        className="w-full max-h-[85vh] h-[85vh] rounded-lg shadow-md"
+                        title={`${selected.title} Details`}
+                      />
+                    ) : (
+                      <img 
+                        src={selected.detailsImage}
+                        className="w-full max-h-[85vh] h-auto object-contain shadow-md rounded-lg"
+                        style={{ imageRendering: 'auto' }}
+                        alt="Sponsorship Detail Slide" 
+                      />
+                    )}
+                  </div>
+
+                  {/* Enhanced Footer to match Screenshot Aesthetic */}
+                  <div className="p-10 md:p-14 border-t border-slate-50 flex flex-col items-start justify-between bg-white text-left">
+                    <div className="mb-4">
+                      <h4 className="text-[#020617] font-black text-2xl md:text-3xl uppercase tracking-tighter italic leading-none mb-3">
+                        {selected.title} Details
+                      </h4>
+                      <p className="text-slate-400 font-bold uppercase tracking-[0.3em] text-[9px] md:text-[10px]">Reference: NFC Partnership Prospectus 2026</p>
+                    </div>
+                    
+                    <div className="w-full flex justify-end">
+                       <button 
+                        onClick={() => setSelectedLevel(null)}
+                        className="px-10 py-4 bg-[#020617] text-white rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] hover:scale-105 transition-transform shadow-xl"
+                       >
+                         Exit Viewer
+                       </button>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })()}
           </motion.div>
         )}
       </AnimatePresence>
