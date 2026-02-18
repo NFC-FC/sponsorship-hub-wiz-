@@ -24,7 +24,7 @@ const Section6Endorsement: React.FC<Props> = ({ config, isEditMode, onUpdateFiel
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            className="relative w-64 h-64 md:w-80 md:h-80 flex-shrink-0"
+            className="relative w-32 h-32 sm:w-64 sm:h-64 md:w-80 md:h-80 flex-shrink-0"
           >
             <div className="absolute inset-4 border-2 border-slate-100 rounded-full animate-[spin_30s_linear_infinite]" />
             <div className="absolute inset-0 bg-slate-100 rounded-full overflow-hidden shadow-xl border-4 border-white">
