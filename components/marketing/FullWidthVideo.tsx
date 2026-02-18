@@ -20,14 +20,15 @@ export const FullWidthVideo: React.FC<Props> = ({ config }) => {
       >
         <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/40 via-transparent to-black/20 pointer-events-none" />
         
-        <video 
-          autoPlay 
-          muted 
-          loop 
-          playsInline 
+        <video
+          key={config.sponsorRender}
+          autoPlay
+          muted
+          loop
+          playsInline
           className="w-full h-auto scale-100 group-hover:scale-105 transition-transform duration-[4s] ease-out block"
         >
-          <source src="https://github.com/NFC-FC/NFC-image-hosting/blob/main/video%20edit%20(1).mp4?raw=true" type="video/mp4" />
+          <source src={config.sponsorRender} type="video/mp4" />
         </video>
 
         {/* Cinematic Overlays */}
