@@ -28,7 +28,7 @@ interface Props {
 }
 
 const Section4Product: React.FC<Props> = ({ config }) => {
-  const [activeId, setActiveId] = useState<string | null>('v1');
+  const [activeId, setActiveId] = useState<string | null>(null);
 
   const hotspots: Hotspot[] = [
     {

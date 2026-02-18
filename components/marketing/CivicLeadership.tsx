@@ -29,7 +29,7 @@ export const CivicLeadership: React.FC<Props> = ({ config }) => {
   const leaders = config.leaders || [];
 
   return (
-    <div className="bg-[#111] py-32 px-6 border-b border-white/5 relative overflow-hidden">
+    <div className="bg-[#111] py-12 sm:py-32 px-6 border-b border-white/5 relative overflow-hidden">
       <div className="absolute top-0 right-0 w-[40%] h-full opacity-5 pointer-events-none">
           <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
               <line x1="0" y1="0" x2="100" y2="100" stroke="white" strokeWidth="0.1" />
@@ -39,16 +39,16 @@ export const CivicLeadership: React.FC<Props> = ({ config }) => {
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="text-center mb-24">
+        <div className="text-center mb-8 sm:mb-24">
           <h2 className="text-3xl sm:text-5xl md:text-8xl font-black text-white italic uppercase tracking-tighter leading-none mb-4">
             CITY OF <br/><span style={{ color: config.primaryColor }}>{config.projectCity.toUpperCase()}</span> SELECTED.
           </h2>
           <div className="max-w-5xl mx-auto">
-              <p className="text-white text-base sm:text-lg md:text-2xl font-black uppercase tracking-[0.2em] mb-10 leading-tight">
+              <p className="text-white text-base sm:text-lg md:text-2xl font-black uppercase tracking-[0.2em] mb-4 sm:mb-10 leading-tight">
                 ONE NATIONAL SEARCH. SIX CITIES SELECTED. <br className="hidden md:block" /> DEFINING THE FUTURE OF COMMUNITY WELLNESS IN AMERICA.
               </p>
 
-              <p className="text-gray-400 text-base sm:text-xl font-medium leading-relaxed mb-10 max-w-4xl mx-auto">
+              <p className="text-gray-400 text-base sm:text-xl font-medium leading-relaxed mb-4 sm:mb-10 max-w-4xl mx-auto">
                 The {config.projectCity} City Council has officially approved the <span className="text-white">Healthy Infrastructure Master Plan</span>, authorizing the deployment of world-class Fitness Courts city-wide. With a committed local funding strategy and National Fitness Campaign contributing over <span className="text-white">$500,000</span> in planning and management services, this partnership is defining the future of community wellness.
               </p>
               
