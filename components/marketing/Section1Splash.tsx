@@ -25,41 +25,41 @@ const Section1Splash: React.FC<SplashProps> = ({ onEnter, config }) => {
         <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-[#FBAB18] rounded-full blur-[150px] opacity-20" />
       </div>
 
-      <div className="relative z-10 glass p-12 md:p-20 rounded-3xl flex flex-col items-center max-w-4xl mx-4 text-center">
+      <div className="relative z-10 glass p-8 sm:p-12 md:p-20 rounded-3xl flex flex-col items-center max-w-4xl mx-4 text-center">
         {/* Partnership Header */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
-          className="flex flex-wrap items-center justify-center gap-10 md:gap-14 mb-16"
+          className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 md:gap-14 mb-10 sm:mb-16"
         >
-          <img 
+          <img
             src={config.sponsorLogo}
-            alt="Sponsor" 
-            className="h-8 md:h-10 object-contain"
+            alt="Sponsor"
+            className="h-7 sm:h-8 md:h-10 object-contain max-w-[120px] sm:max-w-none"
           />
           <div className="w-px h-12 bg-white/10 hidden md:block" />
-          
-          <img 
+
+          <img
             src={config.cityLogo}
-            alt="City Seal" 
-            className="h-12 md:h-16 object-contain"
+            alt="City Seal"
+            className="h-10 sm:h-12 md:h-16 object-contain"
           />
 
          <div className="w-px h-12 bg-white/10 hidden md:block" />
-         <img 
-            src={config.nfcLogo} 
-            alt="NFC" 
-            className="h-12 md:h-16 object-contain"
+         <img
+            src={config.nfcLogo}
+            alt="NFC"
+            className="h-10 sm:h-12 md:h-16 object-contain"
           />
         </motion.div>
 
         {/* Elegant Typography - Updated per user request */}
-        <motion.h1 
+        <motion.h1
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 1.5 }}
-          className="text-white text-xl md:text-2xl font-light tracking-[0.15em] leading-relaxed mb-12 uppercase"
+          className="text-white text-base sm:text-xl md:text-2xl font-light tracking-[0.15em] leading-relaxed mb-10 sm:mb-12 uppercase"
         >
           On behalf of the City of {config.projectCity}, <br/>
           the <span className="font-bold text-white">{config.projectCity} Mayor and Council</span>, <br/>

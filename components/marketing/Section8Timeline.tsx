@@ -18,7 +18,7 @@ export const Section8Timeline: React.FC<Props> = ({ config }) => {
         <motion.h2 
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          className="text-4xl md:text-7xl font-black text-white uppercase tracking-tighter mb-4"
+          className="text-3xl sm:text-4xl md:text-7xl font-black text-white uppercase tracking-tighter mb-4"
         >
           SPONSORSHIP NEXT STEPS
         </motion.h2>
@@ -69,12 +69,12 @@ export const Section8Timeline: React.FC<Props> = ({ config }) => {
         whileInView={{ opacity: 1, y: 0 }}
         className="bg-[#d1dbe5] p-6 md:p-12 rounded-[3rem] md:rounded-[4rem] w-full max-w-7xl shadow-2xl"
       >
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-3 gap-3 md:gap-8">
           
           {/* STEP 1 */}
-          <div className="bg-white rounded-[2rem] p-8 md:p-12 flex flex-col items-center text-center shadow-lg min-h-[400px] justify-center">
-            <span className="text-xs font-black italic uppercase tracking-widest text-slate-800 mb-10">STEP 1</span>
-            <h3 className="text-2xl md:text-3xl font-black text-slate-900 uppercase italic leading-none tracking-tighter mb-8">
+          <div className="bg-white rounded-[2rem] p-6 sm:p-8 md:p-12 flex flex-col items-center text-center shadow-lg min-h-[280px] sm:min-h-[400px] justify-center">
+            <span className="text-[9px] sm:text-xs font-black italic uppercase tracking-widest text-slate-800 mb-4 sm:mb-10">STEP 1</span>
+            <h3 className="text-sm sm:text-2xl md:text-3xl font-black text-slate-900 uppercase italic leading-none tracking-tighter mb-4 sm:mb-8">
               30-60 DAY<br/>MUTUAL REVIEW<br/>PERIOD
             </h3>
             <p className="text-[10px] md:text-xs font-bold text-slate-500 italic leading-relaxed uppercase tracking-tight max-w-[220px]">
@@ -83,9 +83,9 @@ export const Section8Timeline: React.FC<Props> = ({ config }) => {
           </div>
 
           {/* STEP 2 */}
-          <div className="bg-white rounded-[2rem] p-8 md:p-12 flex flex-col items-center text-center shadow-lg min-h-[400px] justify-center">
-            <span className="text-xs font-black italic uppercase tracking-widest text-slate-800 mb-10">STEP 2</span>
-            <h3 className="text-2xl md:text-3xl font-black text-slate-900 uppercase italic leading-none tracking-tighter mb-8">
+          <div className="bg-white rounded-[2rem] p-6 sm:p-8 md:p-12 flex flex-col items-center text-center shadow-lg min-h-[280px] sm:min-h-[400px] justify-center">
+            <span className="text-[9px] sm:text-xs font-black italic uppercase tracking-widest text-slate-800 mb-4 sm:mb-10">STEP 2</span>
+            <h3 className="text-sm sm:text-2xl md:text-3xl font-black text-slate-900 uppercase italic leading-none tracking-tighter mb-4 sm:mb-8">
               NOTICE TO PROCEED<br/>REQUESTED ON OR<br/>BEFORE APRIL 15TH<br/>2026
             </h3>
             <p className="text-[10px] md:text-xs font-bold text-slate-500 italic leading-relaxed uppercase tracking-tight max-w-[220px]">
@@ -94,9 +94,9 @@ export const Section8Timeline: React.FC<Props> = ({ config }) => {
           </div>
 
           {/* STEP 3 */}
-          <div className="bg-white rounded-[2rem] p-8 md:p-12 flex flex-col items-center text-center shadow-lg min-h-[400px] justify-center relative">
-            <span className="text-xs font-black italic uppercase tracking-widest text-slate-800 mb-10">STEP 3</span>
-            <h3 className="text-2xl md:text-3xl font-black text-slate-900 uppercase italic leading-none tracking-tighter mb-8">
+          <div className="bg-white rounded-[2rem] p-6 sm:p-8 md:p-12 flex flex-col items-center text-center shadow-lg min-h-[280px] sm:min-h-[400px] justify-center relative">
+            <span className="text-[9px] sm:text-xs font-black italic uppercase tracking-widest text-slate-800 mb-4 sm:mb-10">STEP 3</span>
+            <h3 className="text-sm sm:text-2xl md:text-3xl font-black text-slate-900 uppercase italic leading-none tracking-tighter mb-4 sm:mb-8">
               CORE SPONSORSHIPS<br/>CONFIRMED<br/>JUNE 15
             </h3>
             

@@ -71,14 +71,14 @@ export const MasterPlan: React.FC<Props> = ({ config, isEditMode, onUpdateMap })
           <div className="inline-block px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.3em] mb-4" style={{ backgroundColor: `${config.primaryColor}1A`, color: config.primaryColor }}>
             Deployment Roadmap
           </div>
-          <h2 className="text-5xl md:text-7xl font-black text-white mb-6 uppercase italic tracking-tighter">
+          <h2 className="text-xl sm:text-5xl md:text-7xl font-black text-white mb-4 sm:mb-6 uppercase italic tracking-tighter leading-tight">
             HEALTHY INFRASTRUCTURE <span style={{ color: config.primaryColor }}>MASTER PLAN.</span>
           </h2>
           <div className="max-w-3xl">
-            <p className="text-white text-xl font-bold uppercase tracking-tight mb-2">
+            <p className="text-white text-sm sm:text-xl font-bold uppercase tracking-tight mb-1 sm:mb-2">
               Prioritizing High-Need Neighborhoods
             </p>
-            <p className="text-gray-400 text-lg font-medium leading-relaxed">
+            <p className="text-gray-400 text-xs sm:text-lg font-medium leading-relaxed">
               Each proposed location in this network is positioned to serve high-need areas. These sites help form a cohesive and balanced coverage plan, offering consistent access across different parts of the city.
             </p>
           </div>
@@ -102,7 +102,7 @@ export const MasterPlan: React.FC<Props> = ({ config, isEditMode, onUpdateMap })
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/graphy-dark.png')] opacity-20 pointer-events-none"></div>
 
           {/* KEY (Legend) */}
-          <div className="absolute top-6 left-6 z-30 w-56 md:w-64 bg-white/90 backdrop-blur-xl p-4 md:p-6 rounded-2xl border border-white/10 shadow-2xl scale-90 md:scale-100 origin-top-left pointer-events-none">
+          <div className="absolute top-3 left-3 sm:top-6 sm:left-6 z-30 w-56 md:w-64 bg-white/90 backdrop-blur-xl p-4 md:p-6 rounded-2xl border border-white/10 shadow-2xl scale-[0.55] sm:scale-90 md:scale-100 origin-top-left pointer-events-none">
             <div className="text-[9px] font-black text-zinc-500 tracking-[0.4em] uppercase mb-4 border-b border-black/10 pb-2">KEY</div>
             <div className="space-y-3">
               <div className="flex items-center gap-3">

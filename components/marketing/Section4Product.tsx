@@ -28,7 +28,7 @@ interface Props {
 }
 
 const Section4Product: React.FC<Props> = ({ config }) => {
-  const [activeId, setActiveId] = useState<string | null>('v1');
+  const [activeId, setActiveId] = useState<string | null>(null);
 
   const hotspots: Hotspot[] = [
     {
@@ -138,7 +138,7 @@ const Section4Product: React.FC<Props> = ({ config }) => {
           transition={{ duration: 0.8 }}
         >
           <span className="font-bold tracking-[0.4em] text-[10px] uppercase block mb-4" style={{ color: config.primaryColor }}>Title Sponsorship Tier</span>
-          <h2 className="font-display text-4xl md:text-6xl text-slate-900 font-black uppercase mb-6 leading-none">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-6xl text-slate-900 font-black uppercase mb-6 leading-none">
             Program Value Delivery:<br/>
             <span style={{ color: config.secondaryColor }}>{config.sponsorName} Fitness Court</span>
           </h2>
@@ -154,7 +154,7 @@ const Section4Product: React.FC<Props> = ({ config }) => {
           className="relative group"
         >
           <div className="relative bg-[#f8fafc] rounded-[3rem] overflow-hidden shadow-[0_80px_180px_-40px_rgba(0,0,0,0.18)] border border-slate-200/60">
-            <div className="relative flex items-center justify-center overflow-hidden bg-slate-50 w-full min-h-[500px]">
+            <div className="relative flex items-center justify-center overflow-hidden bg-slate-50 w-full min-h-[250px] sm:min-h-[500px]">
                {/\.(mp4|webm|mov)(\?.*)?$/i.test(config.sponsorRender) ? (
                  <video
                    key={config.sponsorRender}
@@ -185,14 +185,14 @@ const Section4Product: React.FC<Props> = ({ config }) => {
                     initial={{ opacity: 0, y: -20, scale: 0.95 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -20, scale: 0.95 }}
-                    className="absolute top-8 right-8 w-80 glass bg-white/98 p-8 rounded-[2.5rem] border-slate-100 shadow-[0_40px_80px_-15px_rgba(0,0,0,0.1)] pointer-events-auto"
+                    className="absolute top-3 right-3 sm:top-8 sm:right-8 w-44 sm:w-80 glass bg-white/98 p-3 sm:p-8 rounded-xl sm:rounded-[2.5rem] border-slate-100 shadow-[0_40px_80px_-15px_rgba(0,0,0,0.1)] pointer-events-auto"
                   >
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="w-10 h-10 rounded-2xl flex items-center justify-center text-white font-black text-sm shadow-lg" style={{ backgroundColor: activeHotspot.color }}>
+                    <div className="flex items-center gap-2 sm:gap-4 mb-2 sm:mb-6">
+                      <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl flex items-center justify-center text-white font-black text-xs sm:text-sm shadow-lg flex-shrink-0" style={{ backgroundColor: activeHotspot.color }}>
                         {activeHotspot.number}
                       </div>
                       <div className="h-1 flex-grow rounded-full bg-slate-100 overflow-hidden">
-                        <motion.div 
+                        <motion.div
                           initial={{ x: '-100%' }}
                           animate={{ x: 0 }}
                           className="h-full w-full rounded-full"
@@ -200,8 +200,8 @@ const Section4Product: React.FC<Props> = ({ config }) => {
                         />
                       </div>
                     </div>
-                    <h4 className="text-slate-900 font-black text-sm uppercase tracking-widest mb-3 leading-tight">{activeHotspot.title}</h4>
-                    <p className="text-slate-500 text-sm leading-relaxed font-light">
+                    <h4 className="text-slate-900 font-black text-[9px] sm:text-sm uppercase tracking-widest mb-1 sm:mb-3 leading-tight">{activeHotspot.title}</h4>
+                    <p className="text-slate-500 text-[8px] sm:text-sm leading-relaxed font-light">
                       {activeHotspot.description}
                     </p>
                   </motion.div>
@@ -211,12 +211,12 @@ const Section4Product: React.FC<Props> = ({ config }) => {
 
             {/* Selector Buttons Row (Bottom Center) */}
             <div className="absolute bottom-10 left-0 w-full flex justify-center z-50 px-6">
-               <div className="glass bg-white/60 backdrop-blur-2xl p-3 rounded-full flex gap-3 shadow-2xl border-white/50">
+               <div className="glass bg-white/60 backdrop-blur-2xl p-1.5 sm:p-3 rounded-full flex gap-1 sm:gap-3 shadow-2xl border-white/50">
                   {hotspots.map((h) => (
                     <button
                       key={h.id}
                       onClick={() => setActiveId(h.id)}
-                      className={`w-12 h-12 rounded-full font-black text-sm transition-all duration-500 border-2 ${
+                      className={`w-4 h-4 sm:w-12 sm:h-12 rounded-full font-black text-[7px] sm:text-sm transition-all duration-500 border sm:border-2 ${
                         activeId === h.id 
                         ? 'text-white scale-110 shadow-lg border-white' 
                         : 'bg-white text-slate-400 border-transparent hover:border-slate-200'
@@ -239,7 +239,7 @@ const Section4Product: React.FC<Props> = ({ config }) => {
           whileInView={{ opacity: 1, y: 0 }}
           className="text-center mb-16"
         >
-          <h2 className="font-display text-4xl md:text-5xl lg:text-7xl text-slate-900 font-black uppercase tracking-tight leading-none mb-4">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-7xl text-slate-900 font-black uppercase tracking-tight leading-none mb-4">
             SPONSORSHIP <span style={{ color: config.primaryColor }}>VALUE DELIVERY</span>
           </h2>
           <p className="text-slate-400 font-black uppercase tracking-[0.4em] text-xs md:text-sm italic">
@@ -248,7 +248,7 @@ const Section4Product: React.FC<Props> = ({ config }) => {
         </motion.div>
 
         {/* 6-Column Value Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
+        <div className="grid grid-cols-3 md:grid-cols-2 lg:grid-cols-6 gap-2 sm:gap-4">
           {valuePillars.map((pillar, idx) => (
             <motion.div
               key={pillar.id}
@@ -257,12 +257,12 @@ const Section4Product: React.FC<Props> = ({ config }) => {
               transition={{ delay: idx * 0.1 }}
               className="flex flex-col bg-white rounded-2xl overflow-hidden shadow-xl border border-slate-100 group hover:-translate-y-2 transition-transform duration-500"
             >
-              <div className="p-6 flex-1 flex flex-col" style={{ background: `linear-gradient(to bottom, ${config.primaryColor}15, transparent)` }}>
-                <div className="text-4xl md:text-6xl font-black italic mb-6 leading-none opacity-40 group-hover:opacity-100 transition-opacity" style={{ color: config.primaryColor }}>{pillar.id}</div>
-                <h4 className="text-lg font-black text-slate-900 uppercase italic tracking-tighter mb-4 leading-none">
+              <div className="p-3 sm:p-6 flex-1 flex flex-col" style={{ background: `linear-gradient(to bottom, ${config.primaryColor}15, transparent)` }}>
+                <div className="text-sm sm:text-4xl md:text-6xl font-black italic mb-1 sm:mb-6 leading-none opacity-40 group-hover:opacity-100 transition-opacity" style={{ color: config.primaryColor }}>{pillar.id}</div>
+                <h4 className="text-[10px] sm:text-lg font-black text-slate-900 uppercase italic tracking-tighter mb-1 sm:mb-4 leading-none">
                   {pillar.title}
                 </h4>
-                <p className="text-[10px] md:text-xs text-slate-500 font-bold uppercase tracking-widest leading-relaxed flex-1">
+                <p className="text-[7px] sm:text-[10px] md:text-xs text-slate-500 font-bold uppercase tracking-widest leading-relaxed flex-1">
                   {pillar.description}
                 </p>
               </div>
