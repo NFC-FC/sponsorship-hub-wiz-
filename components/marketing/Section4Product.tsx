@@ -248,7 +248,7 @@ const Section4Product: React.FC<Props> = ({ config }) => {
         </motion.div>
 
         {/* 6-Column Value Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
+        <div className="grid grid-cols-3 md:grid-cols-2 lg:grid-cols-6 gap-2 sm:gap-4">
           {valuePillars.map((pillar, idx) => (
             <motion.div
               key={pillar.id}
@@ -257,12 +257,12 @@ const Section4Product: React.FC<Props> = ({ config }) => {
               transition={{ delay: idx * 0.1 }}
               className="flex flex-col bg-white rounded-2xl overflow-hidden shadow-xl border border-slate-100 group hover:-translate-y-2 transition-transform duration-500"
             >
-              <div className="p-6 flex-1 flex flex-col" style={{ background: `linear-gradient(to bottom, ${config.primaryColor}15, transparent)` }}>
-                <div className="text-4xl md:text-6xl font-black italic mb-6 leading-none opacity-40 group-hover:opacity-100 transition-opacity" style={{ color: config.primaryColor }}>{pillar.id}</div>
-                <h4 className="text-lg font-black text-slate-900 uppercase italic tracking-tighter mb-4 leading-none">
+              <div className="p-3 sm:p-6 flex-1 flex flex-col" style={{ background: `linear-gradient(to bottom, ${config.primaryColor}15, transparent)` }}>
+                <div className="text-xl sm:text-4xl md:text-6xl font-black italic mb-2 sm:mb-6 leading-none opacity-40 group-hover:opacity-100 transition-opacity" style={{ color: config.primaryColor }}>{pillar.id}</div>
+                <h4 className="text-[10px] sm:text-lg font-black text-slate-900 uppercase italic tracking-tighter mb-1 sm:mb-4 leading-none">
                   {pillar.title}
                 </h4>
-                <p className="text-[10px] md:text-xs text-slate-500 font-bold uppercase tracking-widest leading-relaxed flex-1">
+                <p className="hidden sm:block text-[10px] md:text-xs text-slate-500 font-bold uppercase tracking-widest leading-relaxed flex-1">
                   {pillar.description}
                 </p>
               </div>
