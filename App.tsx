@@ -159,7 +159,7 @@ export const mergeSponsorConfig = (city: CityGroup, sponsor: SponsorRecord): Sit
     sponsorName: sponsor.sponsorName,
     sponsorLogo: sponsor.sponsorLogo,
     sponsorPassword: sponsor.sponsorPassword,
-    sponsorRender: sponsor.sponsorRender || city.template.sponsorRender,
+    sponsorRender: sponsor.overrides?.sponsorRender || sponsor.sponsorRender || city.template.sponsorRender,
     projectCity: city.name,
     cityLogo: sponsor.overrides.cityLogo || city.template.cityLogo,
     isArchived: sponsor.isArchived || city.isArchived,

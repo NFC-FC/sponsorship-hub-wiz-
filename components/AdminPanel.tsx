@@ -354,10 +354,11 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ city, sponsorId, isOpen,
                   value={localSponsor.sponsorLogo}
                   onChange={(val) => handleUpdateSponsorField('sponsorLogo', val)}
                 />
-                <SponsorSidebarInput 
-                  label="Sponsor Render Link" 
-                  value={localSponsor.sponsorRender || ''}
-                  onChange={(val) => handleUpdateSponsorField('sponsorRender', val)}
+                <SidebarInput
+                  label="Sponsor Render Link"
+                  value={localSponsor.overrides.sponsorRender ?? localTemplate.sponsorRender}
+                  onChange={(val) => handleUpdateField('sponsorRender', val)}
+                  isOverridden={localSponsor.overrides.sponsorRender !== undefined}
                 />
               </section>
             ) : (
@@ -612,8 +613,8 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ city, sponsorId, isOpen,
                     value={localTemplate.secondaryVideo}
                     onChange={(val) => handleUpdateField('secondaryVideo', val)}
                   />
-                  <SidebarInput 
-                    label="Master Plan Map Layer" 
+                  <SidebarInput
+                    label="Master Plan Map Layer"
                     value={localTemplate.masterPlanBackground}
                     onChange={(val) => handleUpdateField('masterPlanBackground', val)}
                   />
