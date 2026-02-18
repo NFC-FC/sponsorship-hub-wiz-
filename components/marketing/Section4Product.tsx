@@ -211,12 +211,12 @@ const Section4Product: React.FC<Props> = ({ config }) => {
 
             {/* Selector Buttons Row (Bottom Center) */}
             <div className="absolute bottom-10 left-0 w-full flex justify-center z-50 px-6">
-               <div className="glass bg-white/60 backdrop-blur-2xl p-2 sm:p-3 rounded-full flex gap-1.5 sm:gap-3 shadow-2xl border-white/50">
+               <div className="glass bg-white/60 backdrop-blur-2xl p-1.5 sm:p-3 rounded-full flex gap-1 sm:gap-3 shadow-2xl border-white/50">
                   {hotspots.map((h) => (
                     <button
                       key={h.id}
                       onClick={() => setActiveId(h.id)}
-                      className={`w-7 h-7 sm:w-12 sm:h-12 rounded-full font-black text-[10px] sm:text-sm transition-all duration-500 border-2 ${
+                      className={`w-4 h-4 sm:w-12 sm:h-12 rounded-full font-black text-[7px] sm:text-sm transition-all duration-500 border sm:border-2 ${
                         activeId === h.id 
                         ? 'text-white scale-110 shadow-lg border-white' 
                         : 'bg-white text-slate-400 border-transparent hover:border-slate-200'
