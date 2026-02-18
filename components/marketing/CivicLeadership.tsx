@@ -70,24 +70,24 @@ export const CivicLeadership: React.FC<Props> = ({ config }) => {
         </div>
 
         {/* Centered Leadership Row */}
-        <div className="flex flex-wrap justify-center gap-8 sm:gap-12 md:gap-16 mb-20 sm:mb-32 border-t border-white/10 pt-16 sm:pt-24">
+        <div className="grid grid-cols-3 sm:flex sm:flex-wrap sm:justify-center gap-4 sm:gap-12 md:gap-16 mb-20 sm:mb-32 border-t border-white/10 pt-10 sm:pt-24">
           {leaders.map((leader, i) => (
-            <div key={leader.id || i} className="flex flex-col items-center text-center group relative w-[140px] sm:w-auto sm:min-w-[160px]">
-              <div className="relative mb-6 sm:mb-8">
+            <div key={leader.id || i} className="flex flex-col items-center text-center group relative">
+              <div className="relative mb-3 sm:mb-8">
                 <div className="absolute inset-0 bg-white/5 rounded-full blur-2xl group-hover:bg-white/10 transition-colors"></div>
-                <div className="w-28 h-28 sm:w-40 sm:h-40 md:w-48 lg:w-56 md:h-48 lg:h-56 rounded-full overflow-hidden border-2 border-white/10 group-hover:border-white/30 transition-all relative z-10 grayscale group-hover:grayscale-0 shadow-2xl bg-zinc-800">
+                <div className="w-16 h-16 sm:w-40 sm:h-40 md:w-48 lg:w-56 md:h-48 lg:h-56 rounded-full overflow-hidden border-2 border-white/10 group-hover:border-white/30 transition-all relative z-10 grayscale group-hover:grayscale-0 shadow-2xl bg-zinc-800">
                   {leader.image ? (
                     <img src={leader.image} alt={leader.name} className="w-full h-full object-cover" />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center bg-zinc-900 border-2 border-dashed border-white/10">
-                      <svg className="w-12 h-12 text-white/10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+                      <svg className="w-6 h-6 sm:w-12 sm:h-12 text-white/10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
                     </div>
                   )}
                 </div>
               </div>
-              <div className="relative z-10 flex flex-col items-center w-full px-2">
-                <h4 className="text-white font-black text-lg md:text-xl uppercase italic tracking-tighter mb-2">{leader.name}</h4>
-                <p className="text-gray-500 text-[10px] md:text-xs uppercase font-bold tracking-[0.2em] leading-tight mx-auto">{leader.title}</p>
+              <div className="relative z-10 flex flex-col items-center w-full px-1 sm:px-2">
+                <h4 className="text-white font-black text-[10px] sm:text-lg md:text-xl uppercase italic tracking-tighter mb-1 sm:mb-2 leading-tight">{leader.name}</h4>
+                <p className="text-gray-500 text-[8px] sm:text-[10px] md:text-xs uppercase font-bold tracking-[0.1em] sm:tracking-[0.2em] leading-tight mx-auto">{leader.title}</p>
               </div>
             </div>
           ))}
