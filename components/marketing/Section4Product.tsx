@@ -155,12 +155,24 @@ const Section4Product: React.FC<Props> = ({ config }) => {
         >
           <div className="relative bg-[#f8fafc] rounded-[3rem] overflow-hidden shadow-[0_80px_180px_-40px_rgba(0,0,0,0.18)] border border-slate-200/60">
             <div className="relative flex items-center justify-center overflow-hidden bg-slate-50 w-full min-h-[500px]">
-               <img 
-                 src={config.sponsorRender} 
-                 alt="Fitness Court 3D Render"
-                 className="w-full h-auto relative z-10 block"
-                 onError={(e) => { e.currentTarget.src = "https://github.com/NFC-FC/NFC-image-hosting/blob/main/FC%20Side%20View-1.png?raw=true"; }}
-               />
+               {/\.(mp4|webm|mov)(\?.*)?$/i.test(config.sponsorRender) ? (
+                 <video
+                   key={config.sponsorRender}
+                   src={config.sponsorRender}
+                   className="w-full h-auto relative z-10 block"
+                   autoPlay
+                   muted
+                   loop
+                   playsInline
+                 />
+               ) : (
+                 <img
+                   src={config.sponsorRender}
+                   alt="Fitness Court 3D Render"
+                   className="w-full h-auto relative z-10 block"
+                   onError={(e) => { e.currentTarget.src = "https://github.com/NFC-FC/NFC-image-hosting/blob/main/FC%20Side%20View-1.png?raw=true"; }}
+                 />
+               )}
                <div className="absolute inset-0 mix-blend-multiply pointer-events-none z-20" style={{ background: `linear-gradient(tr, ${config.primaryColor}1A, transparent)` }} />
             </div>
 
