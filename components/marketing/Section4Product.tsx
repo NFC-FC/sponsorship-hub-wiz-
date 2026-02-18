@@ -262,7 +262,7 @@ const Section4Product: React.FC<Props> = ({ config }) => {
                 <h4 className="text-[10px] sm:text-lg font-black text-slate-900 uppercase italic tracking-tighter mb-1 sm:mb-4 leading-none">
                   {pillar.title}
                 </h4>
-                <p className="hidden sm:block text-[10px] md:text-xs text-slate-500 font-bold uppercase tracking-widest leading-relaxed flex-1">
+                <p className="text-[7px] sm:text-[10px] md:text-xs text-slate-500 font-bold uppercase tracking-widest leading-relaxed flex-1">
                   {pillar.description}
                 </p>
               </div>
