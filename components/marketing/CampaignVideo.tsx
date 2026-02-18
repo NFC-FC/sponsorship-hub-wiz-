@@ -31,7 +31,7 @@ export const CampaignVideo: React.FC<Props> = ({ config }) => {
           <iframe 
             id="js_video_iframe"
             className="absolute inset-0 w-full h-full"
-            src="https://jumpshare.com/embed/tZtAdGc0oJiQyCRHnYTp" 
+            src="https://www.youtube.com/embed/2iaa8jRzcCc?si=Wd24tmmt75-byyzO" 
             title="Campaign Video" 
             frameBorder="0" 
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
