@@ -74,18 +74,18 @@ const SponsorEntryPage: React.FC<Props> = ({ projects }) => {
       <motion.div 
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        className="relative z-10 w-full max-w-xl flex flex-col items-center"
+        className="relative z-10 w-full max-w-xl flex flex-col items-center px-2 sm:px-0"
       >
-        <div className="flex flex-col items-center mb-16">
+        <div className="flex flex-col items-center mb-8 sm:mb-12 md:mb-16">
           <img 
             src="https://github.com/NFC-FC/NFC-image-hosting/blob/main/01-Main-Shield.png?raw=true" 
-            className="h-20 md:h-28 mb-8 drop-shadow-[0_0_30px_rgba(0,156,220,0.5)]" 
+            className="h-14 sm:h-16 md:h-24 lg:h-28 mb-4 sm:mb-6 md:mb-8 drop-shadow-[0_0_30px_rgba(0,156,220,0.5)]" 
             alt="National Fitness Campaign" 
           />
-          <h1 className="text-4xl md:text-7xl font-black italic uppercase tracking-tighter text-center leading-[0.85]">
+          <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-black italic uppercase tracking-tighter text-center leading-[0.85]">
             National Wellness <br/> <span className="text-[#009cdc]">Innovation Zone.</span>
           </h1>
-          <p className="mt-6 text-zinc-500 font-bold uppercase tracking-[0.4em] text-[10px] md:text-xs">
+          <p className="mt-3 sm:mt-4 md:mt-6 text-zinc-500 font-bold uppercase tracking-[0.3em] sm:tracking-[0.4em] text-[8px] sm:text-[9px] md:text-xs">
             Public-Private Partnership Briefing Portal
           </p>
         </div>
@@ -105,7 +105,7 @@ const SponsorEntryPage: React.FC<Props> = ({ projects }) => {
             onBlur={() => setIsFocused(false)}
             onChange={(e) => setAccessKey(e.target.value)}
             onKeyDown={handleKeyDown}
-            className={`w-full bg-white/5 border rounded-2xl px-8 py-6 text-xl font-bold tracking-[0.2em] outline-none backdrop-blur-xl transition-all relative z-10 placeholder:text-zinc-600 text-center shadow-2xl ${
+            className={`w-full bg-white/5 border rounded-xl sm:rounded-2xl px-4 py-4 sm:px-6 sm:py-5 md:px-8 md:py-6 text-sm sm:text-base md:text-xl font-bold tracking-[0.15em] sm:tracking-[0.2em] outline-none backdrop-blur-xl transition-all relative z-10 placeholder:text-zinc-600 text-center shadow-2xl ${
               error ? 'border-red-500/50 text-red-400' : isFocused ? 'border-[#009cdc]' : 'border-white/10'
             }`}
           />
@@ -121,21 +121,21 @@ const SponsorEntryPage: React.FC<Props> = ({ projects }) => {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
           onClick={handlePortalAccess}
-          className="group relative w-1/2 mx-auto px-10 py-6 bg-[#009cdc] hover:bg-[#007ba8] rounded-2xl transition-all duration-300 shadow-[0_0_40px_rgba(0,156,220,0.2)]"
+          className="group relative w-[70%] sm:w-[55%] md:w-1/2 mx-auto px-5 py-3.5 sm:px-7 sm:py-4 md:px-10 md:py-6 bg-[#009cdc] hover:bg-[#007ba8] rounded-xl sm:rounded-2xl transition-all duration-300 shadow-[0_0_40px_rgba(0,156,220,0.2)]"
         >
-          <span className="relative z-10 text-xs md:text-sm font-black uppercase tracking-[0.3em] text-white">
+          <span className="relative z-10 text-[10px] sm:text-xs md:text-sm font-black uppercase tracking-[0.2em] sm:tracking-[0.3em] text-white">
             Access Portal
           </span>
           <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         </motion.button>
 
-        <div className="mt-4 text-center">
+        <div className="mt-3 sm:mt-4 text-center">
           <div className={`transition-opacity duration-1000 ${isFocused && !accessKey ? 'opacity-40' : 'opacity-0'}`}>
-            <p className="text-[9px] font-black uppercase tracking-[0.5em] text-white mb-4">Enter credential to unlock portal</p>
+            <p className="text-[8px] sm:text-[9px] font-black uppercase tracking-[0.4em] sm:tracking-[0.5em] text-white mb-2 sm:mb-4">Enter credential to unlock portal</p>
           </div>
           <button 
             onClick={() => navigate('/admin')}
-            className="text-[8px] font-black uppercase tracking-[0.4em] text-white opacity-20 hover:opacity-60 transition-opacity cursor-pointer border-none bg-transparent"
+            className="text-[7px] sm:text-[8px] font-black uppercase tracking-[0.3em] sm:tracking-[0.4em] text-white opacity-20 hover:opacity-60 transition-opacity cursor-pointer border-none bg-transparent"
           >
             Internal NFC Admin Login
           </button>
