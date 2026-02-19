@@ -123,7 +123,7 @@ const Section4Product: React.FC<Props> = ({ config }) => {
   const activeHotspot = hotspots.find(h => h.id === activeId);
 
   return (
-    <section className="relative bg-white flex flex-col items-center justify-center overflow-hidden py-32">
+    <section className="relative bg-white flex flex-col items-center justify-center overflow-hidden py-12 sm:py-24 md:py-32 w-full max-w-[100vw]">
       {/* Background decoration */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.12]">
         <div className="absolute top-0 right-0 w-[60%] h-[60%] blur-[200px] rounded-full translate-x-1/3 -translate-y-1/3" style={{ backgroundColor: config.secondaryColor }} />
@@ -131,14 +131,14 @@ const Section4Product: React.FC<Props> = ({ config }) => {
       </div>
 
       {/* Top Header */}
-      <div className="container mx-auto px-6 text-center mb-16 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 text-center mb-10 sm:mb-16 relative z-10 w-full min-w-0">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
           <span className="font-bold tracking-[0.4em] text-[10px] uppercase block mb-4" style={{ color: config.primaryColor }}>Title Sponsorship Tier</span>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-6xl text-slate-900 font-black uppercase mb-6 leading-none">
+          <h2 className="font-display text-2xl sm:text-3xl md:text-5xl lg:text-6xl text-slate-900 font-black uppercase mb-6 leading-tight break-words">
             Program Value Delivery:<br/>
             <span style={{ color: config.secondaryColor }}>{config.sponsorName} Fitness Court</span>
           </h2>
@@ -146,7 +146,7 @@ const Section4Product: React.FC<Props> = ({ config }) => {
       </div>
 
       {/* INTERACTIVE RENDER BOX */}
-      <div className="relative w-full max-w-7xl px-4 lg:px-6 mb-32">
+      <div className="relative w-full max-w-7xl px-4 sm:px-6 mb-16 sm:mb-32 min-w-0">
         <motion.div 
           initial={{ opacity: 0, scale: 0.98, y: 40 }}
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
@@ -155,24 +155,12 @@ const Section4Product: React.FC<Props> = ({ config }) => {
         >
           <div className="relative bg-[#f8fafc] rounded-[3rem] overflow-hidden shadow-[0_80px_180px_-40px_rgba(0,0,0,0.18)] border border-slate-200/60">
             <div className="relative flex items-center justify-center overflow-hidden bg-slate-50 w-full min-h-[250px] sm:min-h-[500px]">
-               {/\.(mp4|webm|mov)(\?.*)?$/i.test(config.sponsorRender) ? (
-                 <video
-                   key={config.sponsorRender}
-                   src={config.sponsorRender}
-                   className="w-full h-auto relative z-10 block"
-                   autoPlay
-                   muted
-                   loop
-                   playsInline
-                 />
-               ) : (
-                 <img
-                   src={config.sponsorRender}
-                   alt="Fitness Court 3D Render"
-                   className="w-full h-auto relative z-10 block"
-                   onError={(e) => { e.currentTarget.src = "https://github.com/NFC-FC/NFC-image-hosting/blob/main/FC%20Side%20View-1.png?raw=true"; }}
-                 />
-               )}
+               <img
+                 src={config.sponsorRender}
+                 alt="Fitness Court 3D Render"
+                 className="w-full h-auto relative z-10 block"
+                 onError={(e) => { e.currentTarget.src = "https://github.com/NFC-FC/NFC-image-hosting/blob/main/FC%20Side%20View-1.png?raw=true"; }}
+               />
                <div className="absolute inset-0 mix-blend-multiply pointer-events-none z-20" style={{ background: `linear-gradient(tr, ${config.primaryColor}1A, transparent)` }} />
             </div>
 
@@ -233,7 +221,7 @@ const Section4Product: React.FC<Props> = ({ config }) => {
       </div>
 
       {/* SIX-AREA VALUE FRAMEWORK SECTION - UNCHANGED */}
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10 w-full min-w-0">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

@@ -8,7 +8,7 @@ interface Props {
 
 export const FullWidthVideo: React.FC<Props> = ({ config }) => {
   return (
-    <section className="bg-[#020617] border-b border-white/5 relative overflow-hidden w-full">
+    <section className="bg-[#020617] border-b border-white/5 relative overflow-hidden w-full max-w-[100vw]">
       {/* Abstract background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[#009cdc]/5 blur-[120px] rounded-full pointer-events-none" />
       
@@ -16,7 +16,7 @@ export const FullWidthVideo: React.FC<Props> = ({ config }) => {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-        className="w-full h-auto relative group bg-black overflow-hidden"
+        className="w-full max-w-[100vw] h-auto relative group bg-black overflow-hidden min-w-0"
       >
         <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/40 via-transparent to-black/20 pointer-events-none" />
         

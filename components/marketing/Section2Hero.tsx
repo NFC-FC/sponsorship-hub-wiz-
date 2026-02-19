@@ -19,7 +19,7 @@ const Section2Hero: React.FC<Props> = ({ config }) => {
   const opacity = useTransform(scrollY, [0, 600], [1, 0]);
 
   return (
-    <section className="relative h-screen overflow-hidden bg-[#020617]">
+    <section className="relative h-screen min-h-[320px] overflow-hidden bg-[#020617] w-full max-w-[100vw]">
       {/* Background Video Container */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <video 
@@ -45,14 +45,14 @@ const Section2Hero: React.FC<Props> = ({ config }) => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="relative px-4 py-12 w-full max-w-none"
+          className="relative px-4 py-12 w-full max-w-none min-w-0"
         >
           <div className="absolute inset-0 bg-black/95 blur-[120px] -z-10 rounded-full scale-110 opacity-90" />
           
           <span className="tracking-[0.7em] font-black text-[10px] md:text-xs uppercase mb-8 block drop-shadow-[0_0_10px_rgba(251,171,24,0.3)]" style={{ color: config.secondaryColor }}>
             The Vision
           </span>
-            <h2 className="font-display text-2xl sm:text-3xl md:text-6xl lg:text-[5.5vw] text-white font-black leading-[0.95] w-full uppercase tracking-tighter drop-shadow-2xl">
+            <h2 className="font-display text-xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-[5.5vw] text-white font-black leading-[0.95] w-full max-w-full uppercase tracking-tighter drop-shadow-2xl break-words">
               {config.sponsorName.toUpperCase()} DELIVERS <br/>
                <span style={{ color: config.primaryColor }}>
               COMMUNITY WELLNESS CAMPAIGN ACROSS

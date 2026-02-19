@@ -2,11 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5, viewport-fit=cover">
     <title>National Wellness Innovation Zone</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        *, *::before, *::after { box-sizing: border-box; }
+        html {
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+            -webkit-text-size-adjust: 100%;
+        }
         :root {
             --allegiant-blue: #002D72;
             --allegiant-orange: #FBAB18;
@@ -28,6 +35,15 @@
             margin: 0;
             padding: 0;
             overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+            position: relative;
+        }
+        #root {
+            width: 100%;
+            max-width: 100vw;
+            overflow-x: hidden;
+            min-height: 100%;
         }
         
         .font-brand { font-family: 'Orbitron', sans-serif; }

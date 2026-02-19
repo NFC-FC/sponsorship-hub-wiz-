@@ -19,9 +19,9 @@ const Section3Reality: React.FC<Props> = ({ config }) => {
   const textX = useTransform(scrollYProgress, [0, 0.5, 1], [-30, 0, 30]);
 
   return (
-    <section ref={containerRef} className="relative min-h-[100vh] flex items-center justify-center py-24 bg-[#020617]">
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+    <section ref={containerRef} className="relative min-h-[100vh] flex items-center justify-center py-12 sm:py-24 bg-[#020617] w-full max-w-[100vw] overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10 w-full min-w-0">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-24 items-center">
           
           <div className="relative w-full rounded-3xl overflow-hidden group shadow-[0_0_50px_rgba(0,114,206,0.15)] border border-white/5 bg-slate-900">
             <motion.div 
@@ -50,10 +50,10 @@ const Section3Reality: React.FC<Props> = ({ config }) => {
             className="flex flex-col gap-6"
           >
             <span className="font-bold tracking-[0.3em] text-xs uppercase" style={{ color: config.primaryColor }}>Community Impact</span>
-            <h3 className="font-display text-3xl sm:text-5xl md:text-7xl text-white font-black leading-none">
+            <h3 className="font-display text-2xl sm:text-4xl md:text-5xl lg:text-7xl text-white font-black leading-tight break-words">
               MAKING WORLD CLASS FITNESS FREE FOR HUNDREDS OF THOUSANDS OF PEOPLE.
             </h3>
-            <p className="text-base sm:text-lg md:text-xl text-white/60 font-light leading-relaxed max-w-lg">
+            <p className="text-sm sm:text-base md:text-lg text-white/60 font-light leading-relaxed max-w-lg min-w-0">
               Building Healthier Communities by Redesigning the Built Environment for Every-Day Outdoor Movement, Health and Happiness.
             </p>
             

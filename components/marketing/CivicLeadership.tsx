@@ -29,7 +29,7 @@ export const CivicLeadership: React.FC<Props> = ({ config }) => {
   const leaders = config.leaders || [];
 
   return (
-    <div className="bg-[#111] py-12 sm:py-32 px-6 border-b border-white/5 relative overflow-hidden">
+    <div className="bg-[#111] py-12 sm:py-32 px-4 sm:px-6 border-b border-white/5 relative overflow-hidden w-full max-w-[100vw]">
       <div className="absolute top-0 right-0 w-[40%] h-full opacity-5 pointer-events-none">
           <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
               <line x1="0" y1="0" x2="100" y2="100" stroke="white" strokeWidth="0.1" />
@@ -38,9 +38,9 @@ export const CivicLeadership: React.FC<Props> = ({ config }) => {
           </svg>
       </div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto relative z-10 w-full min-w-0">
         <div className="text-center mb-8 sm:mb-24">
-          <h2 className="text-3xl sm:text-5xl md:text-8xl font-black text-white italic uppercase tracking-tighter leading-none mb-4">
+          <h2 className="text-2xl sm:text-4xl md:text-6xl lg:text-8xl font-black text-white italic uppercase tracking-tighter leading-tight break-words mb-4">
             CITY OF <br/><span style={{ color: config.primaryColor }}>{config.projectCity.toUpperCase()}</span> SELECTED.
           </h2>
           <div className="max-w-5xl mx-auto">
@@ -70,9 +70,9 @@ export const CivicLeadership: React.FC<Props> = ({ config }) => {
         </div>
 
         {/* Centered Leadership Row — equal-width cards, titles wrap */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 sm:gap-8 md:gap-12 mb-20 sm:mb-32 border-t border-white/10 pt-10 sm:pt-24 justify-items-center">
+        <div className="flex flex-wrap justify-center items-start gap-6 sm:gap-8 md:gap-12 mb-20 sm:mb-32 border-t border-white/10 pt-10 sm:pt-24">
           {leaders.map((leader, i) => (
-            <div key={leader.id || i} className="flex flex-col items-center text-center group relative w-full max-w-[200px] sm:max-w-[220px]">
+            <div key={leader.id || i} className="flex flex-col items-center text-center group relative w-[140px] sm:w-[180px] md:w-[200px] flex-shrink-0">
               <div className="relative mb-3 sm:mb-8">
                 <div className="absolute inset-0 bg-white/5 rounded-full blur-2xl group-hover:bg-white/10 transition-colors"></div>
                 <div className="w-16 h-16 sm:w-40 sm:h-40 md:w-48 lg:w-56 md:h-48 lg:h-56 rounded-full overflow-hidden border-2 border-white/10 group-hover:border-white/30 transition-all relative z-10 grayscale group-hover:grayscale-0 shadow-2xl bg-zinc-800">
