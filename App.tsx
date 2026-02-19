@@ -133,7 +133,6 @@ export interface SponsorRecord {
   sponsorName: string;
   sponsorLogo: string;
   sponsorPassword?: string;
-  sponsorRender?: string;
   isArchived?: boolean;
   overrides: Partial<CityTemplate>;
 }
@@ -165,7 +164,7 @@ export const mergeSponsorConfig = (city: CityGroup, sponsor: SponsorRecord): Sit
     sponsorName: sponsor.sponsorName,
     sponsorLogo: sponsor.sponsorLogo,
     sponsorPassword: sponsor.sponsorPassword,
-    sponsorRender: sponsor.overrides?.sponsorRender || sponsor.sponsorRender || city.template.sponsorRender,
+    sponsorRender: sponsor.overrides?.sponsorRender || city.template.sponsorRender,
     projectCity: city.name,
     cityLogo: sponsor.overrides.cityLogo || city.template.cityLogo,
     isArchived: sponsor.isArchived || city.isArchived,
@@ -252,7 +251,6 @@ const initialCities: CityGroup[] = [
         sponsorName: 'Allegiant Air',
         sponsorLogo: 'https://github.com/NFC-FC/NFC-image-hosting/blob/main/Allegiant_Air_logo.svg.png?raw=true',
         sponsorPassword: 'vegas-allegiant-2026',
-        sponsorRender: defaultRender,
         overrides: {},
       },
       {
@@ -260,7 +258,6 @@ const initialCities: CityGroup[] = [
         sponsorName: 'Dignity Health',
         sponsorLogo: 'https://upload.wikimedia.org/wikipedia/commons/e/e5/Dignity_Health_logo.svg',
         sponsorPassword: 'vegas-dignity-2026',
-        sponsorRender: defaultRender,
         overrides: {
           projectName: 'VIBRANT',
           primaryColor: '#0072ce',
@@ -479,7 +476,6 @@ const App: React.FC = () => {
               sponsorName: s.sponsor_name,
               sponsorLogo: s.sponsor_logo,
               sponsorPassword: s.sponsor_password,
-              sponsorRender: s.sponsor_render,
               isArchived: s.is_archived,
               overrides: s.overrides || {},
             }))
@@ -525,7 +521,6 @@ const App: React.FC = () => {
               sponsor_name: sponsor.sponsorName,
               sponsor_logo: sponsor.sponsorLogo,
               sponsor_password: sponsor.sponsorPassword,
-              sponsor_render: sponsor.sponsorRender,
               is_archived: sponsor.isArchived,
               overrides: sponsor.overrides,
             });
