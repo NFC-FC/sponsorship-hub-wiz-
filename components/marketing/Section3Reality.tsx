@@ -1,5 +1,7 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+
+const INFRASTRUCTURE_IMAGE = 'https://i.postimg.cc/gkbg7F6b/screenshot-ref-720.png';
 
 interface Props {
   config: {
@@ -10,6 +12,7 @@ interface Props {
 
 const Section3Reality: React.FC<Props> = ({ config }) => {
   const containerRef = useRef(null);
+  const [imgError, setImgError] = useState(false);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"]
@@ -26,16 +29,22 @@ const Section3Reality: React.FC<Props> = ({ config }) => {
           <div className="relative w-full rounded-3xl overflow-hidden group shadow-[0_0_50px_rgba(0,114,206,0.15)] border border-white/5 bg-slate-900">
             <motion.div 
               style={{ y: imgY }} 
-              className="relative w-full overflow-hidden"
+              className="relative w-full overflow-hidden aspect-[4/3] min-h-[200px] bg-slate-800/50"
             >
-              {/* Infrastructure image/animation updated per user request */}
-              <img 
-                src="https://i.postimg.cc/gkbg7F6b/screenshot-ref-720.png" 
-                alt="Infrastructure Animation"
-                loading="lazy"
-                decoding="async"
-                className="w-full h-auto brightness-95 contrast-[1.05] block"
-              />
+              {!imgError ? (
+                <img 
+                  src={INFRASTRUCTURE_IMAGE} 
+                  alt="Healthy infrastructure — outdoor fitness and community wellness"
+                  decoding="async"
+                  referrerPolicy="no-referrer"
+                  className="w-full h-full object-cover brightness-95 contrast-[1.05] block"
+                  onError={() => setImgError(true)}
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center text-white/50 text-center px-4">
+                  <span className="text-sm font-medium">Healthy infrastructure</span>
+                </div>
+              )}
               <div className="absolute inset-0 bg-gradient-to-t from-[#020617]/40 via-transparent to-transparent pointer-events-none" />
             </motion.div>
             
