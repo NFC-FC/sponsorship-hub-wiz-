@@ -57,9 +57,9 @@ const Section2Hero: React.FC<Props> = ({ config }) => {
             <h2 className="font-display text-xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-[5.5vw] text-white font-black leading-[0.95] w-full max-w-full uppercase tracking-tighter drop-shadow-2xl break-words">
               {config.sponsorName.toUpperCase()} DELIVERS <br/>
                <span style={{ color: config.primaryColor }}>
-              COMMUNITY WELLNESS CAMPAIGN ACROSS
-             </span>{" "}
-              THE CITY OF {config.projectCity.toUpperCase()}
+              COMMUNITY WELLNESS CAMPAIGN 
+             </span>{" "} <br/>
+              ACROSS THE CITY OF {config.projectCity.toUpperCase()}
             </h2>
 
 

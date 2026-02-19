@@ -253,6 +253,172 @@ const initialCities: CityGroup[] = [
   },
 ];
 
+const SitePreview: React.FC<{ config: SiteConfig }> = ({ config }) => {
+  const [isEntered, setIsEntered] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    document.body.style.overflow = isEntered ? 'auto' : 'hidden';
+    window.scrollTo(0, 0);
+  }, [isEntered, config.id]);
+
+  return (
+    <div
+      className="relative min-h-screen w-full max-w-[100vw] overflow-x-hidden bg-[#020617]"
+      style={
+        {
+          ['--brand-primary' as any]: config.primaryColor,
+          ['--brand-accent' as any]: config.accentColor,
+          ['--brand-secondary' as any]: config.secondaryColor,
+        } as any
+      }
+    >
+      <AnimatePresence mode="wait">
+        {!isEntered && (
+          <Section1Splash
+            key={`${config.id}-splash`}
+            onEnter={() => setIsEntered(true)}
+            config={config}
+          />
+        )}
+      </AnimatePresence>
+
+      <div
+        className={`w-full max-w-[100vw] overflow-x-hidden ${
+          isEntered ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        } transition-opacity duration-1000`}
+      >
+        <Section2Hero config={config} />
+        {/* New Feature Video below Hero */}
+        <FullWidthVideo config={config} />
+        {/* Reordered: Reality (Impact/Infrastructure) with rotating GIF now follows Hero immediately */}
+        <Section3Reality config={config} />
+        {/* Adoption Section (Legislative Approval) follows impact */}
+        <CivicLeadership config={config} />
+        <MasterPlan config={config} />
+        <Impact config={config} />
+        <Section4Product config={config} />
+        <Section5Ecosystem config={config} />
+        <Section6Endorsement config={config} />
+        <Section7SponsorshipLevels config={config} />
+        <CampaignVideo config={config} />
+        <Section8Timeline config={config} />
+        <Footer config={config} />
+      </div>
+
+      {isEntered && (
+        <motion.div
+          initial={{ y: -100 }}
+          animate={{ y: 0 }}
+          className="fixed top-0 left-0 right-0 z-40 w-full max-w-[100vw] box-border bg-black/80 backdrop-blur-xl min-h-14 sm:min-h-20 md:min-h-24 pt-[env(safe-area-inset-top)] flex items-center justify-between gap-2 px-3 sm:px-6 md:px-12 border-b border-white/10 overflow-hidden"
+        >
+          {/* Left: text shrinks and truncates so it always fits */}
+          <div className="min-w-0 flex-1 flex items-center">
+            <span
+              onClick={() => navigate('/')}
+              className="text-white/40 text-[7px] sm:text-[10px] font-black tracking-[0.15em] sm:tracking-[0.3em] uppercase cursor-pointer hover:text-white transition-colors truncate block"
+              title="National Wellness Innovation Zone"
+            >
+              National Wellness Innovation Zone
+            </span>
+          </div>
+
+          {/* Right: logos shrink to fit, never cut off — bigger on desktop only */}
+          <div className="flex items-center gap-1.5 sm:gap-6 md:gap-10 min-w-0 flex-shrink-0 justify-end">
+            <img
+              src={config.sponsorLogo}
+              className="h-5 w-auto max-h-6 sm:max-h-8 md:h-10 md:max-h-10 lg:h-11 lg:max-h-11 object-contain object-right transition-transform hover:scale-105 flex-shrink-0"
+              alt={config.sponsorName}
+            />
+            <div className="w-px h-5 sm:h-8 md:h-10 lg:h-11 bg-white/10 hidden sm:block flex-shrink-0" />
+            <img
+              src={config.cityLogo}
+              alt="City Seal"
+              className="h-5 w-auto max-h-6 sm:max-h-8 md:h-10 md:max-h-10 lg:h-11 lg:max-h-11 object-contain transition-transform hover:scale-105 flex-shrink-0"
+            />
+            <div className="w-px h-5 sm:h-8 md:h-10 lg:h-11 bg-white/10 hidden sm:block flex-shrink-0" />
+            <img
+              src={config.nfcLogo}
+              className="h-5 w-auto max-h-6 sm:max-h-8 md:h-10 md:max-h-10 lg:h-11 lg:max-h-11 object-contain transition-transform hover:scale-105 flex-shrink-0"
+              alt="NFC"
+            />
+          </div>
+        </motion.div>
+      )}
+    </div>
+  );
+};
+
+const AdminRoute: React.FC<{
+  cities: CityGroup[];
+  setCities: React.Dispatch<React.SetStateAction<CityGroup[]>>;
+  onEditSponsor: (cityId: string, sponsorId: string) => void;
+  onEditCityTemplate: (cityId: string) => void;
+  isAuthenticated: boolean;
+  setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>;
+}> = ({ cities, setCities, onEditSponsor, onEditCityTemplate, isAuthenticated, setIsAuthenticated }) => {
+  const navigate = useNavigate();
+
+  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const password = (e.currentTarget.elements.namedItem('password') as HTMLInputElement).value;
+    if (password === 'Fitnesscourt0987!') {
+      setIsAuthenticated(true);
+    } else {
+      alert('Incorrect password. Access denied.');
+    }
+  };
+
+  if (isAuthenticated) {
+    return (
+      <Dashboard 
+        cities={cities} 
+        setCities={setCities} 
+        onEditSponsor={onEditSponsor} 
+        onEditCityTemplate={onEditCityTemplate}
+      />
+    );
+  }
+
+  return (
+    <div className="min-h-screen w-full max-w-[100vw] overflow-x-hidden bg-black flex flex-col items-center justify-center font-sans px-4">
+      <form
+        onSubmit={handleLogin}
+        className="bg-zinc-900/80 backdrop-blur-md border border-white/10 p-6 sm:p-10 rounded-2xl sm:rounded-[2rem] shadow-2xl flex flex-col gap-6 w-full max-w-md min-w-0"
+      >
+        <div className="text-center min-w-0">
+          <h2 className="text-xl sm:text-2xl font-black text-white italic uppercase tracking-tighter break-words">
+            Admin Access Panel
+          </h2>
+          <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-[0.2em] mt-2">
+            Authentication Required
+          </p>
+        </div>
+        <input
+          type="password"
+          name="password"
+          autoFocus
+          placeholder="Enter Password"
+          className="bg-black/50 border border-white/10 text-white px-4 py-3 rounded-xl outline-none focus:border-[#009cdc] transition-colors text-base sm:text-sm text-center tracking-widest min-h-[2.75rem]"
+        />
+        <button
+          type="submit"
+          className="bg-[#009cdc] hover:bg-[#007ba8] transition-colors text-white px-4 py-3 rounded-xl font-bold uppercase text-xs tracking-widest shadow-[0_0_20px_rgba(0,156,220,0.3)]"
+        >
+          Enter Portal
+        </button>
+        <button
+          type="button"
+          onClick={() => navigate('/')}
+          className="text-white/40 hover:text-white text-[10px] font-bold uppercase tracking-widest transition-colors mt-2"
+        >
+          Return to Hub
+        </button>
+      </form>
+    </div>
+  );
+};
+
 const STORAGE_KEY = 'nfc-cities-v4';
 
 const App: React.FC = () => {
