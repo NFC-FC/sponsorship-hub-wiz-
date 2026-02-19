@@ -29,6 +29,7 @@ const Section5Ecosystem: React.FC<Props> = ({ config }) => {
             <motion.div
               initial={{ rotate: -2, y: 30, opacity: 0 }}
               whileInView={{ rotate: 0, y: 0, opacity: 1 }}
+              viewport={{ once: true }}
               transition={{ duration: 1, ease: "easeOut" }}
               className="relative w-full max-w-[140px] sm:max-w-[320px] group flex items-center justify-center"
             >
@@ -37,6 +38,7 @@ const Section5Ecosystem: React.FC<Props> = ({ config }) => {
                 src="https://i.postimg.cc/nhDtyMJM/phone.png"
                 alt="NFC App Interface"
                 className="w-full h-auto drop-shadow-[0_40px_80px_rgba(0,0,0,0.2)] relative z-10"
+                loading="lazy"
               />
 
               {/* Interactive Play Button Overlay */}
@@ -80,6 +82,7 @@ const Section5Ecosystem: React.FC<Props> = ({ config }) => {
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
             >
               <span className="font-bold tracking-[0.3em] text-[8px] sm:text-[10px] uppercase block mb-1 sm:mb-4" style={{ color: config.primaryColor }}>The Digital Portal</span>
               <h2 className="font-display text-lg sm:text-5xl md:text-6xl font-black leading-none mb-2 sm:mb-6 uppercase tracking-tighter">
@@ -112,6 +115,7 @@ const Section5Ecosystem: React.FC<Props> = ({ config }) => {
                   key={i}
                   initial={{ opacity: 0, y: 15 }}
                   whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
                   className="flex gap-2 sm:gap-6 items-start"
                 >
@@ -129,6 +133,7 @@ const Section5Ecosystem: React.FC<Props> = ({ config }) => {
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
               transition={{ delay: 0.5 }}
               className="pt-2 sm:pt-8 flex flex-wrap gap-2 sm:gap-4"
             >

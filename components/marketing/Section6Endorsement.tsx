@@ -22,19 +22,21 @@ const Section6Endorsement: React.FC<Props> = ({ config, isEditMode, onUpdateFiel
         <div className="flex flex-col items-center text-center gap-4 sm:gap-8 md:gap-12">
           
           {/* Mobile: headshot then badge stacked (no overlap). Desktop: headshot with badge absolute below */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
             className="relative flex flex-col sm:block items-center w-full sm:w-auto flex-shrink-0 sm:pb-20 md:pb-16"
           >
             {/* Circular headshot - always visible and centered */}
             <div className="relative w-24 h-24 sm:w-56 sm:h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 flex-shrink-0 mx-auto">
               <div className="absolute inset-1.5 sm:inset-4 border-2 border-slate-100 rounded-full animate-[spin_30s_linear_infinite]" />
               <div className="absolute inset-0 bg-slate-100 rounded-full overflow-hidden shadow-xl border-2 sm:border-4 border-white">
-                <img 
-                  src={config.endorsementImage || "https://github.com/NFC-FC/NFC-image-hosting/blob/main/Las_Vegas_Mayor_Shelley_Berkley_app_June-23-2025-600x800.jpg?raw=true"} 
-                  alt="Mayor" 
+                <img
+                  src={config.endorsementImage || "https://github.com/NFC-FC/NFC-image-hosting/blob/main/Las_Vegas_Mayor_Shelley_Berkley_app_June-23-2025-600x800.jpg?raw=true"}
+                  alt="Mayor"
                   className="w-full h-full object-cover grayscale brightness-110 contrast-110"
+                  loading="lazy"
                 />
                 {isEditMode && onUpdateField && (
                   <div className="absolute inset-0 bg-black/50 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer" onClick={() => {
@@ -76,6 +78,7 @@ const Section6Endorsement: React.FC<Props> = ({ config, isEditMode, onUpdateFiel
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               className="space-y-2 sm:space-y-4 md:space-y-6"
             >
               <h3 
