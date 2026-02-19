@@ -17,6 +17,7 @@ import Section5Ecosystem from './marketing/Section5Ecosystem';
 import Section6Endorsement from './marketing/Section6Endorsement';
 import Section7SponsorshipLevels from './marketing/Section7SponsorshipLevels';
 import { Section8Timeline } from './marketing/Section8Timeline';
+import { Section9SponsorLogos } from './marketing/Section9SponsorLogos';
 import { CampaignVideo } from './marketing/CampaignVideo';
 import { Footer } from './marketing/Footer';
 
@@ -681,6 +682,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ city, sponsorId, isOpen,
                 <Section7SponsorshipLevels config={previewConfig} />
                 <CampaignVideo config={previewConfig} />
                 <Section8Timeline config={previewConfig} />
+                <Section9SponsorLogos config={previewConfig} />
                 <Footer config={previewConfig} />
              </div>
             </div>
