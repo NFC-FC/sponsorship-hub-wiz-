@@ -62,9 +62,9 @@ export const Section9SponsorLogos: React.FC<Props> = ({ config, logoUrls }) => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="text-center font-medium text-white text-sm sm:text-base md:text-lg mb-8 sm:mb-12"
+          className="text-center font-bold text-white text-base sm:text-lg md:text-xl mb-8 sm:mb-12"
         >
-          <span className="font-medium text-sm sm:text-base md:text-lg">Join </span><strong className="font-bold text-base sm:text-lg md:text-xl">America's Largest Public-Private Wellness Partnership</strong>
+          Join America's Largest Public-Private Wellness Partnership
         </motion.p>
 
         {/* Logo grid: Row A (7), Row B (7), Row C (6) */}
