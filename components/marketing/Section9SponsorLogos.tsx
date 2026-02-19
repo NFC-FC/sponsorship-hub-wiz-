@@ -41,7 +41,7 @@ interface Props {
 export const Section9SponsorLogos: React.FC<Props> = ({ config, logoUrls }) => {
   const urls = logoUrls ?? DEFAULT_LOGO_URLS;
   return (
-    <section className="bg-[#e0f2fe] py-12 sm:py-16 md:py-24 px-4 sm:px-6 relative overflow-hidden flex flex-col items-center w-full max-w-[100vw]">
+    <section className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 relative overflow-hidden flex flex-col items-center w-full max-w-[100vw]">
       <div className="w-full max-w-6xl mx-auto flex flex-col items-center">
         {/* Campaign logo */}
         <motion.div
@@ -57,15 +57,14 @@ export const Section9SponsorLogos: React.FC<Props> = ({ config, logoUrls }) => {
           />
         </motion.div>
 
-        {/* Subtitle — NFC logo blue; "America's Largest Healthcare Providers" bold */}
+        {/* Subtitle — white; "Join America's Largest Public-Private Wellness Partnership" */}
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="text-center font-medium text-sm sm:text-base md:text-lg mb-8 sm:mb-12"
-          style={{ color: config.primaryColor }}
+          className="text-center font-bold text-white text-base sm:text-lg md:text-xl mb-8 sm:mb-12"
         >
-          <span className="font-normal">Brought to You by </span><strong className="font-bold">America's Largest Healthcare Providers</strong>
+          Join America's Largest Public-Private Wellness Partnership
         </motion.p>
 
         {/* Logo grid: Row A (7), Row B (7), Row C (6) */}

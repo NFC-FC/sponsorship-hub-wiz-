@@ -25,7 +25,6 @@ import Section5Ecosystem from './components/marketing/Section5Ecosystem';
 import Section6Endorsement from './components/marketing/Section6Endorsement';
 import Section7SponsorshipLevels from './components/marketing/Section7SponsorshipLevels';
 import { Section8Timeline } from './components/marketing/Section8Timeline';
-import { Section9SponsorLogos } from './components/marketing/Section9SponsorLogos';
 import { CampaignVideo } from './components/marketing/CampaignVideo';
 import { Footer } from './components/marketing/Footer';
 
@@ -320,7 +319,6 @@ const SitePreview: React.FC<{ config: SiteConfig }> = ({ config }) => {
         <Section7SponsorshipLevels config={config} />
         <CampaignVideo config={config} />
         <Section8Timeline config={config} />
-        <Section9SponsorLogos config={config} />
         <Footer config={config} />
       </div>
 
