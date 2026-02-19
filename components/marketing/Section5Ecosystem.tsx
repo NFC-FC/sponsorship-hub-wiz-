@@ -15,10 +15,6 @@ interface Props {
 const Section5Ecosystem: React.FC<Props> = ({ config }) => {
   const [showVideoModal, setShowVideoModal] = useState(false);
 
-  const handleAppLink = () => {
-    window.open('https://www.nationalfitnesscampaign.com/app', '_blank', 'noopener,noreferrer');
-  };
-
   return (
     <section className="relative min-h-0 sm:min-h-[70vh] bg-slate-50 text-slate-900 pt-10 pb-10 sm:py-24 overflow-hidden w-full max-w-[100vw]">
       <div className="container mx-auto px-4 sm:px-6 w-full max-w-full min-w-0">
@@ -125,20 +121,6 @@ const Section5Ecosystem: React.FC<Props> = ({ config }) => {
                 </motion.li>
               ))}
             </ul>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-              className="pt-2 sm:pt-8 flex flex-wrap gap-2 sm:gap-4"
-            >
-              <button
-                onClick={handleAppLink}
-                className="bg-black text-white px-4 sm:px-8 py-2 sm:py-4 rounded-xl sm:rounded-2xl font-black uppercase text-[8px] sm:text-[10px] tracking-widest hover:scale-105 transition-transform shadow-xl"
-              >
-                Learn More
-              </button>
-            </motion.div>
           </div>
         </div>
       </div>

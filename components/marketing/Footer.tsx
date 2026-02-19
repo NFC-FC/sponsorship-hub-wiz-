@@ -38,10 +38,10 @@ export const Footer: React.FC<Props> = ({ config }) => {
             <div className="text-center mb-6 sm:mb-8 md:mb-12 px-2 sm:px-4 md:px-12 min-w-0 w-full">
               <h3 className="text-xs sm:text-lg md:text-3xl lg:text-5xl italic uppercase tracking-tighter leading-tight break-words">
                 <span className="font-black" style={{ color: config.primaryColor }}>
-                  {config.sponsorName.toUpperCase()} DELIVERS $10M OF HEALTHY INFRASTRUCTURE COSTS TO {config.projectCity.toUpperCase()},
+                  {config.sponsorName.toUpperCase()} DELIVERS $10M DOLLAR COMMUNITY WELLNESS CAMPAIGN ACROSS THE CITY OF {config.projectCity.toUpperCase()},
                 </span>{' '}
                 <span className="font-bold" style={{ color: config.secondaryColor }}>
-                  MAKING WORLD-CLASS FITNESS FREE FOR HUNDREDS OF THOUSANDS OF RESIDENTS.
+                  TO IMPROVE HEALTH AND HAPPINESS FOR HUNDREDS OF THOUSANDS OF RESIDENTS.
                 </span>
               </h3>
             </div>

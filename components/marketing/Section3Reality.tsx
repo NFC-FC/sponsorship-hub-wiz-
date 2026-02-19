@@ -50,17 +50,16 @@ const Section3Reality: React.FC<Props> = ({ config }) => {
             className="flex flex-col gap-6"
           >
             <span className="font-bold tracking-[0.3em] text-xs uppercase" style={{ color: config.primaryColor }}>Community Impact</span>
-            <h3 className="font-display text-2xl sm:text-4xl md:text-5xl lg:text-7xl text-white font-black leading-tight break-words">
-              MAKING WORLD CLASS FITNESS FREE FOR HUNDREDS OF THOUSANDS OF PEOPLE.
+            <h3 className="font-display text-xl sm:text-3xl md:text-4xl lg:text-6xl text-white font-black leading-tight break-words">
+              BUILDING HEALTHY CITIES OF THE FUTURE.
             </h3>
             <p className="text-sm sm:text-base md:text-lg text-white/60 font-light leading-relaxed max-w-lg min-w-0">
-              Building Healthier Communities by Redesigning the Built Environment for Every-Day Outdoor Movement, Health and Happiness.
+              Building Healthier Communities by redesigning the built environment for every-day outdoor movement, health and happiness.
             </p>
             
             <div className="mt-2 space-y-2">
-              <h4 className="text-white font-bold text-xl md:text-2xl uppercase tracking-tighter">Healthy infrastructure</h4>
               <p className="text-white/40 text-base md:text-lg font-medium italic leading-relaxed">
-                Reducing healthcare costs by changing the built environment.
+          
               </p>
             </div>
           </motion.div>

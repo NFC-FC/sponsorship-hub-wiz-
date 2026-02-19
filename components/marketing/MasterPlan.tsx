@@ -68,14 +68,14 @@ export const MasterPlan: React.FC<Props> = ({ config, isEditMode, onUpdateMap })
   return (
     <div className="bg-black py-12 sm:py-24 w-full max-w-[100vw] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full min-w-0">
-        <div className="mb-16 text-center lg:text-left">
+        <div className="mb-16 text-center">
           <div className="inline-block px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.3em] mb-4" style={{ backgroundColor: `${config.primaryColor}1A`, color: config.primaryColor }}>
             Deployment Roadmap
           </div>
           <h2 className="text-lg sm:text-3xl md:text-5xl lg:text-7xl font-black text-white mb-4 sm:mb-6 uppercase italic tracking-tighter leading-tight break-words">
             HEALTHY INFRASTRUCTURE <span style={{ color: config.primaryColor }}>MASTER PLAN.</span>
           </h2>
-          <div className="max-w-3xl">
+          <div className="max-w-3xl mx-auto">
             <p className="text-white text-sm sm:text-xl font-bold uppercase tracking-tight mb-1 sm:mb-2">
               Prioritizing High-Need Neighborhoods
             </p>

@@ -56,7 +56,7 @@ const Section6Endorsement: React.FC<Props> = ({ config, isEditMode, onUpdateFiel
                 <span className="text-[6px] sm:text-[10px] font-black">✓</span>
               </div>
               <div className="min-w-0">
-                <div className="text-[6px] sm:text-[8px] font-black uppercase tracking-widest opacity-80 mb-0.5 whitespace-nowrap sm:whitespace-normal">Verified Endorsement</div>
+                <div className="text-[6px] sm:text-[8px] font-black uppercase tracking-widest opacity-80 mb-0.5 whitespace-nowrap sm:whitespace-normal"></div>
                 <div
                   className={`font-display font-black text-[7px] sm:text-xs md:text-sm whitespace-nowrap ${isEditMode ? 'cursor-pointer hover:underline' : ''}`}
                   onClick={() => {
@@ -96,7 +96,6 @@ const Section6Endorsement: React.FC<Props> = ({ config, isEditMode, onUpdateFiel
                 )}
               </h3>
               <div className="flex flex-col gap-0.5 items-center pt-1 sm:pt-0">
-                <div className="text-xs sm:text-base md:text-xl font-black text-slate-900 uppercase tracking-tight italic">Executive Endorsement</div>
                 <div className="text-slate-500 font-bold tracking-[0.2em] uppercase text-[8px] sm:text-[9px] md:text-[10px]">City of {config.projectCity}</div>
               </div>
             </motion.div>
