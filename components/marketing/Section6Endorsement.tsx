@@ -17,8 +17,8 @@ interface Props {
 
 const Section6Endorsement: React.FC<Props> = ({ config, isEditMode, onUpdateField }) => {
   return (
-    <section className="relative min-h-0 sm:min-h-[50vh] bg-white flex items-center justify-center pt-4 pb-6 sm:py-12 md:py-20 overflow-hidden">
-      <div className="container mx-auto px-4 sm:px-6">
+    <section className="relative min-h-0 sm:min-h-[50vh] bg-white flex items-center justify-center pt-4 pb-6 sm:py-12 md:py-20 overflow-hidden w-full max-w-[100vw]">
+      <div className="container mx-auto px-4 sm:px-6 w-full min-w-0">
         <div className="flex flex-col items-center text-center gap-4 sm:gap-8 md:gap-12">
           
           {/* Mobile: headshot then badge stacked (no overlap). Desktop: headshot with badge absolute below */}

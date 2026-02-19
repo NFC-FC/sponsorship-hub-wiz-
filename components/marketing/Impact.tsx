@@ -32,13 +32,13 @@ const savingsData = [
 
 export const Impact: React.FC<Props> = ({ config }) => {
   return (
-    <div className="bg-black py-24 px-6 border-y border-white/5">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+    <div className="bg-black py-12 sm:py-24 px-4 sm:px-6 border-y border-white/5 w-full max-w-[100vw] overflow-hidden">
+      <div className="max-w-7xl mx-auto w-full min-w-0">
+        <div className="text-center mb-10 sm:mb-16">
           <div className="inline-block px-4 py-1 rounded-full text-[9px] font-black uppercase tracking-[0.2em] mb-4" style={{ backgroundColor: `${config.primaryColor}1A`, color: config.primaryColor }}>
             Legacy of Wellness
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-7xl font-black text-white mb-6 uppercase italic tracking-tighter leading-none">THE IMPACT <span style={{ color: config.primaryColor }}>OVER A DECADE.</span></h2>
+          <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-black text-white mb-6 uppercase italic tracking-tighter leading-tight break-words">THE IMPACT <span style={{ color: config.primaryColor }}>OVER A DECADE.</span></h2>
           <p className="text-gray-500 max-w-2xl mx-auto text-base sm:text-lg md:text-xl font-medium leading-relaxed">
             A permanent catalyst for community health growth. By transforming the built environment, we unlock multi-generational health benefits.
           </p>

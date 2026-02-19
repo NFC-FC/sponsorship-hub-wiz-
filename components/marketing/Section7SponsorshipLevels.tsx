@@ -45,8 +45,8 @@ const Section7SponsorshipLevels: React.FC<Props> = ({ config }) => {
   ];
 
   return (
-    <section className="relative bg-slate-50 py-12 sm:py-32 overflow-hidden border-t border-slate-200">
-      <div className="container mx-auto px-6 relative z-10">
+    <section className="relative bg-slate-50 py-12 sm:py-32 overflow-hidden border-t border-slate-200 w-full max-w-[100vw]">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10 w-full min-w-0">
         <div className="text-center mb-6 sm:mb-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -54,7 +54,7 @@ const Section7SponsorshipLevels: React.FC<Props> = ({ config }) => {
             transition={{ duration: 0.8 }}
           >
             <span className="font-bold tracking-[0.4em] text-[10px] uppercase block mb-4" style={{ color: config.primaryColor }}>Investment Roadmap</span>
-            <h2 className="font-display text-3xl sm:text-4xl md:text-6xl text-slate-900 font-black uppercase mb-6 leading-none tracking-tighter">
+            <h2 className="font-display text-2xl sm:text-3xl md:text-5xl lg:text-6xl text-slate-900 font-black uppercase mb-6 leading-tight tracking-tighter break-words">
               Sponsorship Levels <br/>
               <span style={{ color: config.primaryColor }}>for Consideration</span>
             </h2>

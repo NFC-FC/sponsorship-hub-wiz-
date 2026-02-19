@@ -10,15 +10,15 @@ interface Props {
 
 export const CampaignVideo: React.FC<Props> = ({ config }) => {
   return (
-    <section className="bg-[#020617] py-24 px-6 border-t border-white/5 relative overflow-hidden">
-      <div className="container mx-auto max-w-5xl text-center relative z-10">
+    <section className="bg-[#020617] py-12 sm:py-24 px-4 sm:px-6 border-t border-white/5 relative overflow-hidden w-full max-w-[100vw]">
+      <div className="container mx-auto max-w-5xl text-center relative z-10 w-full min-w-0">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           className="mb-12"
         >
           <span className="text-[10px] font-black uppercase tracking-[0.4em] mb-4 block" style={{ color: config.primaryColor }}>The Movement</span>
-          <h2 className="text-3xl sm:text-4xl md:text-6xl font-black text-white italic uppercase tracking-tighter">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-black text-white italic uppercase tracking-tighter break-words">
             WATCH THE <span style={{ color: config.primaryColor }}>CAMPAIGN VIDEO.</span>
           </h2>
         </motion.div>

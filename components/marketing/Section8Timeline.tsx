@@ -12,13 +12,13 @@ interface Props {
 
 export const Section8Timeline: React.FC<Props> = ({ config }) => {
   return (
-    <section className="bg-[#020617] py-32 px-6 relative overflow-hidden flex flex-col items-center">
+    <section className="bg-[#020617] py-12 sm:py-24 md:py-32 px-4 sm:px-6 relative overflow-hidden flex flex-col items-center w-full max-w-[100vw]">
       {/* 1. Header Section */}
-      <div className="text-center mb-12">
+      <div className="text-center mb-8 sm:mb-12 w-full min-w-0">
         <motion.h2 
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          className="text-3xl sm:text-4xl md:text-7xl font-black text-white uppercase tracking-tighter mb-4"
+          className="text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-black text-white uppercase tracking-tighter mb-4 break-words"
         >
           SPONSORSHIP NEXT STEPS
         </motion.h2>

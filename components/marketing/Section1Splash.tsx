@@ -17,7 +17,7 @@ const Section1Splash: React.FC<SplashProps> = ({ onEnter, config }) => {
   return (
     <motion.div 
       exit={{ opacity: 0, scale: 1.1 }}
-      className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#020617]"
+      className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#020617] w-full max-w-[100vw] overflow-x-hidden"
     >
       {/* Abstract Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
@@ -25,7 +25,7 @@ const Section1Splash: React.FC<SplashProps> = ({ onEnter, config }) => {
         <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-[#FBAB18] rounded-full blur-[150px] opacity-20" />
       </div>
 
-      <div className="relative z-10 glass p-8 sm:p-12 md:p-20 rounded-3xl flex flex-col items-center max-w-4xl mx-4 text-center">
+      <div className="relative z-10 glass p-6 sm:p-12 md:p-20 rounded-3xl flex flex-col items-center w-full max-w-4xl mx-4 text-center min-w-0 overflow-hidden max-[56rem]:max-w-[calc(100vw-2rem)]">
         {/* Partnership Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

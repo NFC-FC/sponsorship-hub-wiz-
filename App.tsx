@@ -283,7 +283,7 @@ const SitePreview: React.FC<{ config: SiteConfig }> = ({ config }) => {
 
   return (
     <div
-      className="relative min-h-screen bg-[#020617]"
+      className="relative min-h-screen w-full max-w-[100vw] overflow-x-hidden bg-[#020617]"
       style={
         {
           ['--brand-primary' as any]: config.primaryColor,
@@ -303,7 +303,7 @@ const SitePreview: React.FC<{ config: SiteConfig }> = ({ config }) => {
       </AnimatePresence>
 
       <div
-        className={`${
+        className={`w-full max-w-[100vw] overflow-x-hidden ${
           isEntered ? 'opacity-100' : 'opacity-0 pointer-events-none'
         } transition-opacity duration-1000`}
       >
