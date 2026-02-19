@@ -29,11 +29,10 @@ const Section3Reality: React.FC<Props> = ({ config }) => {
               className="relative w-full overflow-hidden"
             >
               {/* Infrastructure image/animation updated per user request */}
-              <img
-                src="https://i.postimg.cc/gkbg7F6b/screenshot-ref-720.png"
+              <img 
+                src="https://i.postimg.cc/gkbg7F6b/screenshot-ref-720.png" 
                 alt="Infrastructure Animation"
                 className="w-full h-auto brightness-95 contrast-[1.05] block"
-                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#020617]/40 via-transparent to-transparent pointer-events-none" />
             </motion.div>

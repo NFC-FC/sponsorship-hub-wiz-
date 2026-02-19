@@ -90,7 +90,6 @@ export const Section3bPitch: React.FC<Props> = ({ config }) => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
               <span className="text-3xl md:text-4xl font-black tracking-widest uppercase opacity-90">WHAT <span className="font-light">WE DO</span></span>
@@ -102,10 +101,9 @@ export const Section3bPitch: React.FC<Props> = ({ config }) => {
               </p>
             </motion.div>
 
-            <motion.div
+            <motion.div 
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
               transition={{ delay: 0.3 }}
               className="space-y-8 pt-8 border-t border-white/20"
             >
@@ -144,10 +142,9 @@ export const Section3bPitch: React.FC<Props> = ({ config }) => {
           <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent" />
           
           {/* Small Network Highlight Card (Top Right) */}
-          <motion.div
+          <motion.div 
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
             className="absolute top-10 right-10 z-30 w-64 glass bg-white/90 backdrop-blur-xl rounded-3xl border border-white/40 shadow-2xl p-6"
           >
              <div className="flex items-center gap-3 mb-3">
@@ -193,11 +190,10 @@ export const Section3bPitch: React.FC<Props> = ({ config }) => {
       <div className="bg-[#004b7a] py-14 px-10">
         <div className="container mx-auto flex flex-wrap justify-center lg:justify-between items-center gap-12 lg:gap-6">
           {iconLabels.map((label, idx) => (
-            <motion.div
+            <motion.div 
               key={label}
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
               transition={{ delay: idx * 0.08 }}
               className="flex flex-col items-center gap-5 group cursor-pointer"
             >

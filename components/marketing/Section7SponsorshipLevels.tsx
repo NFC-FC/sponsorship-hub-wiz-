@@ -51,7 +51,6 @@ const Section7SponsorshipLevels: React.FC<Props> = ({ config }) => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
             <span className="font-bold tracking-[0.4em] text-[10px] uppercase block mb-4" style={{ color: config.primaryColor }}>Investment Roadmap</span>
@@ -69,7 +68,6 @@ const Section7SponsorshipLevels: React.FC<Props> = ({ config }) => {
               key={level.id}
               initial={{ opacity: 0, x: idx === 0 ? -30 : 30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
               onClick={() => setSelectedLevel(level.id as any)}
               className="group cursor-pointer bg-white rounded-2xl sm:rounded-[3.5rem] overflow-hidden shadow-xl border border-slate-100 flex flex-col hover:-translate-y-2 transition-transform duration-500"
             >

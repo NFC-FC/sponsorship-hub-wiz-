@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Section9SponsorLogos } from './Section9SponsorLogos';
 
 interface Props {
   config: {
@@ -27,10 +28,9 @@ export const Footer: React.FC<Props> = ({ config }) => {
         
         <div className="container mx-auto px-4 sm:px-6 relative z-10 flex justify-center w-full min-w-0">
           {/* Main White Card matching the user's provided image format */}
-          <motion.div
+          <motion.div 
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="bg-white rounded-2xl sm:rounded-[3rem] md:rounded-[6rem] p-5 sm:p-8 md:p-20 shadow-[0_40px_100px_rgba(0,0,0,0.3)] max-w-7xl w-full flex flex-col items-center min-w-0"
           >
@@ -82,6 +82,9 @@ export const Footer: React.FC<Props> = ({ config }) => {
             </div>
           </motion.div>
         </div>
+
+        {/* Sponsor logos — "Brought to You by America's Largest Healthcare Providers" */}
+        <Section9SponsorLogos config={{ nfcLogo: config.nfcLogo, primaryColor: config.primaryColor }} />
 
         {/* Legal Strip (Subtle Footer) */}
         <div className="w-full mt-10 sm:mt-16 md:mt-20">
