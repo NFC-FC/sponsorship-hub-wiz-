@@ -33,7 +33,8 @@ const Section6Endorsement: React.FC<Props> = ({ config, isEditMode, onUpdateFiel
               <div className="absolute inset-0 bg-slate-100 rounded-full overflow-hidden shadow-xl border-2 sm:border-4 border-white">
                 <img 
                   src={config.endorsementImage || "https://github.com/NFC-FC/NFC-image-hosting/blob/main/Las_Vegas_Mayor_Shelley_Berkley_app_June-23-2025-600x800.jpg?raw=true"} 
-                  alt="Mayor" 
+                  alt="Mayor"
+                  decoding="async" 
                   className="w-full h-full object-cover grayscale brightness-110 contrast-110"
                 />
                 {isEditMode && onUpdateField && (
