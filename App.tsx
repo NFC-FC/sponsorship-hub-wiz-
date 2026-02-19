@@ -329,38 +329,36 @@ const SitePreview: React.FC<{ config: SiteConfig }> = ({ config }) => {
         <motion.div
           initial={{ y: -100 }}
           animate={{ y: 0 }}
-          className="fixed top-0 left-0 right-0 z-40 bg-black/80 backdrop-blur-xl h-20 md:h-24 flex items-center justify-between px-6 md:px-12 border-b border-white/10"
+          className="fixed top-0 left-0 right-0 z-40 w-full max-w-[100vw] box-border bg-black/80 backdrop-blur-xl min-h-14 sm:min-h-20 md:min-h-24 pt-[env(safe-area-inset-top)] flex items-center justify-between gap-2 px-3 sm:px-6 md:px-12 border-b border-white/10 overflow-hidden"
         >
-          <div className="flex gap-4 items-center">
+          {/* Left: text shrinks and truncates so it always fits */}
+          <div className="min-w-0 flex-1 flex items-center">
             <span
               onClick={() => navigate('/')}
-              className="text-white/40 text-[10px] font-black tracking-[0.3em] uppercase cursor-pointer hover:text-white transition-colors"
+              className="text-white/40 text-[7px] sm:text-[10px] font-black tracking-[0.15em] sm:tracking-[0.3em] uppercase cursor-pointer hover:text-white transition-colors truncate block"
+              title="National Wellness Innovation Zone"
             >
               National Wellness Innovation Zone
             </span>
           </div>
 
-          <div className="flex items-center gap-6 md:gap-10">
-            {/* Header Logos — same height for all three */}
+          {/* Right: logos shrink to fit, never cut off */}
+          <div className="flex items-center gap-1.5 sm:gap-6 md:gap-10 min-w-0 flex-shrink-0 justify-end">
             <img
               src={config.sponsorLogo}
-              className="h-8 md:h-10 object-contain transition-transform hover:scale-105"
+              className="h-5 w-auto max-h-6 sm:max-h-8 md:max-h-10 object-contain object-right transition-transform hover:scale-105 flex-shrink-0"
               alt={config.sponsorName}
             />
-            
-            <div className="w-px h-8 md:h-10 bg-white/10 hidden sm:block" />
-            
-            <img 
+            <div className="w-px h-5 sm:h-8 md:h-10 bg-white/10 hidden sm:block flex-shrink-0" />
+            <img
               src={config.cityLogo}
-              alt="City Seal" 
-              className="h-8 md:h-10 object-contain transition-transform hover:scale-105"
+              alt="City Seal"
+              className="h-5 w-auto max-h-6 sm:max-h-8 md:max-h-10 object-contain transition-transform hover:scale-105 flex-shrink-0"
             />
-
-            <div className="w-px h-8 md:h-10 bg-white/10 hidden sm:block" />
-            
+            <div className="w-px h-5 sm:h-8 md:h-10 bg-white/10 hidden sm:block flex-shrink-0" />
             <img
               src={config.nfcLogo}
-              className="h-8 md:h-10 object-contain transition-transform hover:scale-105"
+              className="h-5 w-auto max-h-6 sm:max-h-8 md:max-h-10 object-contain transition-transform hover:scale-105 flex-shrink-0"
               alt="NFC"
             />
           </div>

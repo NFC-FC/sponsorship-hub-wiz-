@@ -81,42 +81,42 @@ const Section4Product: React.FC<Props> = ({ config }) => {
       title: "CSR",
       subtitle: "Corporate Social Responsibility",
       description: "Executive and Leadership Platform",
-      image: "https://i.postimg.cc/G8wkqdsn/1.jpg"
+      image: "https://github.com/olivialem/NFC-FC/blob/7d9b8c4f2452978283cb6702da66b84a6d10de81/VD-01.jpeg?raw=true"
     },
     {
       id: 2,
       title: "RELATIONSHIPS",
       subtitle: "Strengthen and Build",
       description: "Build statewide relationships with municipal and school leaders",
-      image: "https://i.postimg.cc/mzfQ8BFT/2.jpg"
+      image: "https://github.com/olivialem/NFC-FC/blob/7d9b8c4f2452978283cb6702da66b84a6d10de81/VD-02.jpg?raw=true"
     },
     {
       id: 3,
       title: "STORYTELLING",
       subtitle: "Human Impact",
       description: "National, local and regional storytelling opportunities via local launch celebrations",
-      image: "https://i.postimg.cc/CBTjmSfM/3.jpg"
+      image: "https://github.com/olivialem/NFC-FC/blob/7d9b8c4f2452978283cb6702da66b84a6d10de81/VD-03.png?raw=true"
     },
     {
       id: 4,
       title: "VISIBILITY",
       subtitle: "Long-lasting presence",
       description: "Receive long lasting visibility in cherished public spaces via local sponsor art murals",
-      image: "https://i.postimg.cc/mzfQ8BFL/4.jpg"
+      image: "https://github.com/olivialem/NFC-FC/blob/7d9b8c4f2452978283cb6702da66b84a6d10de81/VD-04.jpg?raw=true"
     },
     {
       id: 5,
       title: "HUMAN IMPACT",
       subtitle: "Healthy Infrastructure",
       description: "Access and wellness impact delivered to employees and community members city-wide",
-      image: "https://i.postimg.cc/ftnxBD0N/5.jpg"
+      image: "https://github.com/olivialem/NFC-FC/blob/7d9b8c4f2452978283cb6702da66b84a6d10de81/VD-05.jpg?raw=true"
     },
     {
       id: 6,
       title: "LEVERAGE FUNDING",
       subtitle: "Public-Private Multiplier",
       description: "Millions of dollars in local and state funding delivered in the name of leading local sponsors",
-      image: "https://i.postimg.cc/njbv0pQh/6.jpg"
+      image: "https://github.com/olivialem/NFC-FC/blob/7d9b8c4f2452978283cb6702da66b84a6d10de81/VD-06.jpg?raw=true"
     }
   ];
 

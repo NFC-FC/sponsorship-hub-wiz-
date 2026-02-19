@@ -1,6 +1,6 @@
 
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface Props {
   config: {
@@ -13,17 +13,19 @@ interface Props {
 }
 
 const Section5Ecosystem: React.FC<Props> = ({ config }) => {
-  const handlePlayClick = () => {
-    window.open('https://www.youtube.com/watch?v=O5p7U_ktEnM', '_blank', 'noopener,noreferrer');
+  const [showVideoModal, setShowVideoModal] = useState(false);
+
+  const handleAppLink = () => {
+    window.open('https://www.nationalfitnesscampaign.com/app', '_blank', 'noopener,noreferrer');
   };
 
   return (
-    <section className="relative min-h-0 sm:min-h-[70vh] bg-slate-50 text-slate-900 pt-10 pb-[10pt] sm:py-24 overflow-hidden">
-      <div className="container mx-auto px-4 sm:px-6">
-        <div className="grid grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-16 items-center">
+    <section className="relative min-h-0 sm:min-h-[70vh] bg-slate-50 text-slate-900 pt-10 pb-10 sm:py-24 overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6 w-full max-w-full">
+        <div className="grid grid-cols-2 lg:grid-cols-2 gap-3 sm:gap-16 items-center">
 
-          {/* Custom Phone Mockup with Play Button — left on all sizes */}
-          <div className="flex justify-center">
+          {/* Custom Phone Mockup with Play Button — left on all sizes, tight to container on mobile */}
+          <div className="flex justify-center min-w-0">
             <motion.div
               initial={{ rotate: -2, y: 30, opacity: 0 }}
               whileInView={{ rotate: 0, y: 0, opacity: 1 }}
@@ -41,7 +43,7 @@ const Section5Ecosystem: React.FC<Props> = ({ config }) => {
               <div className="absolute inset-0 flex items-center justify-center z-30">
                 <motion.div
                   className="cursor-pointer"
-                  onClick={handlePlayClick}
+                  onClick={() => setShowVideoModal(true)}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -131,7 +133,7 @@ const Section5Ecosystem: React.FC<Props> = ({ config }) => {
               className="pt-2 sm:pt-8 flex flex-wrap gap-2 sm:gap-4"
             >
               <button
-                onClick={handlePlayClick}
+                onClick={handleAppLink}
                 className="bg-black text-white px-4 sm:px-8 py-2 sm:py-4 rounded-xl sm:rounded-2xl font-black uppercase text-[8px] sm:text-[10px] tracking-widest hover:scale-105 transition-transform shadow-xl"
               >
                 Learn More
@@ -140,6 +142,51 @@ const Section5Ecosystem: React.FC<Props> = ({ config }) => {
           </div>
         </div>
       </div>
+
+      {/* Video Modal Popup */}
+      <AnimatePresence>
+        {showVideoModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+            onClick={() => setShowVideoModal(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+              className="relative w-full max-w-4xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setShowVideoModal(false)}
+                className="absolute -top-10 right-0 text-white/80 hover:text-white transition-colors p-2"
+                aria-label="Close video"
+              >
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+              <div className="aspect-video w-full overflow-hidden rounded-xl bg-black shadow-2xl">
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src="https://www.youtube.com/embed/O5p7U_ktEnM?si=nCem1eu_9VPaTrCm&autoplay=1&controls=0"
+                  title="YouTube video player"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                  className="w-full h-full"
+                />
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
