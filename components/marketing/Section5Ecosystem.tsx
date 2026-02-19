@@ -18,7 +18,7 @@ const Section5Ecosystem: React.FC<Props> = ({ config }) => {
   };
 
   return (
-    <section className="relative min-h-[70vh] bg-slate-50 text-slate-900 py-10 sm:py-24 overflow-hidden">
+    <section className="relative min-h-0 sm:min-h-[70vh] bg-slate-50 text-slate-900 pt-10 pb-[10pt] sm:py-24 overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-16 items-center">
 

@@ -69,40 +69,45 @@ export const Section8Timeline: React.FC<Props> = ({ config }) => {
         whileInView={{ opacity: 1, y: 0 }}
         className="bg-[#d1dbe5] p-6 md:p-12 rounded-[3rem] md:rounded-[4rem] w-full max-w-7xl shadow-2xl"
       >
-        <div className="grid grid-cols-3 gap-3 md:gap-8">
+        <div className="grid grid-cols-3 gap-2 sm:gap-4 md:gap-8 items-stretch">
           
-          {/* STEP 1 */}
-          <div className="bg-white rounded-[2rem] p-6 sm:p-8 md:p-12 flex flex-col items-center text-center shadow-lg min-h-[280px] sm:min-h-[400px] justify-center">
-            <span className="text-[9px] sm:text-xs font-black italic uppercase tracking-widest text-slate-800 mb-4 sm:mb-10">STEP 1</span>
-            <h3 className="text-sm sm:text-2xl md:text-3xl font-black text-slate-900 uppercase italic leading-none tracking-tighter mb-4 sm:mb-8">
+          {/* STEP 1 — labels/titles top-aligned; body text centered in remaining space */}
+          <div className="bg-white rounded-xl sm:rounded-[2rem] p-3 sm:p-6 md:p-8 lg:p-12 flex flex-col items-center text-center shadow-lg min-h-[200px] sm:min-h-[280px] md:min-h-[400px] justify-start">
+            <span className="text-[7px] sm:text-[9px] md:text-xs font-black italic uppercase tracking-widest text-slate-800 mb-2 sm:mb-4 md:mb-10 flex-shrink-0">STEP 1</span>
+            <h3 className="text-[10px] sm:text-sm md:text-2xl lg:text-3xl font-black text-slate-900 uppercase italic leading-tight tracking-tighter mb-2 sm:mb-4 md:mb-8 flex-shrink-0">
               30-60 DAY<br/>MUTUAL REVIEW<br/>PERIOD
             </h3>
-            <p className="text-[10px] md:text-xs font-bold text-slate-500 italic leading-relaxed uppercase tracking-tight max-w-[220px]">
-              First right of refusal provided or category exclusivity on first-come, first served basis for qualified invitees.
-            </p>
+            <div className="flex-1 flex items-center justify-center min-h-0">
+              <p className="text-[6px] sm:text-[8px] md:text-[10px] lg:text-xs font-bold text-slate-500 italic leading-snug uppercase tracking-tight max-w-[140px] sm:max-w-[180px] md:max-w-[220px]">
+                First right of refusal provided or category exclusivity on first-come, first served basis for qualified invitees.
+              </p>
+            </div>
           </div>
 
           {/* STEP 2 */}
-          <div className="bg-white rounded-[2rem] p-6 sm:p-8 md:p-12 flex flex-col items-center text-center shadow-lg min-h-[280px] sm:min-h-[400px] justify-center">
-            <span className="text-[9px] sm:text-xs font-black italic uppercase tracking-widest text-slate-800 mb-4 sm:mb-10">STEP 2</span>
-            <h3 className="text-sm sm:text-2xl md:text-3xl font-black text-slate-900 uppercase italic leading-none tracking-tighter mb-4 sm:mb-8">
-              NOTICE TO PROCEED<br/>REQUESTED ON OR<br/>BEFORE APRIL 15TH<br/>2026
+          <div className="bg-white rounded-xl sm:rounded-[2rem] p-3 sm:p-6 md:p-8 lg:p-12 flex flex-col items-center text-center shadow-lg min-h-[200px] sm:min-h-[280px] md:min-h-[400px] justify-start">
+            <span className="text-[7px] sm:text-[9px] md:text-xs font-black italic uppercase tracking-widest text-slate-800 mb-2 sm:mb-4 md:mb-10 flex-shrink-0">STEP 2</span>
+            <h3 className="text-[10px] sm:text-sm md:text-2xl lg:text-3xl font-black text-slate-900 uppercase italic leading-tight tracking-tighter mb-2 sm:mb-4 md:mb-8 flex-shrink-0">
+              NOTICE TO PROCEED<br/>REQUESTED ON OR BEFORE APRIL 15TH<br/>2026
             </h3>
-            <p className="text-[10px] md:text-xs font-bold text-slate-500 italic leading-relaxed uppercase tracking-tight max-w-[220px]">
-              Final internal review, funding source identification, board approval as required.
-            </p>
+            <div className="flex-1 flex items-center justify-center min-h-0">
+              <p className="text-[6px] sm:text-[8px] md:text-[10px] lg:text-xs font-bold text-slate-500 italic leading-snug uppercase tracking-tight max-w-[140px] sm:max-w-[180px] md:max-w-[220px]">
+                Final internal review, funding source identification, board approval as required.
+              </p>
+            </div>
           </div>
 
           {/* STEP 3 */}
-          <div className="bg-white rounded-[2rem] p-6 sm:p-8 md:p-12 flex flex-col items-center text-center shadow-lg min-h-[280px] sm:min-h-[400px] justify-center relative">
-            <span className="text-[9px] sm:text-xs font-black italic uppercase tracking-widest text-slate-800 mb-4 sm:mb-10">STEP 3</span>
-            <h3 className="text-sm sm:text-2xl md:text-3xl font-black text-slate-900 uppercase italic leading-none tracking-tighter mb-4 sm:mb-8">
+          <div className="bg-white rounded-xl sm:rounded-[2rem] p-3 sm:p-6 md:p-8 lg:p-12 flex flex-col items-center text-center shadow-lg min-h-[200px] sm:min-h-[280px] md:min-h-[400px] justify-start relative">
+            <span className="text-[7px] sm:text-[9px] md:text-xs font-black italic uppercase tracking-widest text-slate-800 mb-2 sm:mb-4 md:mb-10 flex-shrink-0">STEP 3</span>
+            <h3 className="text-[10px] sm:text-sm md:text-2xl lg:text-3xl font-black text-slate-900 uppercase italic leading-tight tracking-tighter mb-2 sm:mb-4 md:mb-8 flex-shrink-0">
               CORE SPONSORSHIPS<br/>CONFIRMED<br/>JUNE 15
             </h3>
-            
-            <p className="text-[10px] md:text-xs font-bold text-slate-500 italic leading-relaxed uppercase tracking-tight max-w-[220px]">
-              Infrastructure build‑out and launch preparation through June 15.
-            </p>
+            <div className="flex-1 flex items-center justify-center min-h-0">
+              <p className="text-[6px] sm:text-[8px] md:text-[10px] lg:text-xs font-bold text-slate-500 italic leading-snug uppercase tracking-tight max-w-[140px] sm:max-w-[180px] md:max-w-[220px]">
+                Infrastructure build‑out and launch preparation through June 15.
+              </p>
+            </div>
           </div>
 
         </div>

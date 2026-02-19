@@ -159,7 +159,7 @@ const Section7SponsorshipLevels: React.FC<Props> = ({ config }) => {
                       <h4 className="text-[#020617] font-black text-2xl md:text-3xl uppercase tracking-tighter italic leading-none mb-3">
                         {selected.title} Details
                       </h4>
-                      <p className="text-slate-400 font-bold uppercase tracking-[0.3em] text-[9px] md:text-[10px]">Reference: NFC Partnership Prospectus 2026</p>
+                      <p className="text-slate-400 font-bold uppercase tracking-[0.3em] text-[9px] md:text-[10px]">2026 NFC Wellness Innovation Zone</p>
                     </div>
                     
                     <div className="w-full flex justify-end">

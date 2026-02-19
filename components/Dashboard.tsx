@@ -65,6 +65,9 @@ export const Dashboard: React.FC<Props> = ({ cities, setCities, onEditSponsor, o
       endorsementImage: 'https://via.placeholder.com/600x800?text=Leader+Portrait+Link',
       markers: [],
       callouts: [],
+      communityAccess: '650k+',
+      annualUses: '250k+',
+      caloriesBurned: '25M+',
     };
 
     const newCity: CityGroup = {

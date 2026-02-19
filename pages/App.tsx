@@ -214,22 +214,22 @@ const SitePreview: React.FC<{ config: SiteConfig }> = ({ config }) => {
           </div>
 
           <div className="flex items-center gap-6 md:gap-10">
-            {/* Header Logos - Reordered to match Splash: Sponsor | Seal | NFC */}
+            {/* Header Logos — same height for all three */}
             <img
               src={config.sponsorLogo}
-              className="h-6 md:h-8 object-contain brightness-200 grayscale transition-opacity hover:opacity-100 opacity-90"
+              className="h-8 md:h-10 object-contain brightness-200 grayscale transition-opacity hover:opacity-100 opacity-90"
               alt={config.sponsorName}
             />
             
-            <div className="w-px h-10 bg-white/10 hidden sm:block" />
+            <div className="w-px h-8 md:h-10 bg-white/10 hidden sm:block" />
             
             <img 
               src="https://github.com/NFC-FC/NFC-image-hosting/blob/main/Seal_of_Las_Vegas,_Nevada.svg.png?raw=true"
               alt="City Seal" 
-              className="h-10 md:h-14 object-contain brightness-200 grayscale opacity-90"
+              className="h-8 md:h-10 object-contain brightness-200 grayscale opacity-90"
             />
 
-            <div className="w-px h-10 bg-white/10 hidden sm:block" />
+            <div className="w-px h-8 md:h-10 bg-white/10 hidden sm:block" />
             
             <img
               src={config.nfcLogo}

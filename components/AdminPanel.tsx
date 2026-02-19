@@ -529,6 +529,25 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ city, sponsorId, isOpen,
                   />
                 </section>
 
+                <section className="space-y-6">
+                  <h3 className="text-[10px] font-black text-[#009cdc] uppercase tracking-[0.4em] border-b border-white/5 pb-4">Impact Stats</h3>
+                  <SidebarInput 
+                    label="Community Access (e.g. 650k+)"
+                    value={localTemplate.communityAccess ?? '650k+'}
+                    onChange={(val) => handleUpdateField('communityAccess', val)}
+                  />
+                  <SidebarInput 
+                    label="Annual Uses (e.g. 250k+)"
+                    value={localTemplate.annualUses ?? '250k+'}
+                    onChange={(val) => handleUpdateField('annualUses', val)}
+                  />
+                  <SidebarInput 
+                    label="Calories Burned (e.g. 25M+)"
+                    value={localTemplate.caloriesBurned ?? '25M+'}
+                    onChange={(val) => handleUpdateField('caloriesBurned', val)}
+                  />
+                </section>
+
                 <section className="space-y-8">
                   <h3 className="text-[10px] font-black text-[#009cdc] uppercase tracking-[0.4em] border-b border-white/5 pb-4">Ward Council Members</h3>
                   <div className="space-y-4">
