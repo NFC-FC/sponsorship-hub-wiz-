@@ -8,6 +8,7 @@ interface Props {
     projectCity: string;
     primaryColor: string;
     secondaryColor: string;
+    accentColor: string;
     projectName: string;
   };
 }
@@ -48,24 +49,19 @@ const Section2Hero: React.FC<Props> = ({ config }) => {
         >
           <div className="absolute inset-0 bg-black/95 blur-[120px] -z-10 rounded-full scale-110 opacity-90" />
           
-          <span className="tracking-[0.7em] font-black text-[10px] md:text-xs uppercase mb-8 block drop-shadow-[0_0_10px_rgba(251,171,24,0.3)]" style={{ color: config.primaryColor }}>
+          <span className="tracking-[0.7em] font-black text-[10px] md:text-xs uppercase mb-8 block drop-shadow-[0_0_10px_rgba(251,171,24,0.3)]" style={{ color: config.secondaryColor }}>
             The Vision
           </span>
             <h2 className="font-display text-2xl sm:text-3xl md:text-6xl lg:text-[5.5vw] text-white font-black leading-[0.95] w-full uppercase tracking-tighter drop-shadow-2xl">
               {config.sponsorName.toUpperCase()} DELIVERS <br/>
-               <span
-               className="text-transparent bg-clip-text"
-               style={{
-                backgroundImage: `linear-gradient(90deg, ${config.primaryColor}, ${config.secondaryColor})`,
-               }}
-              >
+               <span style={{ color: config.primaryColor }}>
               COMMUNITY WELLNESS CAMPAIGN ACROSS
              </span>{" "}
               THE CITY OF {config.projectCity.toUpperCase()}
             </h2>
 
 
-          <div className="w-32 sm:w-60 h-1.5 mx-auto mt-10 sm:mt-16 shadow-[0_0_45px_rgba(0,85,135,1)] rounded-full" style={{ backgroundColor: config.primaryColor }} />
+          <div className="w-32 sm:w-60 h-1.5 mx-auto mt-10 sm:mt-16 shadow-[0_0_45px_rgba(0,85,135,1)] rounded-full" style={{ backgroundColor: config.secondaryColor }} />
         </motion.div>
       </motion.div>
 

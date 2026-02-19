@@ -59,7 +59,7 @@ const Section1Splash: React.FC<SplashProps> = ({ onEnter, config }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 1.5 }}
-          className="text-white text-base sm:text-xl md:text-2xl font-light tracking-[0.15em] leading-relaxed mb-10 sm:mb-12 uppercase"
+          className="text-white text-xs sm:text-base md:text-xl lg:text-2xl font-light tracking-[0.1em] sm:tracking-[0.15em] leading-relaxed mb-6 sm:mb-10 md:mb-12 uppercase px-1"
         >
           On behalf of the City of {config.projectCity}, <br/>
           the <span className="font-bold text-white">{config.projectCity} Mayor and Council</span>, <br/>
@@ -72,9 +72,9 @@ const Section1Splash: React.FC<SplashProps> = ({ onEnter, config }) => {
           animate={{ opacity: 1 }}
           transition={{ delay: 2 }}
           onClick={onEnter}
-          className="group relative px-12 py-5 overflow-hidden rounded-full border border-white/20 hover:border-white/50 transition-all duration-500"
+          className="group relative px-6 py-3 sm:px-8 sm:py-4 md:px-12 md:py-5 overflow-hidden rounded-full border border-white/20 hover:border-white/50 transition-all duration-500"
         >
-          <span className="relative z-10 text-white tracking-[0.4em] font-black text-xs uppercase">Enter Experience</span>
+          <span className="relative z-10 text-white tracking-[0.25em] sm:tracking-[0.35em] md:tracking-[0.4em] font-black text-[10px] sm:text-xs uppercase">Enter Experience</span>
           <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-5 transition-opacity duration-300" />
           <motion.div 
             className="absolute bottom-0 left-0 h-[1px] bg-white w-full shadow-[0_0_10px_white]"

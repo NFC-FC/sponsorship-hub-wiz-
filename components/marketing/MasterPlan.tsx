@@ -12,6 +12,7 @@ export const MasterPlan: React.FC<Props> = ({ config, isEditMode, onUpdateMap })
   const [hovered, setHovered] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [dragItem, setDragItem] = useState<{ id: string, type: 'marker' | 'callout' } | null>(null);
+  const [keyVisible, setKeyVisible] = useState(false);
 
   const markers = config.markers || [];
   const callouts = config.callouts || [];
@@ -101,39 +102,57 @@ export const MasterPlan: React.FC<Props> = ({ config, isEditMode, onUpdateMap })
           {/* Subtle Grid Overlay */}
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/graphy-dark.png')] opacity-20 pointer-events-none"></div>
 
-          {/* KEY (Legend) */}
-          <div className="absolute top-3 left-3 sm:top-6 sm:left-6 z-30 w-56 md:w-64 bg-white/90 backdrop-blur-xl p-4 md:p-6 rounded-2xl border border-white/10 shadow-2xl scale-[0.55] sm:scale-90 md:scale-100 origin-top-left pointer-events-none">
-            <div className="text-[9px] font-black text-zinc-500 tracking-[0.4em] uppercase mb-4 border-b border-black/10 pb-2">KEY</div>
-            <div className="space-y-3">
-              <div className="flex items-center gap-3">
-                <div className="w-5 h-5 rounded-full bg-[#002D72] flex items-center justify-center border border-white/20 shadow-lg shadow-[#002D72]/40">
-                  <div className="w-2 h-2 bg-white rounded-full"></div>
+          {/* KEY (Legend) - Collapsed by default; inset so not cut off by rounded corners */}
+          <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-30 origin-top-left max-w-[calc(100%-2rem)] max-h-[calc(100%-2rem)]">
+            {keyVisible ? (
+              <div className="w-56 md:w-64 bg-white/90 backdrop-blur-xl p-3 sm:p-4 md:p-6 rounded-xl sm:rounded-2xl border border-white/10 shadow-2xl scale-95 sm:scale-90 md:scale-100">
+                <button
+                  type="button"
+                  onClick={() => setKeyVisible(false)}
+                  className="w-full text-left text-[9px] font-black text-zinc-500 tracking-[0.4em] uppercase mb-4 border-b border-black/10 pb-2 hover:text-zinc-700 focus:outline-none"
+                >
+                  KEY ▼
+                </button>
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3">
+                    <div className="w-5 h-5 rounded-full bg-[#002D72] flex items-center justify-center border border-white/20 shadow-lg shadow-[#002D72]/40">
+                      <div className="w-2 h-2 bg-white rounded-full"></div>
+                    </div>
+                    <span className="text-[8px] font-bold text-zinc-700 uppercase tracking-widest">Proposed Fitness Court Studio</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-5 h-5 rounded-full flex items-center justify-center border border-white/20 shadow-lg" style={{ backgroundColor: config.primaryColor }}>
+                      <div className="w-2 h-2 bg-white rounded-full"></div>
+                    </div>
+                    <span className="text-[8px] font-bold text-zinc-700 uppercase tracking-widest">Proposed Fitness Court</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-5 h-5 rounded-full bg-gray-600 flex items-center justify-center border border-white/20">
+                      <div className="w-2 h-2 bg-white rounded-full"></div>
+                    </div>
+                    <span className="text-[8px] font-bold text-zinc-700 uppercase tracking-widest">Existing Fitness Court</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-5 h-5 rounded-full bg-[#1DBBB4] flex items-center justify-center border border-white/20 shadow-lg shadow-[#1DBBB4]/40">
+                      <div className="w-2 h-2 bg-white rounded-full"></div>
+                    </div>
+                    <span className="text-[8px] font-bold text-zinc-700 uppercase tracking-widest">Proposed Fitness Court Pod</span>
+                  </div>
+                  <div className="flex items-center gap-3 pt-1">
+                    <div className="w-5 h-5 rounded-full border border-white/20" style={{ backgroundColor: `${config.primaryColor}33` }}></div>
+                    <span className="text-[8px] font-bold text-zinc-700 uppercase tracking-widest leading-tight">10 Min Bike Radius Accessibility</span>
+                  </div>
                 </div>
-                <span className="text-[8px] font-bold text-zinc-700 uppercase tracking-widest">Proposed Fitness Court Studio</span>
               </div>
-              <div className="flex items-center gap-3">
-                <div className="w-5 h-5 rounded-full flex items-center justify-center border border-white/20 shadow-lg" style={{ backgroundColor: config.primaryColor }}>
-                  <div className="w-2 h-2 bg-white rounded-full"></div>
-                </div>
-                <span className="text-[8px] font-bold text-zinc-700 uppercase tracking-widest">Proposed Fitness Court</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="w-5 h-5 rounded-full bg-gray-600 flex items-center justify-center border border-white/20">
-                  <div className="w-2 h-2 bg-white rounded-full"></div>
-                </div>
-                <span className="text-[8px] font-bold text-zinc-700 uppercase tracking-widest">Existing Fitness Court</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="w-5 h-5 rounded-full bg-[#1DBBB4] flex items-center justify-center border border-white/20 shadow-lg shadow-[#1DBBB4]/40">
-                  <div className="w-2 h-2 bg-white rounded-full"></div>
-                </div>
-                <span className="text-[8px] font-bold text-zinc-700 uppercase tracking-widest">Proposed Fitness Court Pod</span>
-              </div>
-              <div className="flex items-center gap-3 pt-1">
-                <div className="w-5 h-5 rounded-full border border-white/20" style={{ backgroundColor: `${config.primaryColor}33` }}></div>
-                <span className="text-[8px] font-bold text-zinc-700 uppercase tracking-widest leading-tight">10 Min Bike Radius Accessibility</span>
-              </div>
-            </div>
+            ) : (
+              <button
+                type="button"
+                onClick={() => setKeyVisible(true)}
+                className="px-2 py-1.5 sm:px-3 sm:py-2 rounded-md sm:rounded-lg bg-white/90 backdrop-blur-xl border border-white/10 shadow-lg text-[8px] sm:text-[9px] font-black text-zinc-600 tracking-[0.25em] sm:tracking-[0.3em] uppercase hover:bg-white focus:outline-none"
+              >
+                KEY ▲
+              </button>
+            )}
           </div>
 
           {/* Accessibility Zones */}
@@ -152,7 +171,7 @@ export const MasterPlan: React.FC<Props> = ({ config, isEditMode, onUpdateMap })
             />
           ))}
 
-          {/* Interactive Custom Markers */}
+          {/* Interactive Custom Markers - 50% smaller; popups hidden on mobile */}
           {markers.map((m) => (
             <div
               key={m.id}
@@ -162,16 +181,17 @@ export const MasterPlan: React.FC<Props> = ({ config, isEditMode, onUpdateMap })
               onMouseLeave={() => !dragItem && setHovered(null)}
               onMouseDown={(e) => handleMouseDown(e, m.id, 'marker')}
             >
-              <div className={`w-7 h-7 rounded-full border-2 border-white flex items-center justify-center shadow-xl transition-all ${hovered === m.id ? 'scale-125' : ''} ${
+              <div className={`w-3.5 h-3.5 rounded-full border border-white flex items-center justify-center shadow-xl transition-all ${hovered === m.id ? 'scale-125' : ''} ${
                 m.type === 'studio' ? 'bg-[#002D72]' : 
                 m.type === 'pod' ? 'bg-[#1DBBB4]' : 
                 m.type === 'existing' ? 'bg-gray-700' : ''
               }`} style={m.type === 'standard' ? { backgroundColor: config.primaryColor } : {}}>
-                <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                <div className="w-1 h-1 bg-white rounded-full animate-pulse"></div>
               </div>
               
+              {/* Popup: hidden on mobile, visible from sm up */}
               {(hovered === m.id || (dragItem && dragItem.id === m.id)) && (
-                <div className="absolute top-10 left-1/2 -translate-x-1/2 glass p-4 rounded-xl border-white/10 shadow-2xl min-w-[150px] z-50 pointer-events-none">
+                <div className="hidden sm:block absolute top-full left-1/2 -translate-x-1/2 mt-1 glass p-4 rounded-xl border-white/10 shadow-2xl min-w-[150px] z-50 pointer-events-none">
                   <div className="text-[9px] font-black uppercase tracking-widest mb-1" style={{ color: config.primaryColor }}>
                     {m.type === 'studio' ? 'Proposed Fitness Court Studio' : 
                      m.type === 'pod' ? 'Proposed Fitness Court Pod' :
@@ -185,11 +205,11 @@ export const MasterPlan: React.FC<Props> = ({ config, isEditMode, onUpdateMap })
             </div>
           ))}
 
-          {/* Isometric Callouts */}
+          {/* Isometric Callouts — hidden on mobile to avoid clutter */}
           {callouts.map((c) => (
             <div 
               key={c.id}
-              className={`absolute z-10 -translate-x-1/2 -translate-y-1/2 transition-transform ${isEditMode ? 'cursor-move' : ''}`}
+              className={`absolute z-10 -translate-x-1/2 -translate-y-1/2 transition-transform hidden md:block ${isEditMode ? 'cursor-move' : ''}`}
               style={{ left: `${c.x}%`, top: `${c.y}%` }}
               onMouseDown={(e) => handleMouseDown(e, c.id, 'callout')}
             >

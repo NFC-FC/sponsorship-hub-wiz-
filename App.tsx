@@ -90,6 +90,9 @@ export interface SiteConfig {
   endorsementImage: string;
   markers: MapMarker[];
   callouts: MapCallout[];
+  communityAccess: string;
+  annualUses: string;
+  caloriesBurned: string;
 }
 
 /**
@@ -117,6 +120,9 @@ export interface CityTemplate {
   sponsorRender: string;
   markers: MapMarker[];
   callouts: MapCallout[];
+  communityAccess: string;
+  annualUses: string;
+  caloriesBurned: string;
 }
 
 /**
@@ -236,6 +242,9 @@ const initialCities: CityGroup[] = [
       endorsementQuote: '"Our partnership marks a pivotal turning point for the health of our city. This isn\'t just about a gym; it\'s about democratizing wellness and building a more resilient, connected Las Vegas for generations to come."',
       endorsementName: 'OFFICE OF THE MAYOR',
       endorsementImage: 'https://github.com/NFC-FC/NFC-image-hosting/blob/main/Las_Vegas_Mayor_Shelley_Berkley_app_June-23-2025-600x800.jpg?raw=true',
+      communityAccess: '650k+',
+      annualUses: '250k+',
+      caloriesBurned: '25M+',
     },
     sponsors: [
       {
@@ -332,22 +341,22 @@ const SitePreview: React.FC<{ config: SiteConfig }> = ({ config }) => {
           </div>
 
           <div className="flex items-center gap-6 md:gap-10">
-            {/* Header Logos - Original brand colors with no filters */}
+            {/* Header Logos — same height for all three */}
             <img
               src={config.sponsorLogo}
-              className="h-6 md:h-8 object-contain transition-transform hover:scale-105"
+              className="h-8 md:h-10 object-contain transition-transform hover:scale-105"
               alt={config.sponsorName}
             />
             
-            <div className="w-px h-10 bg-white/10 hidden sm:block" />
+            <div className="w-px h-8 md:h-10 bg-white/10 hidden sm:block" />
             
             <img 
               src={config.cityLogo}
               alt="City Seal" 
-              className="h-10 md:h-14 object-contain transition-transform hover:scale-105"
+              className="h-8 md:h-10 object-contain transition-transform hover:scale-105"
             />
 
-            <div className="w-px h-10 bg-white/10 hidden sm:block" />
+            <div className="w-px h-8 md:h-10 bg-white/10 hidden sm:block" />
             
             <img
               src={config.nfcLogo}

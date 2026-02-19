@@ -6,8 +6,9 @@ interface Props {
     projectCity: string;
     sponsorLogo: string;
     nfcLogo: string;
-    secondaryColor: string;
     primaryColor: string;
+    secondaryColor: string;
+    accentColor: string;
     sponsorName: string;
     cityLogo: string;
   };
@@ -18,8 +19,8 @@ export const Footer: React.FC<Props> = ({ config }) => {
     <footer className="relative bg-[#020617] overflow-hidden">
       {/* FULL-BLEED GRADIENT SECTION */}
       <section 
-        className="w-full relative py-20 md:py-32 flex flex-col items-center overflow-hidden"
-        style={{ background: `linear-gradient(135deg, #0072ce 0%, #00AEEF 50%, #FBAB18 100%)` }}
+        className="w-full relative py-10 sm:py-16 md:py-32 flex flex-col items-center overflow-hidden"
+        style={{ background: `linear-gradient(135deg, ${config.primaryColor} 0%, ${config.secondaryColor} 50%, ${config.accentColor} 100%)` }}
       >
         {/* Grain/Texture Overlay */}
         <div className="absolute inset-0 opacity-[0.08] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
@@ -30,49 +31,51 @@ export const Footer: React.FC<Props> = ({ config }) => {
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="bg-white rounded-[4rem] md:rounded-[6rem] p-10 md:p-20 shadow-[0_40px_100px_rgba(0,0,0,0.3)] max-w-7xl w-full flex flex-col items-center"
+            className="bg-white rounded-2xl sm:rounded-[3rem] md:rounded-[6rem] p-5 sm:p-8 md:p-20 shadow-[0_40px_100px_rgba(0,0,0,0.3)] max-w-7xl w-full flex flex-col items-center"
           >
-            {/* 1. Impact Statement (Large Bold Blue Text) */}
-            <div className="text-center mb-12 px-4 md:px-12">
-              <h3 
-                className="text-2xl md:text-4xl lg:text-5xl font-black italic uppercase tracking-tighter leading-[0.95]"
-                style={{ color: '#00AEEF' }}
-              >
-                {config.sponsorName.toUpperCase()} DELIVERS $10M OF HEALTHY INFRASTRUCTURE COSTS TO {config.projectCity.toUpperCase()}, MAKING WORLD-CLASS FITNESS FREE FOR HUNDREDS OF THOUSANDS OF RESIDENTS.
+            {/* 1. Impact Statement — first part primary/bold, second part secondary/less bold */}
+            <div className="text-center mb-6 sm:mb-8 md:mb-12 px-2 sm:px-4 md:px-12">
+              <h3 className="text-sm sm:text-xl md:text-4xl lg:text-5xl italic uppercase tracking-tighter leading-[1.05]">
+                <span className="font-black" style={{ color: config.primaryColor }}>
+                  {config.sponsorName.toUpperCase()} DELIVERS $10M OF HEALTHY INFRASTRUCTURE COSTS TO {config.projectCity.toUpperCase()},
+                </span>{' '}
+                <span className="font-bold" style={{ color: config.secondaryColor }}>
+                  MAKING WORLD-CLASS FITNESS FREE FOR HUNDREDS OF THOUSANDS OF RESIDENTS.
+                </span>
               </h3>
             </div>
 
             {/* 2. Centered Divider */}
-            <div className="w-full h-px bg-slate-100 mb-12 max-w-5xl" />
+            <div className="w-full h-px bg-slate-100 mb-6 sm:mb-8 md:mb-12 max-w-5xl" />
 
-            {/* 3. Partnership Logos Row (Sponsor | City Seal | NFC) */}
-            <div className="flex flex-wrap items-center justify-center gap-6 md:gap-12 mb-12">
+            {/* 3. Partnership Logos Row — same height for all three */}
+            <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 md:gap-12 mb-6 sm:mb-8 md:mb-12">
               <img 
                 src={config.sponsorLogo} 
                 alt={config.sponsorName} 
-                className="h-8 md:h-12 object-contain" 
+                className="h-8 sm:h-10 md:h-14 object-contain" 
               />
               
-              <div className="w-px h-10 bg-slate-200 hidden md:block" />
+              <div className="w-px h-8 sm:h-10 md:h-14 bg-slate-200 hidden sm:block" />
               
               <img 
                 src={config.cityLogo} 
                 alt="City Seal" 
-                className="h-14 md:h-20 object-contain" 
+                className="h-8 sm:h-10 md:h-14 object-contain" 
               />
               
-              <div className="w-px h-10 bg-slate-200 hidden md:block" />
+              <div className="w-px h-8 sm:h-10 md:h-14 bg-slate-200 hidden sm:block" />
               
               <img 
                 src={config.nfcLogo} 
                 alt="NFC" 
-                className="h-10 md:h-14 object-contain" 
+                className="h-8 sm:h-10 md:h-14 object-contain" 
               />
             </div>
 
-            {/* 4. Contact Info */}
+            {/* 4. Contact Info — smaller on mobile */}
             <div className="text-center">
-              <p className="text-[10px] md:text-xs font-black text-slate-400 uppercase tracking-[0.2em]">
+              <p className="text-[8px] sm:text-[9px] md:text-xs font-black text-slate-400 uppercase tracking-[0.15em] sm:tracking-[0.2em]">
                 FOR NEXT STEPS, CONTACT TRENT (<a href="mailto:trent@NFCHQ.com" className="text-slate-900 hover:text-[#00AEEF] transition-colors underline underline-offset-4 decoration-slate-300">TRENT@NFCHQ.COM</a>) OR YOUR NFC REPRESENTATIVE.
               </p>
             </div>
@@ -80,7 +83,7 @@ export const Footer: React.FC<Props> = ({ config }) => {
         </div>
 
         {/* Legal Strip (Subtle Footer) */}
-        <div className="w-full mt-20">
+        <div className="w-full mt-10 sm:mt-16 md:mt-20">
           <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-[9px] text-white/40 font-black uppercase tracking-[0.4em]">
               © {new Date().getFullYear()} National Fitness Campaign • Public-Private Infrastructure Briefing

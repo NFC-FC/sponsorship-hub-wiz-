@@ -49,7 +49,7 @@ export const CivicLeadership: React.FC<Props> = ({ config }) => {
               </p>
 
               <p className="text-gray-400 text-base sm:text-xl font-medium leading-relaxed mb-4 sm:mb-10 max-w-4xl mx-auto">
-                The {config.projectCity} City Council has officially approved the <span className="text-white">Healthy Infrastructure Master Plan</span>, authorizing the deployment of world-class Fitness Courts city-wide. With a committed local funding strategy and National Fitness Campaign contributing over <span className="text-white">$500,000</span> in planning and management services, this partnership is defining the future of community wellness.
+                The {config.projectCity} City Council has officially approved the <span className="text-white">Healthy Infrastructure Master Plan</span>, authorizing the deployment of world-class Fitness Courts city-wide. With a committed local funding strategy and National Fitness Campaign contributing over <span className="text-white">{config.investmentAmount || '$500,000'}</span> in planning and management services, this partnership is defining the future of community wellness.
               </p>
               
               <div className="flex flex-wrap justify-center gap-4">
@@ -69,10 +69,10 @@ export const CivicLeadership: React.FC<Props> = ({ config }) => {
           </div>
         </div>
 
-        {/* Centered Leadership Row */}
-        <div className="grid grid-cols-3 sm:flex sm:flex-wrap sm:justify-center gap-4 sm:gap-12 md:gap-16 mb-20 sm:mb-32 border-t border-white/10 pt-10 sm:pt-24">
+        {/* Centered Leadership Row — equal-width cards, titles wrap */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 sm:gap-8 md:gap-12 mb-20 sm:mb-32 border-t border-white/10 pt-10 sm:pt-24 justify-items-center">
           {leaders.map((leader, i) => (
-            <div key={leader.id || i} className="flex flex-col items-center text-center group relative">
+            <div key={leader.id || i} className="flex flex-col items-center text-center group relative w-full max-w-[200px] sm:max-w-[220px]">
               <div className="relative mb-3 sm:mb-8">
                 <div className="absolute inset-0 bg-white/5 rounded-full blur-2xl group-hover:bg-white/10 transition-colors"></div>
                 <div className="w-16 h-16 sm:w-40 sm:h-40 md:w-48 lg:w-56 md:h-48 lg:h-56 rounded-full overflow-hidden border-2 border-white/10 group-hover:border-white/30 transition-all relative z-10 grayscale group-hover:grayscale-0 shadow-2xl bg-zinc-800">
@@ -85,9 +85,9 @@ export const CivicLeadership: React.FC<Props> = ({ config }) => {
                   )}
                 </div>
               </div>
-              <div className="relative z-10 flex flex-col items-center w-full px-1 sm:px-2">
-                <h4 className="text-white font-black text-[10px] sm:text-lg md:text-xl uppercase italic tracking-tighter mb-1 sm:mb-2 leading-tight">{leader.name}</h4>
-                <p className="text-gray-500 text-[8px] sm:text-[10px] md:text-xs uppercase font-bold tracking-[0.1em] sm:tracking-[0.2em] leading-tight mx-auto">{leader.title}</p>
+              <div className="relative z-10 flex flex-col items-center w-full min-w-0 px-1 sm:px-2">
+                <h4 className="text-white font-black text-[10px] sm:text-lg md:text-xl uppercase italic tracking-tighter mb-1 sm:mb-2 leading-tight break-words">{leader.name}</h4>
+                <p className="text-gray-500 text-[8px] sm:text-[10px] md:text-xs uppercase font-bold tracking-[0.1em] sm:tracking-[0.2em] leading-snug break-words">{leader.title}</p>
               </div>
             </div>
           ))}
