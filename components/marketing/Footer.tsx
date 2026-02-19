@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Section9SponsorLogos } from './Section9SponsorLogos';
 
 interface Props {
   config: {
@@ -81,6 +82,9 @@ export const Footer: React.FC<Props> = ({ config }) => {
             </div>
           </motion.div>
         </div>
+
+        {/* Sponsor logos — "Brought to You by America's Largest Healthcare Providers" */}
+        <Section9SponsorLogos config={{ nfcLogo: config.nfcLogo, primaryColor: config.primaryColor }} />
 
         {/* Legal Strip (Subtle Footer) */}
         <div className="w-full mt-10 sm:mt-16 md:mt-20">
