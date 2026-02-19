@@ -105,7 +105,7 @@ const SponsorEntryPage: React.FC<Props> = ({ projects }) => {
             onBlur={() => setIsFocused(false)}
             onChange={(e) => setAccessKey(e.target.value)}
             onKeyDown={handleKeyDown}
-            className={`w-full bg-white/5 border rounded-xl sm:rounded-2xl px-4 py-4 sm:px-6 sm:py-5 md:px-8 md:py-6 text-sm sm:text-base md:text-xl font-bold tracking-[0.15em] sm:tracking-[0.2em] outline-none backdrop-blur-xl transition-all relative z-10 placeholder:text-zinc-600 text-center shadow-2xl ${
+            className={`w-full bg-white/5 border rounded-xl sm:rounded-2xl px-4 py-4 sm:px-6 sm:py-5 md:px-8 md:py-6 text-base sm:text-base md:text-xl font-bold tracking-[0.15em] sm:tracking-[0.2em] outline-none backdrop-blur-xl transition-all relative z-10 placeholder:text-zinc-600 text-center shadow-2xl min-h-[2.75rem] ${
               error ? 'border-red-500/50 text-red-400' : isFocused ? 'border-[#009cdc]' : 'border-white/10'
             }`}
           />

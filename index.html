@@ -45,6 +45,17 @@
             overflow-x: hidden;
             min-height: 100%;
         }
+
+        /* Prevent iOS Safari zoom on input focus: font-size must be >= 16px on mobile */
+        @media (max-width: 768px) {
+            input, textarea, select {
+                font-size: 16px !important;
+            }
+            /* Prevent zoom on transform-heavy parents; keep inputs readable */
+            input:focus, textarea:focus, select:focus {
+                font-size: 16px !important;
+            }
+        }
         
         .font-brand { font-family: 'Orbitron', sans-serif; }
         

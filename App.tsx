@@ -418,7 +418,7 @@ const AdminRoute: React.FC<{
           name="password"
           autoFocus
           placeholder="Enter Password"
-          className="bg-black/50 border border-white/10 text-white px-4 py-3 rounded-xl outline-none focus:border-[#009cdc] transition-colors text-sm text-center tracking-widest"
+          className="bg-black/50 border border-white/10 text-white px-4 py-3 rounded-xl outline-none focus:border-[#009cdc] transition-colors text-base sm:text-sm text-center tracking-widest min-h-[2.75rem]"
         />
         <button
           type="submit"
