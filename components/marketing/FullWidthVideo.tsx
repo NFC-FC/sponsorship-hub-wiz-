@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { SiteConfig } from '../../App.tsx';
 
@@ -7,8 +7,25 @@ interface Props {
 }
 
 export const FullWidthVideo: React.FC<Props> = ({ config }) => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const [videoSrc, setVideoSrc] = useState<string | null>(null);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const src = config.sponsorRender;
+    const obs = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) setVideoSrc((prev) => prev ?? src);
+      },
+      { rootMargin: '300px', threshold: 0.01 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [config.sponsorRender]);
+
   return (
-    <section className="bg-[#020617] border-b border-white/5 relative overflow-hidden w-full max-w-[100vw]">
+    <section ref={sectionRef} className="bg-[#020617] border-b border-white/5 relative overflow-hidden w-full max-w-[100vw]">
       {/* Abstract background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[#009cdc]/5 blur-[120px] rounded-full pointer-events-none" />
       
@@ -20,16 +37,24 @@ export const FullWidthVideo: React.FC<Props> = ({ config }) => {
       >
         <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/40 via-transparent to-black/20 pointer-events-none" />
         
+        {videoSrc ? (
         <video
           key={config.sponsorRender}
           autoPlay
           muted
           loop
           playsInline
+          preload="auto"
+          poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'%3E%3Crect fill='%23020617' width='1' height='1'/%3E%3C/svg%3E"
           className="w-full h-auto scale-100 group-hover:scale-105 transition-transform duration-[4s] ease-out block"
         >
-          <source src={config.sponsorRender} type="video/mp4" />
+          <source src={videoSrc} type="video/mp4" />
         </video>
+        ) : (
+          <div className="w-full aspect-video bg-[#020617] flex items-center justify-center min-h-[200px]" aria-hidden>
+            <img src="https://github.com/NFC-FC/NFC-image-hosting/blob/main/01-Main-Shield.png?raw=true" alt="" className="h-16 md:h-24 opacity-30 animate-pulse" loading="eager" />
+          </div>
+        )}
 
         {/* Cinematic Overlays - tighter on mobile so text doesn't cover video */}
         <div className="absolute top-2 left-4 z-20 flex items-center gap-3 sm:top-4 sm:left-6 md:top-12 md:left-12">
@@ -41,6 +66,8 @@ export const FullWidthVideo: React.FC<Props> = ({ config }) => {
           <img 
             src="https://github.com/NFC-FC/NFC-image-hosting/blob/main/01-Main-Shield.png?raw=true" 
             alt="NFC Shield" 
+            loading="lazy"
+            decoding="async"
             className="h-12 md:h-16 opacity-40 grayscale brightness-200 drop-shadow-lg"
           />
         </div>

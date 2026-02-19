@@ -1,35 +1,19 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { Suspense, useEffect, useMemo, useState } from 'react';
 import {
   Routes,
   Route,
   Navigate,
   useParams,
   useNavigate,
-  useLocation,
 } from 'react-router-dom';
-import { AnimatePresence, motion } from 'framer-motion';
 import { supabase } from './src/supabaseClient';
 
 import SponsorEntryPage from './pages/SponsorEntryPage';
 
-// Import Marketing-style components
-import Section1Splash from './components/marketing/Section1Splash';
-import Section2Hero from './components/marketing/Section2Hero';
-import { FullWidthVideo } from './components/marketing/FullWidthVideo';
-import { CivicLeadership } from './components/marketing/CivicLeadership';
-import Section3Reality from './components/marketing/Section3Reality';
-import { MasterPlan } from './components/marketing/MasterPlan';
-import { Impact } from './components/marketing/Impact';
-import Section4Product from './components/marketing/Section4Product';
-import Section5Ecosystem from './components/marketing/Section5Ecosystem';
-import Section6Endorsement from './components/marketing/Section6Endorsement';
-import Section7SponsorshipLevels from './components/marketing/Section7SponsorshipLevels';
-import { Section8Timeline } from './components/marketing/Section8Timeline';
-import { CampaignVideo } from './components/marketing/CampaignVideo';
-import { Footer } from './components/marketing/Footer';
-
-import { AdminPanel } from './components/AdminPanel';
-import { Dashboard } from './components/Dashboard';
+// Lazy load heavy routes so initial load (hub) is fast on mobile
+const SitePreviewPage = React.lazy(() => import('./SitePreviewPage').then(m => ({ default: m.SitePreviewPage })));
+const AdminPage = React.lazy(() => import('./AdminPage').then(m => ({ default: m.AdminPage })));
+const AdminPanel = React.lazy(() => import('./components/AdminPanel').then(m => ({ default: m.AdminPanel })));
 
 /**
  * Definition for civic leaders shown in the leadership section.
@@ -438,7 +422,7 @@ const AdminRoute: React.FC<{
 const STORAGE_KEY = 'nfc-cities-v4';
 
 const App: React.FC = () => {
-  const [cities, setCities] = useState<CityGroup[]>([]);
+  const [cities, setCities] = useState<CityGroup[]>(initialCities);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -546,9 +530,15 @@ const App: React.FC = () => {
     const { id } = useParams();
     const active = useMemo(
       () => allSponsorsMerged.find((s) => s.id === id) || allSponsorsMerged[0],
-      [id]
+      [id, allSponsorsMerged]
     );
-    return active ? <SitePreview config={active} /> : <Navigate to="/" replace />;
+    return active ? (
+      <Suspense fallback={<div className="min-h-screen bg-[#020617] flex items-center justify-center"><span className="text-white/60 text-sm">Loading...</span></div>}>
+        <SitePreviewPage config={active} />
+      </Suspense>
+    ) : (
+      <Navigate to="/" replace />
+    );
   };
 
   const handleUpdate = (cityId: string, sponsorId: string | undefined, updatedData: any) => {
@@ -580,14 +570,16 @@ const App: React.FC = () => {
         <Route
           path="/admin"
           element={
-            <AdminRoute
-              cities={cities}
-              setCities={setCities}
-              onEditSponsor={(cid, sid) => setActiveEdit({ cityId: cid, sponsorId: sid })}
-              onEditCityTemplate={(cid) => setActiveEdit({ cityId: cid })}
-              isAuthenticated={isAdminAuthenticated}
-              setIsAuthenticated={setIsAdminAuthenticated}
-            />
+            <Suspense fallback={<div className="min-h-screen bg-black flex items-center justify-center"><span className="text-white/60 text-sm">Loading...</span></div>}>
+              <AdminPage
+                cities={cities}
+                setCities={setCities}
+                onEditSponsor={(cid, sid) => setActiveEdit({ cityId: cid, sponsorId: sid })}
+                onEditCityTemplate={(cid) => setActiveEdit({ cityId: cid })}
+                isAuthenticated={isAdminAuthenticated}
+                setIsAuthenticated={setIsAdminAuthenticated}
+              />
+            </Suspense>
           }
         />
         <Route path="/site/:id" element={<SitePreviewRoute />} />
@@ -598,13 +590,15 @@ const App: React.FC = () => {
         const editCity = cities.find(c => c.id === activeEdit.cityId);
         if (!editCity) return null;
         return (
-          <AdminPanel
-            city={editCity}
-            sponsorId={activeEdit.sponsorId}
-            isOpen={true}
-            onClose={() => setActiveEdit(null)}
-            onUpdate={(data) => handleUpdate(activeEdit.cityId, activeEdit.sponsorId, data)}
-          />
+          <Suspense fallback={null}>
+            <AdminPanel
+              city={editCity}
+              sponsorId={activeEdit.sponsorId}
+              isOpen={true}
+              onClose={() => setActiveEdit(null)}
+              onUpdate={(data) => handleUpdate(activeEdit.cityId, activeEdit.sponsorId, data)}
+            />
+          </Suspense>
         );
       })()}
     </>

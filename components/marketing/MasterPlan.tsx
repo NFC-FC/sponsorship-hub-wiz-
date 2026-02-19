@@ -155,11 +155,11 @@ export const MasterPlan: React.FC<Props> = ({ config, isEditMode, onUpdateMap })
             )}
           </div>
 
-          {/* Accessibility Zones */}
+          {/* Accessibility Zones — hidden on mobile */}
           {markers.map((m) => (
             <div 
               key={`zone-${m.id}`}
-              className="absolute rounded-full border border-white/10 -translate-x-1/2 -translate-y-1/2 pointer-events-none blur-sm"
+              className="absolute rounded-full border border-white/10 -translate-x-1/2 -translate-y-1/2 pointer-events-none blur-sm hidden md:block"
               style={{ 
                 left: `${m.x}%`, 
                 top: `${m.y}%`, 
@@ -171,11 +171,11 @@ export const MasterPlan: React.FC<Props> = ({ config, isEditMode, onUpdateMap })
             />
           ))}
 
-          {/* Interactive Custom Markers — large on sm+, shrink only for mobile; popups hidden on mobile */}
+          {/* Interactive Custom Markers — hidden on mobile to reduce clutter; visible from md up */}
           {markers.map((m) => (
             <div
               key={m.id}
-              className={`absolute -translate-x-1/2 -translate-y-1/2 z-20 group/marker ${isEditMode ? 'cursor-move' : 'cursor-pointer'}`}
+              className={`absolute -translate-x-1/2 -translate-y-1/2 z-20 group/marker hidden md:block ${isEditMode ? 'cursor-move' : 'cursor-pointer'}`}
               style={{ left: `${m.x}%`, top: `${m.y}%` }}
               onMouseEnter={() => !dragItem && setHovered(m.id)}
               onMouseLeave={() => !dragItem && setHovered(null)}
