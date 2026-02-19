@@ -202,38 +202,38 @@ const SitePreview: React.FC<{ config: SiteConfig }> = ({ config }) => {
         <motion.div
           initial={{ y: -100 }}
           animate={{ y: 0 }}
-          className="fixed top-0 left-0 right-0 z-40 bg-black/80 backdrop-blur-xl h-20 md:h-24 flex items-center justify-between px-6 md:px-12 border-b border-white/10"
+          className="fixed top-0 left-0 right-0 z-40 bg-black/80 backdrop-blur-xl min-h-14 sm:min-h-20 md:min-h-24 pt-[env(safe-area-inset-top)] flex items-center justify-between px-3 sm:px-6 md:px-12 border-b border-white/10 overflow-visible"
         >
-          <div className="flex gap-4 items-center">
+          <div className="flex gap-2 sm:gap-4 items-center min-w-0 flex-shrink-0">
             <span
               onClick={() => navigate('/')}
-              className="text-white/40 text-[10px] font-black tracking-[0.3em] uppercase cursor-pointer hover:text-white transition-colors"
+              className="text-white/40 text-[9px] sm:text-[10px] font-black tracking-[0.2em] sm:tracking-[0.3em] uppercase cursor-pointer hover:text-white transition-colors truncate"
             >
               Innovation Hub
             </span>
           </div>
 
-          <div className="flex items-center gap-6 md:gap-10">
-            {/* Header Logos — same height for all three */}
+          <div className="flex items-center gap-2 sm:gap-6 md:gap-10 min-w-0 flex-shrink justify-end">
+            {/* Header Logos — smaller on mobile so they don't get cut off */}
             <img
               src={config.sponsorLogo}
-              className="h-8 md:h-10 object-contain brightness-200 grayscale transition-opacity hover:opacity-100 opacity-90"
+              className="h-6 sm:h-8 md:h-10 w-auto max-h-8 sm:max-h-10 object-contain object-right brightness-200 grayscale transition-opacity hover:opacity-100 opacity-90 flex-shrink-0"
               alt={config.sponsorName}
             />
             
-            <div className="w-px h-8 md:h-10 bg-white/10 hidden sm:block" />
+            <div className="w-px h-6 sm:h-8 md:h-10 bg-white/10 hidden sm:block flex-shrink-0" />
             
             <img 
               src="https://github.com/NFC-FC/NFC-image-hosting/blob/main/Seal_of_Las_Vegas,_Nevada.svg.png?raw=true"
               alt="City Seal" 
-              className="h-8 md:h-10 object-contain brightness-200 grayscale opacity-90"
+              className="h-6 sm:h-8 md:h-10 w-auto max-h-8 sm:max-h-10 object-contain brightness-200 grayscale opacity-90 flex-shrink-0"
             />
 
-            <div className="w-px h-8 md:h-10 bg-white/10 hidden sm:block" />
+            <div className="w-px h-6 sm:h-8 md:h-10 bg-white/10 hidden sm:block flex-shrink-0" />
             
             <img
               src={config.nfcLogo}
-              className="h-8 md:h-10 object-contain brightness-0 invert opacity-80 transition-opacity hover:opacity-100 grayscale"
+              className="h-6 sm:h-8 md:h-10 w-auto max-h-8 sm:max-h-10 object-contain brightness-0 invert opacity-80 transition-opacity hover:opacity-100 grayscale flex-shrink-0"
               alt="NFC"
             />
           </div>

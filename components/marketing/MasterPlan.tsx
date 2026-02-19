@@ -171,7 +171,7 @@ export const MasterPlan: React.FC<Props> = ({ config, isEditMode, onUpdateMap })
             />
           ))}
 
-          {/* Interactive Custom Markers - 50% smaller; popups hidden on mobile */}
+          {/* Interactive Custom Markers — large on sm+, shrink only for mobile; popups hidden on mobile */}
           {markers.map((m) => (
             <div
               key={m.id}
@@ -181,12 +181,12 @@ export const MasterPlan: React.FC<Props> = ({ config, isEditMode, onUpdateMap })
               onMouseLeave={() => !dragItem && setHovered(null)}
               onMouseDown={(e) => handleMouseDown(e, m.id, 'marker')}
             >
-              <div className={`w-3.5 h-3.5 rounded-full border border-white flex items-center justify-center shadow-xl transition-all ${hovered === m.id ? 'scale-125' : ''} ${
+              <div className={`w-3.5 h-3.5 sm:w-8 sm:h-8 rounded-full border-2 sm:border-[2px] border-white flex items-center justify-center shadow-xl transition-all ${hovered === m.id ? 'scale-125' : ''} ${
                 m.type === 'studio' ? 'bg-[#002D72]' : 
                 m.type === 'pod' ? 'bg-[#1DBBB4]' : 
                 m.type === 'existing' ? 'bg-gray-700' : ''
               }`} style={m.type === 'standard' ? { backgroundColor: config.primaryColor } : {}}>
-                <div className="w-1 h-1 bg-white rounded-full animate-pulse"></div>
+                <div className="w-1 h-1 sm:w-2 sm:h-2 bg-white rounded-full animate-pulse"></div>
               </div>
               
               {/* Popup: hidden on mobile, visible from sm up */}
