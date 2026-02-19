@@ -32,6 +32,8 @@ const Section3Reality: React.FC<Props> = ({ config }) => {
               <img 
                 src="https://i.postimg.cc/gkbg7F6b/screenshot-ref-720.png" 
                 alt="Infrastructure Animation"
+                loading="lazy"
+                decoding="async"
                 className="w-full h-auto brightness-95 contrast-[1.05] block"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#020617]/40 via-transparent to-transparent pointer-events-none" />

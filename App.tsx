@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { Suspense, useEffect, useMemo, useState } from 'react';
 import {
   Routes,
   Route,
@@ -12,21 +12,23 @@ import { supabase } from './src/supabaseClient';
 
 import SponsorEntryPage from './pages/SponsorEntryPage';
 
-// Import Marketing-style components
+// Critical above-the-fold: load immediately for fast first paint on mobile
 import Section1Splash from './components/marketing/Section1Splash';
 import Section2Hero from './components/marketing/Section2Hero';
 import { FullWidthVideo } from './components/marketing/FullWidthVideo';
-import { CivicLeadership } from './components/marketing/CivicLeadership';
-import Section3Reality from './components/marketing/Section3Reality';
-import { MasterPlan } from './components/marketing/MasterPlan';
-import { Impact } from './components/marketing/Impact';
-import Section4Product from './components/marketing/Section4Product';
-import Section5Ecosystem from './components/marketing/Section5Ecosystem';
-import Section6Endorsement from './components/marketing/Section6Endorsement';
-import Section7SponsorshipLevels from './components/marketing/Section7SponsorshipLevels';
-import { Section8Timeline } from './components/marketing/Section8Timeline';
-import { CampaignVideo } from './components/marketing/CampaignVideo';
-import { Footer } from './components/marketing/Footer';
+
+// Below-the-fold: lazy load to reduce initial JS parse and improve mobile Safari TTI
+const Section3Reality = React.lazy(() => import('./components/marketing/Section3Reality'));
+const CivicLeadership = React.lazy(() => import('./components/marketing/CivicLeadership').then(m => ({ default: m.CivicLeadership })));
+const MasterPlan = React.lazy(() => import('./components/marketing/MasterPlan').then(m => ({ default: m.MasterPlan })));
+const Impact = React.lazy(() => import('./components/marketing/Impact').then(m => ({ default: m.Impact })));
+const Section4Product = React.lazy(() => import('./components/marketing/Section4Product'));
+const Section5Ecosystem = React.lazy(() => import('./components/marketing/Section5Ecosystem'));
+const Section6Endorsement = React.lazy(() => import('./components/marketing/Section6Endorsement'));
+const Section7SponsorshipLevels = React.lazy(() => import('./components/marketing/Section7SponsorshipLevels'));
+const Section8Timeline = React.lazy(() => import('./components/marketing/Section8Timeline').then(m => ({ default: m.Section8Timeline })));
+const CampaignVideo = React.lazy(() => import('./components/marketing/CampaignVideo').then(m => ({ default: m.CampaignVideo })));
+const Footer = React.lazy(() => import('./components/marketing/Footer').then(m => ({ default: m.Footer })));
 
 import { AdminPanel } from './components/AdminPanel';
 import { Dashboard } from './components/Dashboard';
@@ -307,19 +309,20 @@ const SitePreview: React.FC<{ config: SiteConfig }> = ({ config }) => {
         <Section2Hero config={config} />
         {/* New Feature Video below Hero */}
         <FullWidthVideo config={config} />
-        {/* Reordered: Reality (Impact/Infrastructure) with rotating GIF now follows Hero immediately */}
-        <Section3Reality config={config} />
-        {/* Adoption Section (Legislative Approval) follows impact */}
-        <CivicLeadership config={config} />
-        <MasterPlan config={config} />
-        <Impact config={config} />
-        <Section4Product config={config} />
-        <Section5Ecosystem config={config} />
-        <Section6Endorsement config={config} />
-        <Section7SponsorshipLevels config={config} />
-        <CampaignVideo config={config} />
-        <Section8Timeline config={config} />
-        <Footer config={config} />
+        {/* Below-the-fold sections lazy-loaded for faster mobile Safari TTI */}
+        <Suspense fallback={<div className="min-h-[40vh] bg-[#020617]" aria-hidden />}>
+          <Section3Reality config={config} />
+          <CivicLeadership config={config} />
+          <MasterPlan config={config} />
+          <Impact config={config} />
+          <Section4Product config={config} />
+          <Section5Ecosystem config={config} />
+          <Section6Endorsement config={config} />
+          <Section7SponsorshipLevels config={config} />
+          <CampaignVideo config={config} />
+          <Section8Timeline config={config} />
+          <Footer config={config} />
+        </Suspense>
       </div>
 
       {isEntered && (
