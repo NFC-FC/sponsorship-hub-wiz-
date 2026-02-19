@@ -400,13 +400,13 @@ const AdminRoute: React.FC<{
   }
 
   return (
-    <div className="min-h-screen bg-black flex flex-col items-center justify-center font-sans">
+    <div className="min-h-screen w-full max-w-[100vw] overflow-x-hidden bg-black flex flex-col items-center justify-center font-sans px-4">
       <form
         onSubmit={handleLogin}
-        className="bg-zinc-900/80 backdrop-blur-md border border-white/10 p-10 rounded-[2rem] shadow-2xl flex flex-col gap-6 w-[90%] max-sm"
+        className="bg-zinc-900/80 backdrop-blur-md border border-white/10 p-6 sm:p-10 rounded-2xl sm:rounded-[2rem] shadow-2xl flex flex-col gap-6 w-full max-w-md min-w-0"
       >
-        <div className="text-center">
-          <h2 className="text-2xl font-black text-white italic uppercase tracking-tighter">
+        <div className="text-center min-w-0">
+          <h2 className="text-xl sm:text-2xl font-black text-white italic uppercase tracking-tighter break-words">
             Admin Access Panel
           </h2>
           <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-[0.2em] mt-2">

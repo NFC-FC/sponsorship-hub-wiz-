@@ -286,31 +286,31 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ city, sponsorId, isOpen,
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[99999] bg-black/98 flex flex-col font-sans"
+      className="fixed inset-0 z-[99999] bg-black/98 flex flex-col font-sans w-full max-w-[100vw] overflow-x-hidden"
     >
-      <header className="h-20 border-b border-white/10 flex items-center justify-between px-8 bg-zinc-950 shrink-0">
-        <div className="flex items-center gap-6">
-          <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center">
-            <img src="https://github.com/NFC-FC/NFC-image-hosting/blob/main/01-Main-Shield.png?raw=true" className="w-6" alt="NFC" />
+      <header className="h-16 sm:h-20 border-b border-white/10 flex flex-wrap items-center justify-between gap-3 px-4 sm:px-8 bg-zinc-950 shrink-0">
+        <div className="flex items-center gap-3 sm:gap-6 min-w-0 flex-1">
+          <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-white flex items-center justify-center flex-shrink-0">
+            <img src="https://github.com/NFC-FC/NFC-image-hosting/blob/main/01-Main-Shield.png?raw=true" className="w-4 sm:w-6" alt="NFC" />
           </div>
-          <div>
-            <h2 className="text-sm font-black uppercase tracking-widest text-white leading-none mb-1">
-              Visual Studio <span className="text-zinc-600 font-medium">|</span> <span className="text-[#009cdc] italic">{isEditingSponsor ? 'Sponsor Overrides' : 'City Template'}</span>
+          <div className="min-w-0">
+            <h2 className="text-xs sm:text-sm font-black uppercase tracking-widest text-white leading-none mb-0.5 sm:mb-1 truncate">
+              Visual Studio <span className="text-zinc-600 font-medium hidden sm:inline">|</span> <span className="text-[#009cdc] italic">{isEditingSponsor ? 'Sponsor Overrides' : 'City Template'}</span>
             </h2>
-            <p className="text-[9px] font-black uppercase text-zinc-500 tracking-[0.3em]">{city.name} {isEditingSponsor ? `• ${sponsor?.sponsorName}` : ''}</p>
+            <p className="text-[8px] sm:text-[9px] font-black uppercase text-zinc-500 tracking-[0.2em] sm:tracking-[0.3em] truncate">{city.name} {isEditingSponsor ? `• ${sponsor?.sponsorName}` : ''}</p>
           </div>
         </div>
 
-        <div className="flex gap-4">
-          <button onClick={onClose} className="px-6 py-3 rounded-xl border border-white/10 text-zinc-500 hover:text-white text-[10px] font-black uppercase tracking-widest transition-all">Cancel</button>
-          <button onClick={handleSave} className="px-10 py-3 rounded-xl bg-[#009cdc] text-white hover:scale-105 transition-all text-[10px] font-black uppercase tracking-widest shadow-[0_0_30px_rgba(0,156,220,0.3)]">Publish</button>
+        <div className="flex gap-2 sm:gap-4 flex-shrink-0">
+          <button onClick={onClose} className="px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg sm:rounded-xl border border-white/10 text-zinc-500 hover:text-white text-[9px] sm:text-[10px] font-black uppercase tracking-widest transition-all">Cancel</button>
+          <button onClick={handleSave} className="px-6 sm:px-10 py-2.5 sm:py-3 rounded-lg sm:rounded-xl bg-[#009cdc] text-white hover:scale-105 transition-all text-[9px] sm:text-[10px] font-black uppercase tracking-widest shadow-[0_0_30px_rgba(0,156,220,0.3)]">Publish</button>
         </div>
       </header>
 
-      <div className="flex-1 flex overflow-hidden">
+      <div className="flex-1 flex flex-col lg:flex-row overflow-hidden min-h-0">
         
-        <aside className="w-[400px] border-r border-white/10 bg-zinc-950 flex flex-col overflow-y-auto custom-scrollbar">
-          <div className="p-8 space-y-12">
+        <aside className="w-full lg:w-[400px] lg:max-w-[400px] border-r border-white/10 bg-zinc-950 flex flex-col overflow-y-auto custom-scrollbar flex-shrink-0 lg:flex-shrink-0 min-w-0">
+          <div className="p-4 sm:p-6 lg:p-8 space-y-8 sm:space-y-12">
             
             {isEditingSponsor && localSponsor ? (
               <section className="space-y-6">
@@ -664,10 +664,11 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ city, sponsorId, isOpen,
           </div>
         </aside>
 
-        <main className="flex-1 bg-zinc-900 overflow-y-auto relative custom-scrollbar">
-          {/* Live Preview Area */}
-          <div className="min-w-[1200px] origin-top transform scale-[0.6] md:scale-[0.8] lg:scale-1 origin-top-left p-20">
-             <div className="bg-[#020617] shadow-[0_0_100px_rgba(0,0,0,0.5)] rounded-[4rem] overflow-hidden">
+        <main className="flex-1 min-w-0 bg-zinc-900 overflow-auto relative custom-scrollbar">
+          {/* Live Preview Area - responsive scale so preview fits viewport */}
+          <div className="p-4 sm:p-8 lg:p-20 overflow-x-auto overflow-y-hidden">
+            <div className="origin-top-left scale-[0.4] sm:scale-[0.5] md:scale-[0.65] lg:scale-[0.8] xl:scale-100 w-[1200px] min-w-[1200px]">
+             <div className="bg-[#020617] shadow-[0_0_100px_rgba(0,0,0,0.5)] rounded-2xl sm:rounded-[4rem] overflow-hidden">
                 <Section2Hero config={previewConfig} />
                 <FullWidthVideo config={previewConfig} />
                 <Section3Reality config={previewConfig} />
@@ -682,9 +683,10 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ city, sponsorId, isOpen,
                 <Section8Timeline config={previewConfig} />
                 <Footer config={previewConfig} />
              </div>
+            </div>
           </div>
           
-          <div className="fixed top-24 right-12 z-50 pointer-events-none">
+          <div className="fixed top-20 sm:top-24 right-4 sm:right-12 z-50 pointer-events-none">
              <div className="glass px-6 py-3 rounded-2xl border-white/10 shadow-2xl">
                 <span className="text-[10px] font-black uppercase text-[#009cdc] tracking-widest">Live Editor Preview</span>
              </div>

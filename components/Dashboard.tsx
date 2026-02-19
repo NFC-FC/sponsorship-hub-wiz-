@@ -128,20 +128,20 @@ export const Dashboard: React.FC<Props> = ({ cities, setCities, onEditSponsor, o
   };
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white p-6 md:p-12 font-sans selection:bg-[#009cdc]">
-      <div className="max-w-7xl mx-auto">
-        <header className="mb-16 flex flex-col md:flex-row justify-between items-start md:items-end gap-8 border-b border-white/10 pb-10">
-          <div>
+    <div className="min-h-screen w-full max-w-[100vw] overflow-x-hidden bg-zinc-950 text-white p-4 sm:p-6 md:p-12 font-sans selection:bg-[#009cdc]">
+      <div className="max-w-7xl mx-auto w-full min-w-0">
+        <header className="mb-10 sm:mb-16 flex flex-col md:flex-row justify-between items-start md:items-end gap-4 sm:gap-8 border-b border-white/10 pb-6 sm:pb-10">
+          <div className="min-w-0 flex-1">
             <div className="flex items-center gap-3 mb-2">
-              <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-              <span className="text-[10px] text-zinc-500 font-black uppercase tracking-[0.4em]">System Console v4.5</span>
+              <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse flex-shrink-0"></div>
+              <span className="text-[10px] text-zinc-500 font-black uppercase tracking-[0.3em] sm:tracking-[0.4em] truncate">System Console v4.5</span>
             </div>
-            <h1 className="text-4xl md:text-6xl font-black italic uppercase tracking-tighter">
+            <h1 className="text-2xl sm:text-4xl md:text-6xl font-black italic uppercase tracking-tighter break-words">
               NFC PORTAL <span className="text-[#009cdc]">DASHBOARD</span>
             </h1>
           </div>
-          <div className="flex gap-4">
-            <button onClick={() => setIsCreateCityOpen(true)} className="bg-white text-black px-8 py-4 rounded-2xl font-black uppercase text-[10px] tracking-widest shadow-xl">
+          <div className="flex flex-wrap gap-2 sm:gap-4 flex-shrink-0">
+            <button onClick={() => setIsCreateCityOpen(true)} className="bg-white text-black px-4 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-black uppercase text-[9px] sm:text-[10px] tracking-widest shadow-xl whitespace-nowrap">
               + New City Hub
             </button>
             <button 
@@ -151,18 +151,18 @@ export const Dashboard: React.FC<Props> = ({ cities, setCities, onEditSponsor, o
                   setIsAddSponsorOpen(true);
                 }
               }} 
-              className="bg-white/5 hover:bg-white/10 px-8 py-4 rounded-2xl font-black uppercase text-[10px] tracking-widest border border-white/10"
+              className="bg-white/5 hover:bg-white/10 px-4 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-black uppercase text-[9px] sm:text-[10px] tracking-widest border border-white/10 whitespace-nowrap"
             >
               + Add Sponsor
             </button>
           </div>
         </header>
 
-        <div className="space-y-24">
+        <div className="space-y-16 sm:space-y-24">
           {activeCities.map((city) => (
-            <section key={city.id}>
-              <div className="flex flex-col md:flex-row md:items-center gap-6 mb-10">
-                <h2 className="text-2xl md:text-3xl font-black uppercase italic tracking-tighter text-white/90">
+            <section key={city.id} className="min-w-0">
+              <div className="flex flex-col md:flex-row md:items-center gap-4 sm:gap-6 mb-6 sm:mb-10">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-black uppercase italic tracking-tighter text-white/90 break-words min-w-0">
                   {city.name}
                 </h2>
                 <div className="flex-1 h-px bg-gradient-to-r from-white/10 to-transparent"></div>
@@ -218,10 +218,10 @@ export const Dashboard: React.FC<Props> = ({ cities, setCities, onEditSponsor, o
         {/* Create City Modal */}
         <AnimatePresence>
           {isCreateCityOpen && (
-            <div className="fixed inset-0 z-[100] flex items-center justify-center p-6">
+            <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 overflow-y-auto overflow-x-hidden">
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0 bg-black/95 backdrop-blur-xl" onClick={() => setIsCreateCityOpen(false)} />
-              <motion.form initial={{ scale: 0.9 }} animate={{ scale: 1 }} exit={{ scale: 0.9 }} onSubmit={handleCreateCity} className="relative w-full max-w-lg bg-zinc-900 border border-white/10 p-10 rounded-[3rem]">
-                <h2 className="text-2xl font-black italic uppercase text-center mb-8 tracking-tighter">Initialize City Hub</h2>
+              <motion.form initial={{ scale: 0.9 }} animate={{ scale: 1 }} exit={{ scale: 0.9 }} onSubmit={handleCreateCity} className="relative w-full max-w-lg min-w-0 my-auto bg-zinc-900 border border-white/10 p-6 sm:p-10 rounded-2xl sm:rounded-[3rem]">
+                <h2 className="text-xl sm:text-2xl font-black italic uppercase text-center mb-6 sm:mb-8 tracking-tighter break-words">Initialize City Hub</h2>
                 <input required autoFocus type="text" placeholder="e.g. San Francisco" value={newCityName} onChange={(e) => setNewCityName(e.target.value)} className="w-full bg-black border border-white/10 rounded-2xl px-6 py-4 text-white tracking-widest outline-none focus:border-[#009cdc] mb-6" />
                 <button type="submit" className="w-full bg-[#009cdc] text-white py-5 rounded-2xl text-[10px] font-black uppercase tracking-widest">Create Hub</button>
               </motion.form>
@@ -232,10 +232,10 @@ export const Dashboard: React.FC<Props> = ({ cities, setCities, onEditSponsor, o
         {/* Add Sponsor Modal */}
         <AnimatePresence>
           {isAddSponsorOpen && (
-            <div className="fixed inset-0 z-[100] flex items-center justify-center p-6">
+            <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 overflow-y-auto overflow-x-hidden">
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0 bg-black/95 backdrop-blur-xl" onClick={() => setIsAddSponsorOpen(false)} />
-              <motion.form initial={{ scale: 0.9 }} animate={{ scale: 1 }} exit={{ scale: 0.9 }} onSubmit={handleAddSponsor} className="relative w-full max-w-lg bg-zinc-900 border border-white/10 p-10 rounded-[3rem]">
-                <h2 className="text-2xl font-black italic uppercase text-center mb-8 tracking-tighter">Deploy New Sponsor</h2>
+              <motion.form initial={{ scale: 0.9 }} animate={{ scale: 1 }} exit={{ scale: 0.9 }} onSubmit={handleAddSponsor} className="relative w-full max-w-lg min-w-0 my-auto bg-zinc-900 border border-white/10 p-6 sm:p-10 rounded-2xl sm:rounded-[3rem]">
+                <h2 className="text-xl sm:text-2xl font-black italic uppercase text-center mb-6 sm:mb-8 tracking-tighter break-words">Deploy New Sponsor</h2>
                 <div className="space-y-4">
                   <select value={selectedCityId} onChange={(e) => setSelectedCityId(e.target.value)} className="w-full bg-black border border-white/10 rounded-2xl px-6 py-4 text-white uppercase tracking-widest outline-none">
                     {activeCities.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
@@ -248,7 +248,7 @@ export const Dashboard: React.FC<Props> = ({ cities, setCities, onEditSponsor, o
           )}
         </AnimatePresence>
 
-        <button onClick={() => navigate("/")} className="fixed bottom-10 left-10 text-white/20 hover:text-white transition-colors text-[9px] font-black uppercase tracking-[0.5em]">
+        <button onClick={() => navigate("/")} className="fixed bottom-6 left-4 sm:bottom-10 sm:left-10 text-white/20 hover:text-white transition-colors text-[8px] sm:text-[9px] font-black uppercase tracking-[0.3em] sm:tracking-[0.5em]">
           ← Return to Gateway
         </button>
       </div>

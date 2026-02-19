@@ -56,7 +56,7 @@ const SponsorEntryPage: React.FC<Props> = ({ projects }) => {
   };
 
   return (
-    <div className="min-h-screen bg-[#020617] text-white selection:bg-[#009cdc] font-sans flex flex-col items-center justify-center p-6 relative overflow-hidden">
+    <div className="min-h-screen w-full max-w-[100vw] overflow-x-hidden bg-[#020617] text-white selection:bg-[#009cdc] font-sans flex flex-col items-center justify-center p-4 sm:p-6 relative">
       {/* Background Ambience */}
       <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-[#009cdc] rounded-full blur-[200px] opacity-10 pointer-events-none" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-[#FBAB18] rounded-full blur-[200px] opacity-10 pointer-events-none" />
@@ -74,15 +74,15 @@ const SponsorEntryPage: React.FC<Props> = ({ projects }) => {
       <motion.div 
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        className="relative z-10 w-full max-w-xl flex flex-col items-center px-2 sm:px-0"
+        className="relative z-10 w-full max-w-xl flex flex-col items-center px-2 sm:px-0 min-w-0"
       >
-        <div className="flex flex-col items-center mb-8 sm:mb-12 md:mb-16">
+        <div className="flex flex-col items-center mb-6 sm:mb-12 md:mb-16">
           <img 
             src="https://github.com/NFC-FC/NFC-image-hosting/blob/main/01-Main-Shield.png?raw=true" 
-            className="h-14 sm:h-16 md:h-24 lg:h-28 mb-4 sm:mb-6 md:mb-8 drop-shadow-[0_0_30px_rgba(0,156,220,0.5)]" 
+            className="h-12 sm:h-16 md:h-24 lg:h-28 mb-3 sm:mb-6 md:mb-8 drop-shadow-[0_0_30px_rgba(0,156,220,0.5)] max-w-full object-contain" 
             alt="National Fitness Campaign" 
           />
-          <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-black italic uppercase tracking-tighter text-center leading-[0.85]">
+          <h1 className="text-xl sm:text-3xl md:text-5xl lg:text-7xl font-black italic uppercase tracking-tighter text-center leading-tight break-words">
             National Wellness <br/> <span className="text-[#009cdc]">Innovation Zone.</span>
           </h1>
           <p className="mt-3 sm:mt-4 md:mt-6 text-zinc-500 font-bold uppercase tracking-[0.3em] sm:tracking-[0.4em] text-[8px] sm:text-[9px] md:text-xs">
