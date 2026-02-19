@@ -222,7 +222,7 @@ export const Dashboard: React.FC<Props> = ({ cities, setCities, onEditSponsor, o
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0 bg-black/95 backdrop-blur-xl" onClick={() => setIsCreateCityOpen(false)} />
               <motion.form initial={{ scale: 0.9 }} animate={{ scale: 1 }} exit={{ scale: 0.9 }} onSubmit={handleCreateCity} className="relative w-full max-w-lg min-w-0 my-auto bg-zinc-900 border border-white/10 p-6 sm:p-10 rounded-2xl sm:rounded-[3rem]">
                 <h2 className="text-xl sm:text-2xl font-black italic uppercase text-center mb-6 sm:mb-8 tracking-tighter break-words">Initialize City Hub</h2>
-                <input required autoFocus type="text" placeholder="e.g. San Francisco" value={newCityName} onChange={(e) => setNewCityName(e.target.value)} className="w-full bg-black border border-white/10 rounded-2xl px-6 py-4 text-white tracking-widest outline-none focus:border-[#009cdc] mb-6" />
+                <input required autoFocus type="text" placeholder="e.g. San Francisco" value={newCityName} onChange={(e) => setNewCityName(e.target.value)} className="w-full bg-black border border-white/10 rounded-2xl px-6 py-4 text-base text-white tracking-widest outline-none focus:border-[#009cdc] mb-6 min-h-[2.75rem]" />
                 <button type="submit" className="w-full bg-[#009cdc] text-white py-5 rounded-2xl text-[10px] font-black uppercase tracking-widest">Create Hub</button>
               </motion.form>
             </div>
@@ -237,10 +237,10 @@ export const Dashboard: React.FC<Props> = ({ cities, setCities, onEditSponsor, o
               <motion.form initial={{ scale: 0.9 }} animate={{ scale: 1 }} exit={{ scale: 0.9 }} onSubmit={handleAddSponsor} className="relative w-full max-w-lg min-w-0 my-auto bg-zinc-900 border border-white/10 p-6 sm:p-10 rounded-2xl sm:rounded-[3rem]">
                 <h2 className="text-xl sm:text-2xl font-black italic uppercase text-center mb-6 sm:mb-8 tracking-tighter break-words">Deploy New Sponsor</h2>
                 <div className="space-y-4">
-                  <select value={selectedCityId} onChange={(e) => setSelectedCityId(e.target.value)} className="w-full bg-black border border-white/10 rounded-2xl px-6 py-4 text-white uppercase tracking-widest outline-none">
+                  <select value={selectedCityId} onChange={(e) => setSelectedCityId(e.target.value)} className="w-full bg-black border border-white/10 rounded-2xl px-6 py-4 text-base text-white uppercase tracking-widest outline-none min-h-[2.75rem]">
                     {activeCities.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
                   </select>
-                  <input required type="text" placeholder="Sponsor Name" value={newSponsorName} onChange={(e) => setNewSponsorName(e.target.value)} className="w-full bg-black border border-white/10 rounded-2xl px-6 py-4 text-white tracking-widest outline-none focus:border-[#009cdc]" />
+                  <input required type="text" placeholder="Sponsor Name" value={newSponsorName} onChange={(e) => setNewSponsorName(e.target.value)} className="w-full bg-black border border-white/10 rounded-2xl px-6 py-4 text-base text-white tracking-widest outline-none focus:border-[#009cdc] min-h-[2.75rem]" />
                 </div>
                 <button type="submit" className="w-full bg-[#009cdc] text-white py-5 rounded-2xl text-[10px] font-black uppercase tracking-widest mt-8">Add Sponsor</button>
               </motion.form>

@@ -61,7 +61,7 @@ const SidebarInput = ({
         <select 
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          className="w-full bg-zinc-900 border border-white/5 rounded-xl p-3 text-xs text-white outline-none focus:border-[#009cdc] transition-all"
+          className="w-full bg-zinc-900 border border-white/5 rounded-xl p-3 text-base sm:text-xs text-white outline-none focus:border-[#009cdc] transition-all min-h-[2.75rem] sm:min-h-0"
         >
           {options?.map((o: string) => <option key={o} value={o}>{o}</option>)}
         </select>
@@ -77,21 +77,21 @@ const SidebarInput = ({
             type="text" 
             value={value} 
             onChange={(e) => onChange(e.target.value)}
-            className="flex-1 bg-zinc-900 border border-white/5 rounded-xl p-3 text-[10px] text-white font-mono"
+            className="flex-1 bg-zinc-900 border border-white/5 rounded-xl p-3 text-base sm:text-[10px] text-white font-mono min-h-[2.75rem] sm:min-h-0"
           />
         </div>
       ) : type === 'textarea' ? (
         <textarea 
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          className="w-full bg-zinc-900 border border-white/5 rounded-xl p-3 text-xs text-white outline-none focus:border-[#009cdc] transition-all min-h-[100px] resize-none"
+          className="w-full bg-zinc-900 border border-white/5 rounded-xl p-3 text-base sm:text-xs text-white outline-none focus:border-[#009cdc] transition-all min-h-[100px] resize-none"
         />
       ) : (
         <input 
           type={type}
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          className="w-full bg-zinc-900 border border-white/5 rounded-xl p-3 text-xs text-white outline-none focus:border-[#009cdc] transition-all"
+          className="w-full bg-zinc-900 border border-white/5 rounded-xl p-3 text-base sm:text-xs text-white outline-none focus:border-[#009cdc] transition-all min-h-[2.75rem] sm:min-h-0"
         />
       )}
     </div>
@@ -120,7 +120,7 @@ const SponsorSidebarInput = ({
         type={type}
         value={value || ''}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full bg-zinc-900 border border-white/5 rounded-xl p-3 text-xs text-white outline-none focus:border-[#009cdc] transition-all"
+        className="w-full bg-zinc-900 border border-white/5 rounded-xl p-3 text-base sm:text-xs text-white outline-none focus:border-[#009cdc] transition-all min-h-[2.75rem] sm:min-h-0"
       />
       {hint && <p className="text-[8px] text-zinc-600 font-bold uppercase tracking-widest">{hint}</p>}
     </div>
@@ -367,7 +367,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ city, sponsorId, isOpen,
                   <h3 className="text-[10px] font-black text-[#009cdc] uppercase tracking-[0.4em] border-b border-white/5 pb-4">Hub Configuration</h3>
                   <div className="space-y-2">
                     <label className="text-[9px] font-black uppercase text-zinc-500 tracking-widest">City Hub Name</label>
-                    <input type="text" value={localCityName} onChange={(e) => setLocalCityName(e.target.value)} className="w-full bg-zinc-900 border border-white/5 rounded-xl p-3 text-xs text-white outline-none focus:border-[#009cdc]" />
+                    <input type="text" value={localCityName} onChange={(e) => setLocalCityName(e.target.value)} className="w-full bg-zinc-900 border border-white/5 rounded-xl p-3 text-base sm:text-xs text-white outline-none focus:border-[#009cdc] min-h-[2.75rem] sm:min-h-0" />
                   </div>
                   <SidebarInput 
                     label="City Logo Link" 
@@ -405,7 +405,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ city, sponsorId, isOpen,
                               type="text"
                               value={marker.name}
                               onChange={(e) => handleUpdateMarker(marker.id, { name: e.target.value })}
-                              className="w-full bg-black/40 border border-white/5 rounded-lg p-2 text-[11px] text-white outline-none focus:border-[#009cdc]"
+                              className="w-full bg-black/40 border border-white/5 rounded-lg p-2 text-base sm:text-[11px] text-white outline-none focus:border-[#009cdc] min-h-[2.75rem] sm:min-h-0"
                             />
                           </div>
                           <div className="space-y-1">
@@ -413,7 +413,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ city, sponsorId, isOpen,
                             <select
                               value={marker.type}
                               onChange={(e) => handleUpdateMarker(marker.id, { type: e.target.value as MapMarker['type'] })}
-                              className="w-full bg-black/40 border border-white/5 rounded-lg p-2 text-[11px] text-white outline-none focus:border-[#009cdc]"
+                              className="w-full bg-black/40 border border-white/5 rounded-lg p-2 text-base sm:text-[11px] text-white outline-none focus:border-[#009cdc] min-h-[2.75rem] sm:min-h-0"
                             >
                               <option value="standard">Fitness Court</option>
                               <option value="studio">Fitness Court Studio</option>
@@ -463,7 +463,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ city, sponsorId, isOpen,
                               type="text"
                               value={callout.title}
                               onChange={(e) => handleUpdateCallout(callout.id, { title: e.target.value })}
-                              className="w-full bg-black/40 border border-white/5 rounded-lg p-2 text-[11px] text-white outline-none focus:border-[#009cdc]"
+                              className="w-full bg-black/40 border border-white/5 rounded-lg p-2 text-base sm:text-[11px] text-white outline-none focus:border-[#009cdc] min-h-[2.75rem] sm:min-h-0"
                             />
                           </div>
                           <div className="space-y-1">
@@ -472,7 +472,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ city, sponsorId, isOpen,
                               type="text"
                               value={callout.image}
                               onChange={(e) => handleUpdateCallout(callout.id, { image: e.target.value })}
-                              className="w-full bg-black/40 border border-white/5 rounded-lg p-2 text-[10px] text-zinc-400 outline-none focus:border-[#009cdc]"
+                              className="w-full bg-black/40 border border-white/5 rounded-lg p-2 text-base sm:text-[10px] text-zinc-400 outline-none focus:border-[#009cdc] min-h-[2.75rem] sm:min-h-0"
                             />
                           </div>
                           <div className="space-y-1">
@@ -480,7 +480,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ city, sponsorId, isOpen,
                             <select
                               value={callout.colorType}
                               onChange={(e) => handleUpdateCallout(callout.id, { colorType: e.target.value as MapCallout['colorType'] })}
-                              className="w-full bg-black/40 border border-white/5 rounded-lg p-2 text-[11px] text-white outline-none focus:border-[#009cdc]"
+                              className="w-full bg-black/40 border border-white/5 rounded-lg p-2 text-base sm:text-[11px] text-white outline-none focus:border-[#009cdc] min-h-[2.75rem] sm:min-h-0"
                             >
                               <option value="primary">Primary Color</option>
                               <option value="secondary">Secondary Color</option>
@@ -559,7 +559,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ city, sponsorId, isOpen,
                           value={currentWardNames[i] || ''}
                           onChange={(e) => handleUpdateWardName(i, e.target.value)}
                           placeholder="Council Member Name"
-                          className="w-full bg-zinc-900 border border-white/5 rounded-xl p-3 text-xs text-white outline-none focus:border-[#009cdc]"
+                          className="w-full bg-zinc-900 border border-white/5 rounded-xl p-3 text-base sm:text-xs text-white outline-none focus:border-[#009cdc] min-h-[2.75rem] sm:min-h-0"
                         />
                       </div>
                     ))}
@@ -593,7 +593,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ city, sponsorId, isOpen,
                               type="text" 
                               value={leader.name}
                               onChange={(e) => handleSidebarUpdateLeader(leader.id, { name: e.target.value })}
-                              className="w-full bg-black/40 border border-white/5 rounded-lg p-2 text-[11px] text-white outline-none focus:border-[#009cdc]"
+                              className="w-full bg-black/40 border border-white/5 rounded-lg p-2 text-base sm:text-[11px] text-white outline-none focus:border-[#009cdc] min-h-[2.75rem] sm:min-h-0"
                             />
                           </div>
                           <div className="space-y-1">
@@ -602,7 +602,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ city, sponsorId, isOpen,
                               type="text" 
                               value={leader.title}
                               onChange={(e) => handleSidebarUpdateLeader(leader.id, { title: e.target.value })}
-                              className="w-full bg-black/40 border border-white/5 rounded-lg p-2 text-[11px] text-white outline-none focus:border-[#009cdc]"
+                              className="w-full bg-black/40 border border-white/5 rounded-lg p-2 text-base sm:text-[11px] text-white outline-none focus:border-[#009cdc] min-h-[2.75rem] sm:min-h-0"
                             />
                           </div>
                           <div className="space-y-1">
@@ -611,7 +611,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ city, sponsorId, isOpen,
                               type="text" 
                               value={leader.image}
                               onChange={(e) => handleSidebarUpdateLeader(leader.id, { image: e.target.value })}
-                              className="w-full bg-black/40 border border-white/5 rounded-lg p-2 text-[10px] text-zinc-400 outline-none focus:border-[#009cdc]"
+                              className="w-full bg-black/40 border border-white/5 rounded-lg p-2 text-base sm:text-[10px] text-zinc-400 outline-none focus:border-[#009cdc] min-h-[2.75rem] sm:min-h-0"
                             />
                           </div>
                         </div>
