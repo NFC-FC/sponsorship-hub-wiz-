@@ -15,7 +15,6 @@ export const CampaignVideo: React.FC<Props> = ({ config }) => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
           className="mb-12"
         >
           <span className="text-[10px] font-black uppercase tracking-[0.4em] mb-4 block" style={{ color: config.primaryColor }}>The Movement</span>
@@ -24,10 +23,9 @@ export const CampaignVideo: React.FC<Props> = ({ config }) => {
           </h2>
         </motion.div>
 
-        <motion.div
+        <motion.div 
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
           className="relative aspect-video w-full rounded-[2rem] overflow-hidden shadow-[0_50px_100px_rgba(0,0,0,0.5)] border border-white/10 bg-black"
         >
           <iframe 

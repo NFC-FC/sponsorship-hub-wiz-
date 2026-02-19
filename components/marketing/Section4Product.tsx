@@ -135,7 +135,6 @@ const Section4Product: React.FC<Props> = ({ config }) => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
           <span className="font-bold tracking-[0.4em] text-[10px] uppercase block mb-4" style={{ color: config.primaryColor }}>Title Sponsorship Tier</span>
@@ -148,20 +147,18 @@ const Section4Product: React.FC<Props> = ({ config }) => {
 
       {/* INTERACTIVE RENDER BOX */}
       <div className="relative w-full max-w-7xl px-4 sm:px-6 mb-16 sm:mb-32 min-w-0">
-        <motion.div
+        <motion.div 
           initial={{ opacity: 0, scale: 0.98, y: 40 }}
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
-          viewport={{ once: true }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           className="relative group"
         >
           <div className="relative bg-[#f8fafc] rounded-[3rem] overflow-hidden shadow-[0_80px_180px_-40px_rgba(0,0,0,0.18)] border border-slate-200/60">
             <div className="relative flex items-center justify-center overflow-hidden bg-slate-50 w-full min-h-[250px] sm:min-h-[500px]">
                <img
-                 src="https://github.com/NFC-FC/NFC-image-hosting/blob/main/FC%20Side%20View-1.png?raw=true"
+                 src= "https://github.com/NFC-FC/NFC-image-hosting/blob/main/FC%20Side%20View-1.png?raw=true"
                  alt="Fitness Court 3D Render"
                  className="w-full h-auto relative z-10 block"
-                 loading="lazy"
                  onError={(e) => { e.currentTarget.src = "https://github.com/NFC-FC/NFC-image-hosting/blob/main/FC%20Side%20View-1.png?raw=true"; }}
                />
                <div className="absolute inset-0 mix-blend-multiply pointer-events-none z-20" style={{ background: `linear-gradient(tr, ${config.primaryColor}1A, transparent)` }} />
@@ -225,10 +222,9 @@ const Section4Product: React.FC<Props> = ({ config }) => {
 
       {/* SIX-AREA VALUE FRAMEWORK SECTION - UNCHANGED */}
       <div className="container mx-auto px-4 sm:px-6 relative z-10 w-full min-w-0">
-        <motion.div
+        <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
           className="text-center mb-16"
         >
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-7xl text-slate-900 font-black uppercase tracking-tight leading-none mb-4">
@@ -246,7 +242,6 @@ const Section4Product: React.FC<Props> = ({ config }) => {
               key={pillar.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
               className="flex flex-col bg-white rounded-2xl overflow-hidden shadow-xl border border-slate-100 group hover:-translate-y-2 transition-transform duration-500"
             >
@@ -261,11 +256,10 @@ const Section4Product: React.FC<Props> = ({ config }) => {
               </div>
 
               <div className="relative aspect-[4/5] w-full overflow-hidden">
-                <img
-                  src={pillar.image}
-                  alt={pillar.title}
+                <img 
+                  src={pillar.image} 
+                  alt={pillar.title} 
                   className="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-110"
-                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
                 
