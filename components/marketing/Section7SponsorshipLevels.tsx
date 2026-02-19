@@ -32,7 +32,7 @@ const Section7SponsorshipLevels: React.FC<Props> = ({ config }) => {
       title: 'Presenting Sponsor',
       subtitle: 'Program Tier Partner',
       description: 'Strategic alignment with specific neighborhood hubs and program-based activation opportunities city-wide.',
-      detailsImage: 'https://raw.githubusercontent.com/NFC-FC/NFC-image-hosting/main/PRESENTING%20SPONSOR.png',
+      detailsImage: 'https://github.com/olivialem/NFC-FC/blob/main/Presenting%20Sponsor%20Funding%20Card.png?raw=true',
       icon: (
         <img 
           src="https://raw.githubusercontent.com/NFC-FC/NFC-image-hosting/79f217a46638bf99776ee5f17fb2151b8cb5cf39/Medal.png" 

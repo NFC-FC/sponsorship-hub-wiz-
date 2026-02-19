@@ -11,12 +11,6 @@ export const FullWidthVideo: React.FC<Props> = ({ config }) => {
     <section className="bg-[#020617] border-b border-white/5 relative overflow-hidden w-full max-w-[100vw]">
       {/* Abstract background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[#009cdc]/5 blur-[120px] rounded-full pointer-events-none" />
-
-      {/* Mobile: label above the video so it doesn't sit on top of it */}
-      <div className="md:hidden flex items-center gap-3 px-6 py-4">
-        <div className="w-2 h-2 rounded-full bg-[#009cdc] animate-pulse shadow-[0_0_10px_#009cdc] flex-shrink-0" />
-        <span className="text-[10px] font-black text-white/60 uppercase tracking-[0.4em]">{config.sponsorName} Fitness Court</span>
-      </div>
       
       <motion.div 
         initial={{ opacity: 0 }}
@@ -37,8 +31,8 @@ export const FullWidthVideo: React.FC<Props> = ({ config }) => {
           <source src={config.sponsorRender} type="video/mp4" />
         </video>
 
-        {/* Desktop: cinematic overlay on the video */}
-        <div className="hidden md:flex absolute top-12 left-12 z-20 items-center gap-3">
+        {/* Cinematic Overlays */}
+        <div className="absolute top-8 left-8 z-20 flex items-center gap-3 md:top-12 md:left-12">
           <div className="w-2 h-2 rounded-full bg-[#009cdc] animate-pulse shadow-[0_0_10px_#009cdc]" />
           <span className="text-[10px] font-black text-white/60 uppercase tracking-[0.4em] drop-shadow-md">{config.sponsorName} Fitness Court </span>
         </div>
