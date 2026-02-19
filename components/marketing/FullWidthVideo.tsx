@@ -31,8 +31,8 @@ export const FullWidthVideo: React.FC<Props> = ({ config }) => {
           <source src={config.sponsorRender} type="video/mp4" />
         </video>
 
-        {/* Cinematic Overlays */}
-        <div className="absolute top-8 left-8 z-20 flex items-center gap-3 md:top-12 md:left-12">
+        {/* Cinematic Overlays - tighter on mobile so text doesn't cover video */}
+        <div className="absolute top-2 left-4 z-20 flex items-center gap-3 sm:top-4 sm:left-6 md:top-12 md:left-12">
           <div className="w-2 h-2 rounded-full bg-[#009cdc] animate-pulse shadow-[0_0_10px_#009cdc]" />
           <span className="text-[10px] font-black text-white/60 uppercase tracking-[0.4em] drop-shadow-md">{config.sponsorName} Fitness Court </span>
         </div>
