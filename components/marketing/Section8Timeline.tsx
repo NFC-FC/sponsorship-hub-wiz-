@@ -15,16 +15,18 @@ export const Section8Timeline: React.FC<Props> = ({ config }) => {
     <section className="bg-[#020617] py-12 sm:py-24 md:py-32 px-4 sm:px-6 relative overflow-hidden flex flex-col items-center w-full max-w-[100vw]">
       {/* 1. Header Section */}
       <div className="text-center mb-8 sm:mb-12 w-full min-w-0">
-        <motion.h2 
+        <motion.h2
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           className="text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-black text-white uppercase tracking-tighter mb-4 break-words"
         >
           SPONSORSHIP NEXT STEPS
         </motion.h2>
-        <motion.p 
+        <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
           className="text-[10px] md:text-xs font-black uppercase tracking-[0.4em]"
           style={{ color: config.primaryColor }}
         >
@@ -33,9 +35,10 @@ export const Section8Timeline: React.FC<Props> = ({ config }) => {
       </div>
 
       {/* 2. City Banner / Arrow */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
         className="relative flex items-center mb-16 h-14"
       >
         <div className="flex items-center bg-[#0a1025] pl-2 pr-12 rounded-l-xl h-full relative group">
@@ -64,9 +67,10 @@ export const Section8Timeline: React.FC<Props> = ({ config }) => {
       </motion.div>
 
       {/* 3. Steps Container */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
         className="bg-[#d1dbe5] p-6 md:p-12 rounded-[3rem] md:rounded-[4rem] w-full max-w-7xl shadow-2xl"
       >
         <div className="grid grid-cols-3 gap-2 sm:gap-4 md:gap-8 items-stretch">
