@@ -61,9 +61,19 @@ export const MasterPlan: React.FC<Props> = ({ config, isEditMode, onUpdateMap })
   const containerRef = useRef<HTMLDivElement>(null);
   const [dragItem, setDragItem] = useState<{ id: string, type: 'marker' | 'callout' } | null>(null);
   const [keyVisible, setKeyVisible] = useState(true);
+  const [showExploreHint, setShowExploreHint] = useState(true);
 
   const markers = config.markers || [];
   const callouts = config.callouts || [];
+
+  useEffect(() => {
+    const t = setTimeout(() => setShowExploreHint(false), 2500);
+    return () => clearTimeout(t);
+  }, []);
+
+  useEffect(() => {
+    if (selectedMarkerId) setShowExploreHint(false);
+  }, [selectedMarkerId]);
 
   useEffect(() => {
     setCalloutFlipped(false);
@@ -155,7 +165,17 @@ export const MasterPlan: React.FC<Props> = ({ config, isEditMode, onUpdateMap })
             style={{ 
               backgroundImage: `url('${config.masterPlanBackground}')`, 
             }}
-          />
+          >
+            <div
+              className={`absolute inset-0 flex items-center justify-center pointer-events-none transition-opacity duration-500 ${
+                showExploreHint ? 'opacity-100' : 'opacity-0'
+              }`}
+            >
+              <p className="text-white/90 text-center text-sm sm:text-base font-bold uppercase tracking-[0.2em] px-4 drop-shadow-lg">
+                Click and explore locations to learn more
+              </p>
+            </div>
+          </div>
           
           {/* Subtle Grid Overlay */}
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/graphy-dark.png')] opacity-20 pointer-events-none"></div>
@@ -163,7 +183,7 @@ export const MasterPlan: React.FC<Props> = ({ config, isEditMode, onUpdateMap })
           {/* KEY (Legend) - Open by default; right-aligned */}
           <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-30 origin-top-right max-w-[calc(100%-2rem)] max-h-[calc(100%-2rem)]">
             {keyVisible ? (
-              <div className="w-56 md:w-64 bg-white/90 backdrop-blur-xl p-3 sm:p-4 md:p-6 rounded-xl sm:rounded-2xl border border-white/10 shadow-2xl scale-95 sm:scale-90 md:scale-100">
+              <div className="w-56 md:w-64 bg-white/90 backdrop-blur-xl p-3 sm:p-4 md:p-6 rounded-xl sm:rounded-2xl border border-white/10 shadow-2xl scale-[0.7] sm:scale-90 md:scale-100 origin-top-right">
                 <button
                   type="button"
                   onClick={() => setKeyVisible(false)}
@@ -247,80 +267,97 @@ export const MasterPlan: React.FC<Props> = ({ config, isEditMode, onUpdateMap })
                 setSelectedMarkerId((prev) => (prev === m.id ? null : m.id));
               }}
             >
-              <div className={`w-[13.3px] h-[13.3px] sm:w-[21.3px] sm:h-[21.3px] rounded-full border-2 sm:border-[2px] border-white flex items-center justify-center shadow-xl transition-transform ${(hovered === m.id || isSelected) ? 'scale-125' : ''} ${
+              <div className={`w-[15.3px] h-[15.3px] sm:w-[21.3px] sm:h-[21.3px] rounded-full border border-[1px] sm:border-[2px] border-white flex items-center justify-center shadow-xl transition-transform ${(hovered === m.id || isSelected) ? 'scale-125' : ''} ${
                 m.type === 'studio' ? 'bg-[#002D72]' : 
                 m.type === 'pod' ? 'bg-[#1DBBB4]' : 
                 m.type === 'existing' ? 'bg-gray-500' : ''
               }`} style={m.type === 'standard' ? { backgroundColor: '#00AEEF' } : {}}>
-                <div className="w-[3.8px] h-[3.8px] sm:w-[5.3px] sm:h-[5.3px] bg-white rounded-full animate-pulse"></div>
+                <div className="w-[4.4px] h-[4.4px] sm:w-[5.3px] sm:h-[5.3px] bg-white rounded-full animate-pulse"></div>
               </div>
+            </div>
+          );})}
 
-              {/* Click popup: flip card (front = image + title + arrow; back = details) when this pin is selected */}
-              {isSelected && callout && (() => {
-                const backContent = m.type !== 'existing' ? CALLOUT_BACK_CONTENT[m.type] : null;
-                const pinColor = m.type === 'studio' ? '#002D72' : m.type === 'pod' ? '#1DBBB4' : '#00AEEF';
-                return (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 z-50 pointer-events-auto md:top-auto md:mt-0 md:bottom-full md:mb-2" onClick={(e) => e.stopPropagation()}>
-                  <div className="w-48" style={{ perspective: '1000px' }}>
-                    <div 
-                      className="relative w-full transition-transform duration-500"
-                      style={{ transformStyle: 'preserve-3d', transform: calloutFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)' }}
+          {/* Fixed detail panel — shows when a pin is selected */}
+          {(() => {
+            const selectedMarker = markers.find((m) => m.id === selectedMarkerId);
+            const selectedCallout = selectedMarker ? getCalloutForMarkerType(callouts, selectedMarker.type) : null;
+            const isPanelVisible = !!(selectedMarker && selectedCallout);
+            const backContent = selectedMarker && selectedMarker.type !== 'existing' ? CALLOUT_BACK_CONTENT[selectedMarker.type] : null;
+            const pinColor = selectedMarker ? (selectedMarker.type === 'studio' ? '#002D72' : selectedMarker.type === 'pod' ? '#1DBBB4' : '#00AEEF') : '';
+            return (
+              <div
+                className={`absolute top-4 right-4 sm:top-6 sm:right-6 w-[32%] h-[48%] min-w-[160px] min-h-[200px] z-40 transition-opacity duration-200 rounded-2xl md:rounded-3xl bg-white/95 backdrop-blur-xl p-3 sm:p-4 md:p-5 shadow-2xl flex flex-col overflow-hidden ${isPanelVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+                onClick={(e) => e.stopPropagation()}
+              >
+                {isPanelVisible && (
+                  <>
+                    <button
+                      type="button"
+                      onClick={(e) => { e.stopPropagation(); setSelectedMarkerId(null); }}
+                      className="absolute top-2 right-2 z-10 w-8 h-8 flex items-center justify-center rounded-full hover:bg-black/10 text-zinc-500 hover:text-zinc-800 transition-colors text-lg leading-none"
+                      aria-label="Close"
                     >
-                      {/* Front */}
-                      <div className="glass p-3 rounded-2xl border-white/10 shadow-2xl backdrop-blur-2xl w-full" style={{ backfaceVisibility: 'hidden' }}>
-                        <div className="w-full aspect-[16/10] bg-white/5 rounded-lg mb-2 overflow-hidden border border-white/5">
-                          <img src={callout.image} alt="" className="w-full h-full object-cover opacity-80" />
-                        </div>
-                        <div className="text-[10px] font-black tracking-[0.2em] uppercase" style={{ color: pinColor }}>
-                          {callout.title}
-                        </div>
-                        {backContent && (
-                          <button
-                            type="button"
-                            onClick={(e) => { e.stopPropagation(); setCalloutFlipped(true); }}
-                            className="mt-2 w-full flex items-center justify-center gap-1 py-1.5 rounded-lg border border-white/10 hover:bg-white/5 transition-colors text-[8px] font-black uppercase tracking-widest text-slate-600"
-                          >
-                            More info
-                            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-                          </button>
-                        )}
-                      </div>
-                      {/* Back */}
-                      {backContent && (
-                        <div 
-                          className="absolute inset-0 flex flex-col glass p-3 rounded-2xl border-white/10 shadow-2xl backdrop-blur-2xl w-full"
-                          style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
-                        >
-                          <div className="text-[9px] font-black tracking-[0.15em] uppercase mb-2 text-center flex-shrink-0" style={{ color: pinColor }}>
-                            {backContent.title}
-                            <div className="text-[8px] font-bold normal-case tracking-wide mt-0.5" style={{ color: pinColor }}>{backContent.dimensions}</div>
+                      ×
+                    </button>
+                    <div className="flex-1 min-h-0 flex flex-col" style={{ perspective: '1000px' }}>
+                      <div
+                        className="relative w-full h-full flex-1 min-h-0 transition-transform duration-500"
+                        style={{ transformStyle: 'preserve-3d', transform: calloutFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)' }}
+                      >
+                        {/* Front */}
+                        <div className="absolute inset-0 flex flex-col" style={{ backfaceVisibility: 'hidden' }}>
+                          <div className="flex-1 min-h-0 rounded-lg overflow-hidden border border-white/10 mb-2">
+                            <img src={selectedCallout!.image} alt="" className="w-full h-full object-cover opacity-80" />
                           </div>
-                          <ul className="space-y-1.5 text-[8px] text-slate-600 font-medium leading-snug flex-1 min-h-0 overflow-y-auto">
-                            {backContent.bullets.map((b, i) => (
-                              <li key={i} className="flex gap-1.5">
-                                <span className="text-slate-500 flex-shrink-0">•</span>
-                                <span>{b}</span>
-                              </li>
-                            ))}
-                          </ul>
-                          <div className="flex justify-center flex-shrink-0 pt-2 mt-auto">
+                          <div className="text-[11px] sm:text-xs md:text-sm font-black tracking-[0.2em] uppercase flex-shrink-0" style={{ color: pinColor }}>
+                            {selectedCallout!.title}
+                          </div>
+                          {backContent && (
+                            <button
+                              type="button"
+                              onClick={(e) => { e.stopPropagation(); setCalloutFlipped(true); }}
+                              className="mt-2 w-full flex items-center justify-center gap-1 py-1.5 sm:py-2 rounded-lg border border-white/10 hover:bg-black/5 transition-colors text-[9px] sm:text-[10px] md:text-xs font-black uppercase tracking-widest text-slate-600"
+                            >
+                              More info
+                              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                            </button>
+                          )}
+                        </div>
+                        {/* Back */}
+                        {backContent && (
+                          <div
+                            className="absolute inset-0 flex flex-col overflow-y-auto"
+                            style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
+                          >
+                            <div className="text-[10px] sm:text-[11px] md:text-xs font-black tracking-[0.15em] uppercase mb-2 text-center flex-shrink-0 pt-[25pt]" style={{ color: pinColor }}>
+                              {backContent.title}
+                              <div className="text-[8px] sm:text-[9px] md:text-[10px] font-bold normal-case tracking-wide mt-0.5" style={{ color: pinColor }}>{backContent.dimensions}</div>
+                            </div>
+                            <ul className="space-y-1 sm:space-y-1.5 text-[9px] sm:text-[10px] md:text-xs text-slate-600 font-medium leading-snug flex-1 min-h-0 mb-3 flex flex-col max-w-[80%] mx-auto w-full text-left">
+                              {backContent.bullets.map((b, i) => (
+                                <li key={i} className="flex items-center gap-1.5">
+                                  <span className="text-slate-500 flex-shrink-0">•</span>
+                                  <span>{b}</span>
+                                </li>
+                              ))}
+                            </ul>
                             <button
                               type="button"
                               onClick={(e) => { e.stopPropagation(); setCalloutFlipped(false); }}
-                              className="flex items-center justify-center gap-1 py-1.5 px-4 rounded-lg border border-white/10 hover:bg-white/5 transition-colors text-[8px] font-black uppercase tracking-widest text-slate-600"
+                              className="w-full flex items-center justify-center gap-1 py-1.5 sm:py-2 rounded-lg border border-white/10 hover:bg-black/5 transition-colors text-[9px] sm:text-[10px] md:text-xs font-black uppercase tracking-widest text-slate-600 flex-shrink-0"
                             >
                               <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
                               Back
                             </button>
                           </div>
-                        </div>
-                      )}
+                        )}
+                      </div>
                     </div>
-                  </div>
-                </div>
-              );})()}
-            </div>
-          );})}
+                  </>
+                )}
+              </div>
+            );
+          })()}
 
                   </div>
       </div>
