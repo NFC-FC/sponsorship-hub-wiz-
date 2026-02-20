@@ -32,6 +32,10 @@ export interface MapMarker {
   y: number;
   name: string;
   type: 'studio' | 'standard' | 'pod' | 'existing';
+  /** Per-pin fields for existing Fitness Court pins (unique per pin) */
+  imageLink?: string;
+  launchDate?: string;
+  siteAddress?: string;
 }
 
 export interface MapCallout {
@@ -78,6 +82,10 @@ export interface SiteConfig {
   communityAccess: string;
   annualUses: string;
   caloriesBurned: string;
+  existingSiteImageLink?: string;
+  existingSiteLaunchDate?: string;
+  existingSiteName?: string;
+  existingSiteAddress?: string;
 }
 
 /**
@@ -108,6 +116,10 @@ export interface CityTemplate {
   communityAccess: string;
   annualUses: string;
   caloriesBurned: string;
+  existingSiteImageLink?: string;
+  existingSiteLaunchDate?: string;
+  existingSiteName?: string;
+  existingSiteAddress?: string;
 }
 
 /**

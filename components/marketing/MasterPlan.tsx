@@ -293,13 +293,18 @@ export const MasterPlan: React.FC<Props> = ({ config, isEditMode, onUpdateMap })
             </div>
           );})}
 
-          {/* Fixed detail panel — shows when a pin is selected */}
+          {/* Fixed detail panel — shows when a pin is selected (proposed or existing) */}
           {(() => {
             const selectedMarker = markers.find((m) => m.id === selectedMarkerId);
             const selectedCallout = selectedMarker ? getCalloutForMarkerType(callouts, selectedMarker.type) : null;
-            const isPanelVisible = !!(selectedMarker && selectedCallout);
+            const isExisting = selectedMarker?.type === 'existing';
+            const isPanelVisible = !!(selectedMarker && (selectedCallout || isExisting));
             const backContent = selectedMarker && selectedMarker.type !== 'existing' ? CALLOUT_BACK_CONTENT[selectedMarker.type] : null;
-            const pinColor = selectedMarker ? (selectedMarker.type === 'studio' ? '#002D72' : selectedMarker.type === 'pod' ? '#1DBBB4' : '#00AEEF') : '';
+            const pinColor = selectedMarker ? (selectedMarker.type === 'studio' ? '#002D72' : selectedMarker.type === 'pod' ? '#1DBBB4' : selectedMarker.type === 'existing' ? '#64748b' : '#00AEEF') : '';
+            const existingImage = selectedMarker?.type === 'existing' ? (selectedMarker.imageLink ?? config.existingSiteImageLink ?? '') : '';
+            const existingName = selectedMarker?.type === 'existing' ? (selectedMarker.name || config.existingSiteName || 'Existing Site') : '';
+            const existingLaunch = selectedMarker?.type === 'existing' ? (selectedMarker.launchDate ?? config.existingSiteLaunchDate ?? '') : '';
+            const existingAddress = selectedMarker?.type === 'existing' ? (selectedMarker.siteAddress ?? config.existingSiteAddress ?? '') : '';
             return (
               <div
                 className={`absolute top-4 right-4 sm:top-6 sm:right-6 w-[32%] h-[48%] min-w-[160px] min-h-[200px] z-50 transition-opacity duration-200 rounded-2xl md:rounded-3xl bg-white/95 backdrop-blur-xl p-2 sm:p-4 md:p-5 shadow-2xl flex flex-col overflow-hidden ${isPanelVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
@@ -318,21 +323,34 @@ export const MasterPlan: React.FC<Props> = ({ config, isEditMode, onUpdateMap })
                     <div className="flex-1 min-h-0 flex flex-col" style={{ perspective: '1000px' }}>
                       <div
                         className="relative w-full h-full flex-1 min-h-0 transition-transform duration-500"
-                        style={{ transformStyle: 'preserve-3d', transform: calloutFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)' }}
+                        style={{ transformStyle: 'preserve-3d', transform: calloutFlipped && !isExisting ? 'rotateY(180deg)' : 'rotateY(0deg)' }}
                       >
-                        {/* Front */}
+                        {/* Front — proposed (callout) or existing site */}
                         <div className="absolute inset-0 flex flex-col" style={{ backfaceVisibility: 'hidden' }}>
-                          <div className="flex-1 min-h-0 rounded-lg overflow-hidden border border-white/10 mb-1 sm:mb-2 flex items-center justify-center">
-                            <img
-                              src={selectedCallout!.image}
-                              alt=""
-                              className={`w-full h-full object-contain opacity-80 ${selectedMarker?.type === 'pod' ? 'scale-[0.6]' : ''}`}
-                            />
+                          <div className="flex-1 min-h-0 rounded-lg overflow-hidden border border-white/10 mb-1 sm:mb-2 flex items-center justify-center bg-white">
+                            {isExisting ? (
+                              existingImage ? (
+                                <img src={existingImage} alt="" className="w-full h-full object-contain opacity-80" />
+                              ) : (
+                                <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">No image</span>
+                              )
+                            ) : (
+                              <img
+                                src={selectedCallout!.image}
+                                alt=""
+                                className={`w-full h-full object-contain opacity-80 ${selectedMarker?.type === 'pod' ? 'scale-[0.6]' : ''}`}
+                              />
+                            )}
                           </div>
                           <div className="text-[10px] sm:text-xs md:text-sm font-black tracking-[0.15em] sm:tracking-[0.2em] uppercase flex-shrink-0 leading-tight" style={{ color: pinColor }}>
-                            {selectedCallout!.title}
+                            {isExisting ? (existingName || 'Existing Site') : selectedCallout!.title}
                           </div>
-                          {backContent && (
+                          {isExisting ? (
+                            <div className="mt-1 sm:mt-2 space-y-0.5 sm:space-y-1 flex-shrink-0 overflow-hidden min-h-0">
+                              <p className="text-[9px] sm:text-[10px] text-slate-600 font-bold uppercase tracking-widest truncate" title={existingLaunch}>Launch date: {existingLaunch || '—'}</p>
+                              <p className="text-[9px] sm:text-[10px] text-slate-600 font-medium truncate" title={existingAddress}>Address: {existingAddress || '—'}</p>
+                            </div>
+                          ) : backContent ? (
                             <button
                               type="button"
                               onClick={(e) => { e.stopPropagation(); setCalloutFlipped(true); }}
@@ -341,10 +359,10 @@ export const MasterPlan: React.FC<Props> = ({ config, isEditMode, onUpdateMap })
                               More info
                               <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
                             </button>
-                          )}
+                          ) : null}
                         </div>
-                        {/* Back */}
-                        {backContent && (
+                        {/* Back — proposed only */}
+                        {backContent && !isExisting && (
                           <div
                             className="absolute inset-0 flex flex-col overflow-y-auto"
                             style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
