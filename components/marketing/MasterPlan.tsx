@@ -322,8 +322,12 @@ export const MasterPlan: React.FC<Props> = ({ config, isEditMode, onUpdateMap })
                       >
                         {/* Front */}
                         <div className="absolute inset-0 flex flex-col" style={{ backfaceVisibility: 'hidden' }}>
-                          <div className="flex-1 min-h-0 rounded-lg overflow-hidden border border-white/10 mb-1 sm:mb-2">
-                            <img src={selectedCallout!.image} alt="" className="w-full h-full object-contain opacity-80" />
+                          <div className="flex-1 min-h-0 rounded-lg overflow-hidden border border-white/10 mb-1 sm:mb-2 flex items-center justify-center">
+                            <img
+                              src={selectedCallout!.image}
+                              alt=""
+                              className={`w-full h-full object-contain opacity-80 ${selectedMarker?.type === 'pod' ? 'scale-[0.6]' : ''}`}
+                            />
                           </div>
                           <div className="text-[10px] sm:text-xs md:text-sm font-black tracking-[0.15em] sm:tracking-[0.2em] uppercase flex-shrink-0 leading-tight" style={{ color: pinColor }}>
                             {selectedCallout!.title}
