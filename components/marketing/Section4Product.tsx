@@ -81,7 +81,7 @@ const Section4Product: React.FC<Props> = ({ config }) => {
       title: "CSR",
       subtitle: "Corporate Social Responsibility",
       description: "Executive and Leadership Platform",
-      image: "https://github.com/olivialem/NFC-FC/blob/7d9b8c4f2452978283cb6702da66b84a6d10de81/VD-01.jpeg?raw=true"
+      image: "https://github.com/olivialem/NFC-FC/blob/1b73327b6cac01e2b63e5fb7f1a0c485045dc684/VD-01%202.jpeg?raw=true"
     },
     {
       id: 2,
@@ -261,6 +261,7 @@ const Section4Product: React.FC<Props> = ({ config }) => {
                   src={pillar.image} 
                   alt={pillar.title} 
                   className="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-110"
+                  style={pillar.id === 1 ? { objectPosition: 'right' } : undefined}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
                 

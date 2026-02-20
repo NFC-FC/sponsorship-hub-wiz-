@@ -86,19 +86,19 @@ export const SitePreviewPage: React.FC<{ config: SiteConfig }> = ({ config }) =>
           <div className="flex items-center gap-1.5 sm:gap-6 md:gap-10 min-w-0 flex-shrink-0 justify-end">
             <img
               src={config.sponsorLogo}
-              className="h-5 w-auto max-h-6 sm:max-h-8 md:max-h-10 object-contain object-right transition-transform hover:scale-105 flex-shrink-0"
+              className="h-5 w-auto max-h-6 sm:h-8 sm:max-h-12 md:h-9 md:max-h-14 object-contain object-right transition-transform hover:scale-105 flex-shrink-0"
               alt={config.sponsorName}
             />
-            <div className="w-px h-5 sm:h-8 md:h-10 bg-white/10 hidden sm:block flex-shrink-0" />
+            <div className="w-px h-5 sm:h-8 md:h-9 bg-white/10 hidden sm:block flex-shrink-0" />
             <img
               src={config.cityLogo}
               alt="City Seal"
-              className="h-5 w-auto max-h-6 sm:max-h-8 md:max-h-10 object-contain transition-transform hover:scale-105 flex-shrink-0"
+              className="h-5 w-auto max-h-6 sm:h-8 sm:max-h-12 md:h-9 md:max-h-14 object-contain transition-transform hover:scale-105 flex-shrink-0"
             />
-            <div className="w-px h-5 sm:h-8 md:h-10 bg-white/10 hidden sm:block flex-shrink-0" />
+            <div className="w-px h-5 sm:h-8 md:h-9 bg-white/10 hidden sm:block flex-shrink-0" />
             <img
               src={config.nfcLogo}
-              className="h-5 w-auto max-h-6 sm:max-h-8 md:max-h-10 object-contain transition-transform hover:scale-105 flex-shrink-0"
+              className="h-5 w-auto max-h-6 sm:h-8 sm:max-h-12 md:h-9 md:max-h-14 object-contain transition-transform hover:scale-105 flex-shrink-0"
               alt="NFC"
             />
           </div>
