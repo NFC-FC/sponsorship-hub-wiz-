@@ -7,6 +7,7 @@ import {
   useNavigate,
 } from 'react-router-dom';
 import { supabase } from './src/supabaseClient';
+import { Analytics } from '@vercel/analytics/react';
 
 import SponsorEntryPage from './pages/SponsorEntryPage';
 
@@ -565,6 +566,7 @@ const App: React.FC = () => {
 
   return (
     <>
+      <Analytics />
       <Routes>
         <Route path="/" element={<SponsorEntryPage projects={allSponsorsMerged} />} />
         <Route
