@@ -82,9 +82,9 @@ const SponsorEntryPage: React.FC<Props> = ({ projects }) => {
             className="h-12 sm:h-16 md:h-24 lg:h-28 mb-3 sm:mb-6 md:mb-8 drop-shadow-[0_0_30px_rgba(0,156,220,0.5)] max-w-full object-contain" 
             alt="National Fitness Campaign" 
           />
-          <h1 className="text-xl sm:text-3xl md:text-5xl lg:text-7xl font-black italic uppercase tracking-tighter text-center leading-tight">
-            <span className="block break-words">National Wellness</span>
-            <span className="block text-[#009cdc] break-words">Innovation Zone.</span>
+          <h1 className="text-lg sm:text-2xl md:text-4xl lg:text-5xl font-black italic uppercase tracking-tighter text-center leading-tight">
+            <span className="block whitespace-nowrap">National Wellness</span>
+            <span className="block text-[#009cdc] whitespace-nowrap">Innovation Zone.</span>
           </h1>
           <p className="mt-3 sm:mt-4 md:mt-6 text-zinc-500 font-bold uppercase tracking-[0.3em] sm:tracking-[0.4em] text-[8px] sm:text-[9px] md:text-xs">
             Public-Private Partnership Briefing Portal

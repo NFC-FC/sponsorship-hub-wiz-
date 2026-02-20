@@ -40,7 +40,7 @@ export const Footer: React.FC<Props> = ({ config }) => {
                 <span className="font-black" style={{ color: config.primaryColor }}>
                   {config.sponsorName.toUpperCase()} DELIVERS $10M DOLLAR COMMUNITY WELLNESS CAMPAIGN ACROSS THE CITY OF {config.projectCity.toUpperCase()},
                 </span>{' '}
-                <span className="font-bold" style={{ color: config.secondaryColor }}>
+                <span className="font-bold" style={{ color: config.secondaryColor }}> 
                   TO IMPROVE HEALTH AND HAPPINESS FOR HUNDREDS OF THOUSANDS OF RESIDENTS.
                 </span>
               </h3>
@@ -90,7 +90,7 @@ export const Footer: React.FC<Props> = ({ config }) => {
         <div className="w-full mt-10 sm:mt-16 md:mt-20">
           <div className="container mx-auto px-4 sm:px-6 flex flex-col md:flex-row justify-between items-center gap-4 w-full min-w-0">
             <p className="text-[9px] text-white/40 font-black uppercase tracking-[0.4em]">
-              © {new Date().getFullYear()} National Fitness Campaign • Public-Private Infrastructure Briefing
+              © {new Date().getFullYear()} National Fitness Campaign • National Wellness Innovation Zone Briefing
             </p>
             <div className="flex gap-6 opacity-40 text-[8px] font-black uppercase tracking-[0.15em] text-white">
               <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>

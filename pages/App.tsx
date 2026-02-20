@@ -8,7 +8,7 @@ import {
   useLocation,
 } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-
+import { Analytics } from '@vercel/analytics/react';
 import SponsorEntryPage from './pages/SponsorEntryPage';
 
 // Import Marketing-style components
@@ -409,6 +409,7 @@ const App: React.FC = () => {
           onUpdate={(data) => handleUpdate(activeEdit.cityId, activeEdit.sponsorId, data)}
         />
       )}
+      <Analytics />
     </>
   );
 };
