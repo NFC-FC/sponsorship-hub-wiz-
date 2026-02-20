@@ -77,7 +77,7 @@ const Section5Ecosystem: React.FC<Props> = ({ config }) => {
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
             >
-              <span className="font-bold tracking-[0.3em] text-[8px] sm:text-[10px] uppercase block mb-1 sm:mb-4" style={{ color: config.primaryColor }}>The Digital Portal</span>
+              <span className="font-bold tracking-[0.3em] text-[8px] sm:text-[10px] uppercase block mb-1 sm:mb-4" style={{ color: config.primaryColor }}>Fitness Court® App</span>
               <h2 className="font-display text-lg sm:text-5xl md:text-6xl font-black leading-none mb-2 sm:mb-6 uppercase tracking-tighter">
                 THE DIGITAL<br/>WELLNESS <span style={{ color: config.primaryColor }}>ECOSYSTEM</span>
               </h2>
