@@ -22,6 +22,7 @@ interface Props {
   config: {
     primaryColor: string;
     secondaryColor: string;
+    accentColor: string;
     sponsorName: string;
     sponsorRender: string;
   };
@@ -71,7 +72,7 @@ const Section4Product: React.FC<Props> = ({ config }) => {
       number: 6,
       title: 'Human Impact',
       description: 'Directly improve the lives of residents by reducing barriers to healthy lifestyles. Access and wellness impact delivered to every neighborhood.',
-      color: config.secondaryColor
+      color: config.accentColor
     }
   ];
 
@@ -153,8 +154,8 @@ const Section4Product: React.FC<Props> = ({ config }) => {
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           className="relative group"
         >
-          <div className="relative bg-[#f8fafc] rounded-[3rem] overflow-hidden shadow-[0_80px_180px_-40px_rgba(0,0,0,0.18)] border border-slate-200/60">
-            <div className="relative flex items-center justify-center overflow-hidden bg-slate-50 w-full min-h-[250px] sm:min-h-[500px]">
+          <div className="relative bg-[#f8fafc] rounded-[3rem] overflow-hidden shadow-[0_80px_180px_-40px_rgba(0,0,0,0.18)]">
+            <div className="relative w-full bg-slate-50">
                <img
                  src= "https://github.com/NFC-FC/NFC-image-hosting/blob/main/FC%20Side%20View-1.png?raw=true"
                  alt="Fitness Court 3D Render"
@@ -199,7 +200,7 @@ const Section4Product: React.FC<Props> = ({ config }) => {
             </div>
 
             {/* Selector Buttons Row (Bottom Center) */}
-            <div className="absolute bottom-10 left-0 w-full flex justify-center z-50 px-6">
+            <div className="absolute bottom-5 left-0 w-full flex justify-center z-50 px-6">
                <div className="glass bg-white/60 backdrop-blur-2xl p-1.5 sm:p-3 rounded-full flex gap-1 sm:gap-3 shadow-2xl border-white/50">
                   {hotspots.map((h) => (
                     <button

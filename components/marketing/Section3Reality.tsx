@@ -26,10 +26,10 @@ const Section3Reality: React.FC<Props> = ({ config }) => {
       <div className="container mx-auto px-4 sm:px-6 relative z-10 w-full min-w-0">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-24 items-center">
           
-          <div className="relative w-full rounded-3xl overflow-hidden group shadow-[0_0_50px_rgba(0,114,206,0.15)] border border-white/5 bg-slate-900">
+          <div className="relative w-full min-h-[200px] rounded-3xl overflow-hidden group shadow-[0_0_50px_rgba(0,114,206,0.15)] border border-white/5 bg-slate-900">
             <motion.div 
               style={{ y: imgY }} 
-              className="relative w-full overflow-hidden aspect-[4/3] min-h-[200px] bg-slate-800/50"
+              className="relative w-full overflow-hidden bg-slate-800/50"
             >
               {!imgError ? (
                 <img 
@@ -37,11 +37,11 @@ const Section3Reality: React.FC<Props> = ({ config }) => {
                   alt="Healthy infrastructure — outdoor fitness and community wellness"
                   decoding="async"
                   referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover brightness-95 contrast-[1.05] block"
+                  className="w-full h-auto block brightness-95 contrast-[1.05]"
                   onError={() => setImgError(true)}
                 />
               ) : (
-                <div className="w-full h-full flex items-center justify-center text-white/50 text-center px-4">
+                <div className="w-full min-h-[200px] flex items-center justify-center text-white/50 text-center px-4">
                   <span className="text-sm font-medium">Healthy infrastructure</span>
                 </div>
               )}

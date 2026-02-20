@@ -6,6 +6,7 @@ interface Props {
   config: {
     primaryColor: string;
     secondaryColor: string;
+    accentColor: string;
     projectCity: string;
     nfcLogo: string;
     sponsorName: string;
@@ -101,7 +102,7 @@ const Section5Ecosystem: React.FC<Props> = ({ config }) => {
                 {
                   title: `${config.sponsorName} Fitness Court Locator`,
                   desc: `GPS-enabled mapping to every ${config.sponsorName} Fitness Court site across the city.`,
-                  color: config.primaryColor
+                  color: config.accentColor
                 }
               ].map((item, i) => (
                 <motion.li
