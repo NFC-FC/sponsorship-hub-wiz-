@@ -51,7 +51,7 @@ const Section4Product: React.FC<Props> = ({ config }) => {
       number: 3,
       title: 'Employee Wellness Benefits',
       description: 'Give employees citywide access to world-class, free fitness—right where they live. A powerful wellness benefit that supports healthier lifestyles.',
-      color: config.primaryColor
+      color: config.accentColor
     },
     {
       id: 'v4',
