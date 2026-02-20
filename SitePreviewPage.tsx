@@ -72,7 +72,7 @@ export const SitePreviewPage: React.FC<{ config: SiteConfig }> = ({ config }) =>
         <motion.div
           initial={{ y: -100 }}
           animate={{ y: 0 }}
-          className="fixed top-0 left-0 right-0 z-40 w-full max-w-[100vw] box-border bg-black/80 backdrop-blur-xl min-h-14 sm:min-h-20 md:min-h-24 pt-[env(safe-area-inset-top)] flex items-center justify-between gap-2 px-3 sm:px-6 md:px-12 border-b border-white/10 overflow-hidden"
+          className="fixed top-0 left-0 right-0 z-[60] w-full max-w-[100vw] box-border bg-black/80 backdrop-blur-xl min-h-14 sm:min-h-20 md:min-h-24 pt-[env(safe-area-inset-top)] flex items-center justify-between gap-2 px-3 sm:px-6 md:px-12 border-b border-white/10 overflow-hidden"
         >
           <div className="min-w-0 flex-1 flex items-center">
             <span
