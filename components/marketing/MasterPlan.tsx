@@ -67,8 +67,24 @@ export const MasterPlan: React.FC<Props> = ({ config, isEditMode, onUpdateMap })
   const callouts = config.callouts || [];
 
   useEffect(() => {
-    const t = setTimeout(() => setShowExploreHint(false), 2500);
-    return () => clearTimeout(t);
+    if (!containerRef.current) return;
+    const el = containerRef.current;
+    let timeoutId: ReturnType<typeof setTimeout> | null = null;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries[0]?.isIntersecting || timeoutId !== null) return;
+        timeoutId = setTimeout(() => {
+          setShowExploreHint(false);
+          timeoutId = null;
+        }, 1800);
+      },
+      { threshold: 0.3 }
+    );
+    observer.observe(el);
+    return () => {
+      observer.disconnect();
+      if (timeoutId) clearTimeout(timeoutId);
+    };
   }, []);
 
   useEffect(() => {
@@ -256,7 +272,7 @@ export const MasterPlan: React.FC<Props> = ({ config, isEditMode, onUpdateMap })
             return (
             <div
               key={m.id}
-              className={`absolute -translate-x-1/2 -translate-y-1/2 flex items-center justify-center w-12 h-12 group/marker block ${isSelected ? 'z-50' : 'z-20'} ${isEditMode ? 'cursor-move' : 'cursor-pointer'}`}
+              className={`absolute -translate-x-1/2 -translate-y-1/2 flex items-center justify-center w-12 h-12 group/marker block z-20 ${isEditMode ? 'cursor-move' : 'cursor-pointer'}`}
               style={{ left: `${m.x}%`, top: `${m.y}%` }}
               onMouseEnter={() => !dragItem && setHovered(m.id)}
               onMouseLeave={() => !dragItem && setHovered(null)}
@@ -286,7 +302,7 @@ export const MasterPlan: React.FC<Props> = ({ config, isEditMode, onUpdateMap })
             const pinColor = selectedMarker ? (selectedMarker.type === 'studio' ? '#002D72' : selectedMarker.type === 'pod' ? '#1DBBB4' : '#00AEEF') : '';
             return (
               <div
-                className={`absolute top-4 right-4 sm:top-6 sm:right-6 w-[32%] h-[48%] min-w-[160px] min-h-[200px] z-40 transition-opacity duration-200 rounded-2xl md:rounded-3xl bg-white/95 backdrop-blur-xl p-3 sm:p-4 md:p-5 shadow-2xl flex flex-col overflow-hidden ${isPanelVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+                className={`absolute top-4 right-4 sm:top-6 sm:right-6 w-[32%] h-[48%] min-w-[160px] min-h-[200px] z-50 transition-opacity duration-200 rounded-2xl md:rounded-3xl bg-white/95 backdrop-blur-xl p-2 sm:p-4 md:p-5 shadow-2xl flex flex-col overflow-hidden ${isPanelVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
                 onClick={(e) => e.stopPropagation()}
               >
                 {isPanelVisible && (
@@ -294,7 +310,7 @@ export const MasterPlan: React.FC<Props> = ({ config, isEditMode, onUpdateMap })
                     <button
                       type="button"
                       onClick={(e) => { e.stopPropagation(); setSelectedMarkerId(null); }}
-                      className="absolute top-2 right-2 z-10 w-8 h-8 flex items-center justify-center rounded-full hover:bg-black/10 text-zinc-500 hover:text-zinc-800 transition-colors text-lg leading-none"
+                      className="absolute top-1 right-1 z-10 w-6 h-6 sm:top-2 sm:right-2 sm:w-8 sm:h-8 flex items-center justify-center rounded-full hover:bg-black/10 text-zinc-500 hover:text-zinc-800 transition-colors text-base sm:text-lg leading-none"
                       aria-label="Close"
                     >
                       ×
@@ -306,17 +322,17 @@ export const MasterPlan: React.FC<Props> = ({ config, isEditMode, onUpdateMap })
                       >
                         {/* Front */}
                         <div className="absolute inset-0 flex flex-col" style={{ backfaceVisibility: 'hidden' }}>
-                          <div className="flex-1 min-h-0 rounded-lg overflow-hidden border border-white/10 mb-2">
-                            <img src={selectedCallout!.image} alt="" className="w-full h-full object-cover opacity-80" />
+                          <div className="flex-1 min-h-0 rounded-lg overflow-hidden border border-white/10 mb-1 sm:mb-2">
+                            <img src={selectedCallout!.image} alt="" className="w-full h-full object-contain opacity-80" />
                           </div>
-                          <div className="text-[11px] sm:text-xs md:text-sm font-black tracking-[0.2em] uppercase flex-shrink-0" style={{ color: pinColor }}>
+                          <div className="text-[10px] sm:text-xs md:text-sm font-black tracking-[0.15em] sm:tracking-[0.2em] uppercase flex-shrink-0 leading-tight" style={{ color: pinColor }}>
                             {selectedCallout!.title}
                           </div>
                           {backContent && (
                             <button
                               type="button"
                               onClick={(e) => { e.stopPropagation(); setCalloutFlipped(true); }}
-                              className="mt-2 w-full flex items-center justify-center gap-1 py-1.5 sm:py-2 rounded-lg border border-white/10 hover:bg-black/5 transition-colors text-[9px] sm:text-[10px] md:text-xs font-black uppercase tracking-widest text-slate-600"
+                              className="mt-1 sm:mt-2 w-full flex items-center justify-center gap-0.5 sm:gap-1 py-1 sm:py-2 rounded-lg border border-white/10 hover:bg-black/5 transition-colors text-[8px] sm:text-[10px] md:text-xs font-black uppercase tracking-widest text-slate-600"
                             >
                               More info
                               <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
@@ -329,11 +345,11 @@ export const MasterPlan: React.FC<Props> = ({ config, isEditMode, onUpdateMap })
                             className="absolute inset-0 flex flex-col overflow-y-auto"
                             style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
                           >
-                            <div className="text-[10px] sm:text-[11px] md:text-xs font-black tracking-[0.15em] uppercase mb-2 text-center flex-shrink-0 pt-[25pt]" style={{ color: pinColor }}>
+                            <div className="text-[10px] sm:text-[11px] md:text-xs font-black tracking-[0.1em] sm:tracking-[0.15em] uppercase mb-1 sm:mb-2 text-center flex-shrink-0 pt-2 sm:pt-[25pt] leading-tight" style={{ color: pinColor }}>
                               {backContent.title}
-                              <div className="text-[8px] sm:text-[9px] md:text-[10px] font-bold normal-case tracking-wide mt-0.5" style={{ color: pinColor }}>{backContent.dimensions}</div>
+                              <div className="text-[9px] sm:text-[9px] md:text-[10px] font-bold normal-case tracking-wide mt-0.5" style={{ color: pinColor }}>{backContent.dimensions}</div>
                             </div>
-                            <ul className="space-y-1 sm:space-y-1.5 text-[9px] sm:text-[10px] md:text-xs text-slate-600 font-medium leading-snug flex-1 min-h-0 mb-3 flex flex-col max-w-[80%] mx-auto w-full text-left">
+                            <ul className="space-y-0.5 sm:space-y-1.5 text-[10px] sm:text-[10px] md:text-xs text-slate-600 font-medium leading-snug flex-1 min-h-0 mb-2 sm:mb-3 flex flex-col max-w-[95%] sm:max-w-[80%] mx-auto w-full text-left">
                               {backContent.bullets.map((b, i) => (
                                 <li key={i} className="flex items-center gap-1.5">
                                   <span className="text-slate-500 flex-shrink-0">•</span>
@@ -344,9 +360,9 @@ export const MasterPlan: React.FC<Props> = ({ config, isEditMode, onUpdateMap })
                             <button
                               type="button"
                               onClick={(e) => { e.stopPropagation(); setCalloutFlipped(false); }}
-                              className="w-full flex items-center justify-center gap-1 py-1.5 sm:py-2 rounded-lg border border-white/10 hover:bg-black/5 transition-colors text-[9px] sm:text-[10px] md:text-xs font-black uppercase tracking-widest text-slate-600 flex-shrink-0"
+                              className="w-full flex items-center justify-center gap-0.5 sm:gap-1 py-1 sm:py-2 rounded-lg border border-white/10 hover:bg-black/5 transition-colors text-[8px] sm:text-[10px] md:text-xs font-black uppercase tracking-widest text-slate-600 flex-shrink-0"
                             >
-                              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+                              <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
                               Back
                             </button>
                           </div>
