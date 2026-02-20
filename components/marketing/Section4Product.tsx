@@ -158,6 +158,7 @@ const Section4Product: React.FC<Props> = ({ config }) => {
                <img
                  src= "https://github.com/NFC-FC/NFC-image-hosting/blob/main/FC%20Side%20View-1.png?raw=true"
                  alt="Fitness Court 3D Render"
+                 decoding="async"
                  className="w-full h-auto relative z-10 block"
                  onError={(e) => { e.currentTarget.src = "https://github.com/NFC-FC/NFC-image-hosting/blob/main/FC%20Side%20View-1.png?raw=true"; }}
                />

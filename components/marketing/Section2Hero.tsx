@@ -27,6 +27,8 @@ const Section2Hero: React.FC<Props> = ({ config }) => {
           muted 
           loop 
           playsInline
+          preload="metadata"
+          poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'%3E%3Crect fill='%23020617' width='1' height='1'/%3E%3C/svg%3E"
           className="w-full h-full object-cover contrast-[1.1] brightness-100 opacity-80 transition-opacity duration-1000"
         >
           <source src={config.heroVideo} type="video/mp4" />

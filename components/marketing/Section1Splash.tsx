@@ -36,6 +36,8 @@ const Section1Splash: React.FC<SplashProps> = ({ onEnter, config }) => {
           <img
             src={config.sponsorLogo}
             alt="Sponsor"
+            fetchPriority="high"
+            decoding="async"
             className="h-7 sm:h-8 md:h-10 object-contain max-w-[120px] sm:max-w-none"
           />
           <div className="w-px h-12 bg-white/10 hidden md:block" />
@@ -43,6 +45,8 @@ const Section1Splash: React.FC<SplashProps> = ({ onEnter, config }) => {
           <img
             src={config.cityLogo}
             alt="City Seal"
+            fetchPriority="high"
+            decoding="async"
             className="h-10 sm:h-12 md:h-16 object-contain"
           />
 
@@ -50,6 +54,8 @@ const Section1Splash: React.FC<SplashProps> = ({ onEnter, config }) => {
          <img
             src={config.nfcLogo}
             alt="NFC"
+            fetchPriority="high"
+            decoding="async"
             className="h-10 sm:h-12 md:h-16 object-contain"
           />
         </motion.div>
