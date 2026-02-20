@@ -105,7 +105,7 @@ export const Section8Timeline: React.FC<Props> = ({ config }) => {
             </h3>
             <div className="flex-1 flex items-center justify-center min-h-0">
               <p className="text-[6px] sm:text-[8px] md:text-[10px] lg:text-xs font-bold text-slate-500 italic leading-snug uppercase tracking-tight max-w-[140px] sm:max-w-[180px] md:max-w-[220px]">
-                Infrastructure build‑out and launch preparation through June 15.
+                Healthy Infrastructure build‑out and launch preparation begins.
               </p>
             </div>
           </div>

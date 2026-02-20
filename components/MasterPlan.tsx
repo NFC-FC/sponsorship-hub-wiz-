@@ -27,9 +27,12 @@ export const MasterPlan: React.FC<Props> = ({ config }) => {
           <div className="inline-block px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.3em] mb-4" style={{ backgroundColor: `${config.primaryColor}1A`, color: config.primaryColor }}>
             Deployment Roadmap
           </div>
-          <h2 className="text-5xl md:text-7xl font-black text-white mb-6 uppercase italic tracking-tighter">
-            HEALTHY INFRASTRUCTURE <span style={{ color: config.primaryColor }}>MASTER PLAN.</span>
-          </h2>
+          <h2 className="text-5xl md:text-7xl font-black text-white mb-6 uppercase italic tracking-tighter whitespace-normal">
+            HEALTHY INFRASTRUCTURE
+            <span className="block" style={{ color: config.primaryColor }}>
+              MASTER PLAN.
+             </span>
+           </h2>
           <div className="max-w-3xl">
             <p className="text-white text-xl font-bold uppercase tracking-tight mb-2">
               Prioritizing High-Need Neighborhoods

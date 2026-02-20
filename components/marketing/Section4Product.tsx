@@ -137,7 +137,7 @@ const Section4Product: React.FC<Props> = ({ config }) => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <span className="font-bold tracking-[0.4em] text-[10px] uppercase block mb-4" style={{ color: config.primaryColor }}>Title Sponsorship Tier</span>
+          <span className="font-bold tracking-[0.4em] text-[10px] uppercase block mb-4" style={{ color: config.primaryColor }}>Corporate Benefits </span>
           <h2 className="font-display text-2xl sm:text-3xl md:text-5xl lg:text-6xl text-slate-900 font-black uppercase mb-6 leading-tight break-words">
             Program Value Delivery:<br/>
             <span style={{ color: config.secondaryColor }}>{config.sponsorName} Fitness Court</span>

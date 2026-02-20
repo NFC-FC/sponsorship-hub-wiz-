@@ -49,7 +49,7 @@ export const CivicLeadership: React.FC<Props> = ({ config }) => {
               </p>
 
               <p className="text-gray-400 text-base sm:text-xl font-medium leading-relaxed mb-4 sm:mb-10 max-w-4xl mx-auto">
-                The {config.projectCity} City Council has officially approved the <span className="text-white">Healthy Infrastructure Master Plan</span>, authorizing the deployment of world-class Fitness Courts city-wide. With a committed local funding strategy and National Fitness Campaign contributing over <span className="text-white">{config.investmentAmount || '$500,000'}</span> in planning and management services, this partnership is defining the future of community wellness.
+                The {config.projectCity} City Council has officially approved the <span className="text-white">Healthy Infrastructure Master Plan</span>, authorizing the deployment of world-class Fitness Courts® city-wide. With a committed local funding strategy the City of {config.projectCity} and the National Fitness Campaign have committed over <span className="text-white">{config.investmentAmount || '$500,000'}</span> in capital funding and planning and management services. This partnership is defining the future of community wellness.
               </p>
               
               <div className="flex flex-wrap justify-center gap-4">

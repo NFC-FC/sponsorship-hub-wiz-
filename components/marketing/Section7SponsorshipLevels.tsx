@@ -17,7 +17,7 @@ const Section7SponsorshipLevels: React.FC<Props> = ({ config }) => {
     {
       id: 'title',
       title: 'Title Sponsor',
-      subtitle: 'Primary Infrastructure Partner',
+      subtitle: 'Program Tier',
       description: 'The highest tier of community alignment, providing permanent name-in-title visibility across the entire city-wide network.',
       detailsImage: 'https://raw.githubusercontent.com/NFC-FC/NFC-image-hosting/main/TITLE%20SPONSOR.png',
       icon: (
@@ -30,8 +30,8 @@ const Section7SponsorshipLevels: React.FC<Props> = ({ config }) => {
     {
       id: 'presenting',
       title: 'Presenting Sponsor',
-      subtitle: 'Program Tier Partner',
-      description: 'Strategic alignment with specific neighborhood hubs and program-based activation opportunities city-wide.',
+      subtitle: 'Program Tier',
+      description: 'Proudly Presenting the Local Campaign to the Community with strategic alignment and activation opportunities.',
       detailsImage: 'https://github.com/olivialem/NFC-FC/blob/main/Presenting%20Sponsor%20Funding%20Card.png?raw=true',
       icon: (
         <img 
@@ -72,20 +72,20 @@ const Section7SponsorshipLevels: React.FC<Props> = ({ config }) => {
               className="group cursor-pointer bg-white rounded-2xl sm:rounded-[3.5rem] overflow-hidden shadow-xl border border-slate-100 flex flex-col hover:-translate-y-2 transition-transform duration-500"
             >
               <div 
-                className="aspect-[16/10] flex items-center justify-center relative overflow-hidden"
+                className="aspect-[16/10] flex flex-col justify-between relative overflow-hidden p-4 sm:p-6 md:p-8"
                 style={{ backgroundColor: level.color }}
               >
                 <div className="absolute right-0 bottom-0 w-full h-full opacity-10 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
                 <motion.div
                   whileHover={{ scale: 1.1, rotate: 5 }}
-                  className="relative z-10 hidden sm:block"
+                  className="relative z-10 hidden lg:flex flex-shrink-0 justify-center pt-2 sm:pt-4"
                 >
                   {level.icon}
                 </motion.div>
                 
-                <div className="absolute bottom-4 sm:bottom-8 left-4 sm:left-8">
+                <div className="relative z-10 flex flex-col justify-end min-h-0">
                   <span className="text-white/60 font-black uppercase tracking-[0.3em] text-[9px] sm:text-[10px] block mb-1 sm:mb-2">{level.subtitle}</span>
-                  <h3 className="text-white text-lg sm:text-3xl font-black uppercase italic tracking-tighter leading-none">{level.title}</h3>
+                  <h3 className="text-white text-lg sm:text-2xl md:text-3xl font-black uppercase italic tracking-tighter leading-none">{level.title}</h3>
                 </div>
               </div>
               <div className="p-4 sm:p-10 flex flex-col flex-1">

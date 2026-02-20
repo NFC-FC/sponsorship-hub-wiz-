@@ -38,10 +38,10 @@ export const Footer: React.FC<Props> = ({ config }) => {
             <div className="text-center mb-6 sm:mb-8 md:mb-12 px-2 sm:px-4 md:px-12 min-w-0 w-full">
               <h3 className="text-xs sm:text-lg md:text-3xl lg:text-5xl italic uppercase tracking-tighter leading-tight break-words">
                 <span className="font-black" style={{ color: config.primaryColor }}>
-                  {config.sponsorName.toUpperCase()} DELIVERS $10M OF HEALTHY INFRASTRUCTURE COSTS TO {config.projectCity.toUpperCase()},
+                  {config.sponsorName.toUpperCase()} DELIVERS $10M DOLLAR COMMUNITY WELLNESS CAMPAIGN ACROSS THE CITY OF {config.projectCity.toUpperCase()},
                 </span>{' '}
-                <span className="font-bold" style={{ color: config.secondaryColor }}>
-                  MAKING WORLD-CLASS FITNESS FREE FOR HUNDREDS OF THOUSANDS OF RESIDENTS.
+                <span className="font-bold" style={{ color: config.secondaryColor }}> 
+                  TO IMPROVE HEALTH AND HAPPINESS FOR HUNDREDS OF THOUSANDS OF RESIDENTS.
                 </span>
               </h3>
             </div>
@@ -90,7 +90,7 @@ export const Footer: React.FC<Props> = ({ config }) => {
         <div className="w-full mt-10 sm:mt-16 md:mt-20">
           <div className="container mx-auto px-4 sm:px-6 flex flex-col md:flex-row justify-between items-center gap-4 w-full min-w-0">
             <p className="text-[9px] text-white/40 font-black uppercase tracking-[0.4em]">
-              © {new Date().getFullYear()} National Fitness Campaign • Public-Private Infrastructure Briefing
+              © {new Date().getFullYear()} National Fitness Campaign • National Wellness Innovation Zone Briefing
             </p>
             <div className="flex gap-6 opacity-40 text-[8px] font-black uppercase tracking-[0.15em] text-white">
               <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>

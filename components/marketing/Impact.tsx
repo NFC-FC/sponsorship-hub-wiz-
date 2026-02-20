@@ -45,17 +45,17 @@ export const Impact: React.FC<Props> = ({ config }) => {
         </div>
 
         <div className="grid lg:grid-cols-3 gap-8 items-stretch">
-          <div className="lg:col-span-2 glass p-8 rounded-[3rem] h-[345px] sm:h-[500px] border-white/5 shadow-2xl flex flex-col">
+          <div className="lg:col-span-2 glass p-8 rounded-[3rem] h-[345px] sm:h-[500px] lg:min-h-0 lg:h-full border-white/5 shadow-2xl flex flex-col">
             <div className="flex justify-between items-center mb-8">
               <div>
                 <h3 className="text-sm font-black uppercase tracking-[0.4em] text-white" style={{ color: config.primaryColor }}>Projected Healthcare Savings</h3>
-                <p className="text-[9px] font-bold text-white/30 tracking-widest uppercase mt-1">Cumulative USD Impact (Millions)</p>
+                <p className="text-xs sm:text-sm font-bold text-white tracking-widest uppercase mt-1">Cumulative USD Impact (Millions)</p>
               </div>
-              <div className="text-[10px] font-bold text-white/30 tracking-widest uppercase">10-Year Roadmap</div>
+              <div className="text-xs sm:text-sm font-bold text-white tracking-widest uppercase">10-Year Roadmap</div>
             </div>
             <div className="flex-grow w-full relative">
               <ResponsiveContainer width="100%" height="100%">
-                <AreaChart data={savingsData} margin={{ top: 10, right: 10, left: -10, bottom: 0 }}>
+                <AreaChart data={savingsData} margin={{ top: 10, right: 10, left: -10, bottom: 28 }}>
                   <defs>
                     <linearGradient id="impactAreaGradient" x1="0" y1="0" x2="0" y2="1">
                       <stop offset="5%" stopColor={config.primaryColor} stopOpacity={0.4}/>
@@ -65,9 +65,8 @@ export const Impact: React.FC<Props> = ({ config }) => {
                   <CartesianGrid vertical={false} stroke="rgba(255,255,255,0.05)" strokeDasharray="3 3" />
                   <XAxis 
                     dataKey="year" 
-                    stroke="#444" 
-                    fontSize={10} 
-                    fontWeight="900" 
+                    stroke="rgba(255,255,255,0.3)" 
+                    tick={{ fill: '#fff', fontSize: 12, fontWeight: 900 }}
                     tickLine={false} 
                     axisLine={false}
                     dy={15}
@@ -103,22 +102,22 @@ export const Impact: React.FC<Props> = ({ config }) => {
           <div className="grid grid-cols-3 lg:flex lg:flex-col gap-3 lg:gap-6">
             <div className="glass p-4 sm:p-8 rounded-[1.5rem] sm:rounded-[2.5rem] flex-1 flex flex-col justify-center border-white/5 relative overflow-hidden group">
               <div className="text-2xl sm:text-4xl lg:text-5xl font-black text-white mb-1 tracking-tighter">{config.communityAccess ?? '650k+'}</div>
-              <div className="uppercase text-[8px] sm:text-[9px] font-black tracking-[0.4em]" style={{ color: config.primaryColor }}>Community Access</div>
-              <p className="hidden sm:block text-[10px] text-white mt-3 leading-relaxed">Residents served by 10 min accessibility radius.</p>
+              <div className="uppercase text-[11px] sm:text-sm font-black tracking-[0.4em]" style={{ color: config.primaryColor }}>Community Access</div>
+              <p className="hidden sm:block text-xs sm:text-sm text-white mt-3 leading-relaxed">Residents served by 10 min accessibility radius.</p>
               <div className="absolute top-0 right-0 w-24 h-24 bg-white/5 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-transform duration-700 pointer-events-none" />
             </div>
 
             <div className="glass p-4 sm:p-8 rounded-[1.5rem] sm:rounded-[2.5rem] flex-1 flex flex-col justify-center border-white/5 relative overflow-hidden group">
               <div className="text-2xl sm:text-4xl lg:text-5xl font-black text-white mb-1 tracking-tighter">{config.annualUses ?? '250k+'}</div>
-              <div className="uppercase text-[8px] sm:text-[9px] font-black tracking-[0.4em]" style={{ color: config.secondaryColor }}>Annual Uses</div>
-              <p className="hidden sm:block text-[10px] text-white mt-3 leading-relaxed">Projected annual workout sessions across the city-wide network.</p>
+              <div className="uppercase text-[11px] sm:text-sm font-black tracking-[0.4em]" style={{ color: config.secondaryColor }}>Annual Uses</div>
+              <p className="hidden sm:block text-xs sm:text-sm text-white mt-3 leading-relaxed">Projected annual workout sessions across the city-wide network.</p>
               <div className="absolute top-0 right-0 w-24 h-24 bg-white/5 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-transform duration-700 pointer-events-none" />
             </div>
 
             <div className="glass p-4 sm:p-8 rounded-[1.5rem] sm:rounded-[2.5rem] flex-1 flex flex-col justify-center border-white/5 relative overflow-hidden group">
               <div className="text-2xl sm:text-4xl lg:text-5xl font-black text-white mb-1 tracking-tighter">{config.caloriesBurned ?? '25M+'}</div>
-              <div className="uppercase text-[8px] sm:text-[9px] font-black tracking-[0.4em]" style={{ color: config.accentColor }}>Calories Burned</div>
-              <p className="hidden sm:block text-[10px] text-white mt-3 leading-relaxed">Cumulative active energy expenditure contributing to lower BMI city-wide.</p>
+              <div className="uppercase text-[11px] sm:text-sm font-black tracking-[0.4em]" style={{ color: config.accentColor }}>Calories Burned</div>
+              <p className="hidden sm:block text-xs sm:text-sm text-white mt-3 leading-relaxed">Cumulative active energy expenditure contributing to lower BMI city-wide.</p>
               <div className="absolute top-0 right-0 w-24 h-24 bg-white/5 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-transform duration-700 pointer-events-none" />
             </div>
           </div>
