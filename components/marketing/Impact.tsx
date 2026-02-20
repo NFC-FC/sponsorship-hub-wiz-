@@ -45,7 +45,7 @@ export const Impact: React.FC<Props> = ({ config }) => {
         </div>
 
         <div className="grid lg:grid-cols-3 gap-8 items-stretch">
-          <div className="lg:col-span-2 glass p-8 rounded-[3rem] min-h-[300px] sm:min-h-[400px] lg:min-h-0 lg:h-full border-white/5 shadow-2xl flex flex-col">
+          <div className="lg:col-span-2 glass p-8 rounded-[3rem] h-[395px] sm:h-[500px] lg:min-h-0 lg:h-full border-white/5 shadow-2xl flex flex-col">
             <div className="flex justify-between items-center mb-8">
               <div>
                 <h3 className="text-sm font-black uppercase tracking-[0.4em] text-white" style={{ color: config.primaryColor }}>Projected Healthcare Savings</h3>

@@ -8,14 +8,97 @@ interface Props {
   onUpdateMap?: (markers: MapMarker[], callouts: MapCallout[]) => void;
 }
 
+const CALLOUT_BACK_CONTENT: Record<'studio' | 'standard' | 'pod', { title: string; dimensions: string; bullets: string[] }> = {
+  pod: {
+    title: "FITNESS COURT® POD",
+    dimensions: "(16' x 16')",
+    bullets: [
+      'Compact footprint. Full-body training.',
+      'Designed for parks, trails, and urban spaces.',
+      'Delivers big impact in small community spaces.',
+    ],
+  },
+  standard: {
+    title: "FITNESS COURT®",
+    dimensions: "(32' x 32')",
+    bullets: [
+      'Complete outdoor bodyweight training system.',
+      'Built for all ability levels.',
+      '7 functional zones. Thousands of workout combinations.',
+    ],
+  },
+  studio: {
+    title: "FITNESS COURT® STUDIO",
+    dimensions: "(32' x 73')",
+    bullets: [
+      'Expands programming with dedicated class space.',
+      'Ideal for yoga, Zumba, Pilates, dance & more.',
+      'Creates a flexible outdoor wellness hub.',
+    ],
+  },
+};
+
+function getCalloutForMarkerType(
+  callouts: MapCallout[],
+  type: MapMarker['type']
+): MapCallout | null {
+  if (type === 'existing') return null;
+  return (
+    callouts.find((c) => {
+      const t = c.title.toUpperCase();
+      if (type === 'studio') return t.includes('STUDIO') && !t.includes('POD');
+      if (type === 'pod') return t.includes('POD');
+      if (type === 'standard') return t.includes('FITNESS COURT') && !t.includes('STUDIO') && !t.includes('POD');
+      return false;
+    }) ?? null
+  );
+}
+
 export const MasterPlan: React.FC<Props> = ({ config, isEditMode, onUpdateMap }) => {
   const [hovered, setHovered] = useState<string | null>(null);
+  const [selectedMarkerId, setSelectedMarkerId] = useState<string | null>(null);
+  const [calloutFlipped, setCalloutFlipped] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const [dragItem, setDragItem] = useState<{ id: string, type: 'marker' | 'callout' } | null>(null);
-  const [keyVisible, setKeyVisible] = useState(false);
+  const [keyVisible, setKeyVisible] = useState(true);
+  const [showExploreHint, setShowExploreHint] = useState(true);
 
   const markers = config.markers || [];
   const callouts = config.callouts || [];
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const el = containerRef.current;
+    let timeoutId: ReturnType<typeof setTimeout> | null = null;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries[0]?.isIntersecting || timeoutId !== null) return;
+        timeoutId = setTimeout(() => {
+          setShowExploreHint(false);
+          timeoutId = null;
+        }, 1800);
+      },
+      { threshold: 0.3 }
+    );
+    observer.observe(el);
+    return () => {
+      observer.disconnect();
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (selectedMarkerId) setShowExploreHint(false);
+  }, [selectedMarkerId]);
+
+  useEffect(() => {
+    setCalloutFlipped(false);
+  }, [selectedMarkerId]);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 767px)');
+    if (mq.matches) setKeyVisible(false);
+  }, []);
 
   const handleMouseDown = (e: React.MouseEvent, id: string, type: 'marker' | 'callout') => {
     if (!isEditMode) return;
@@ -88,7 +171,8 @@ export const MasterPlan: React.FC<Props> = ({ config, isEditMode, onUpdateMap })
         {/* The Interactive Map Component */}
         <div 
           ref={containerRef}
-          className="relative aspect-[16/18] md:aspect-[16/14] lg:aspect-[16/11] bg-[#1a1a1a] rounded-[3rem] overflow-hidden border border-white/5 shadow-[0_0_100px_rgba(0,156,220,0.15)]"
+          className="relative aspect-[16/11] bg-[#1a1a1a] rounded-[3rem] overflow-hidden border border-white/5 shadow-[0_0_100px_rgba(0,156,220,0.15)]"
+          onClick={() => !isEditMode && setSelectedMarkerId(null)}
         >
           
           {/* Base Map Image - Stylized Grid */}
@@ -97,15 +181,25 @@ export const MasterPlan: React.FC<Props> = ({ config, isEditMode, onUpdateMap })
             style={{ 
               backgroundImage: `url('${config.masterPlanBackground}')`, 
             }}
-          />
+          >
+            <div
+              className={`absolute inset-0 flex items-center justify-center pointer-events-none transition-opacity duration-500 ${
+                showExploreHint ? 'opacity-100' : 'opacity-0'
+              }`}
+            >
+              <p className="text-white/90 text-center text-sm sm:text-base font-bold uppercase tracking-[0.2em] px-4 drop-shadow-lg">
+                Click and explore locations to learn more
+              </p>
+            </div>
+          </div>
           
           {/* Subtle Grid Overlay */}
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/graphy-dark.png')] opacity-20 pointer-events-none"></div>
 
-          {/* KEY (Legend) - Collapsed by default; inset so not cut off by rounded corners */}
-          <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-30 origin-top-left max-w-[calc(100%-2rem)] max-h-[calc(100%-2rem)]">
+          {/* KEY (Legend) - Open by default; right-aligned */}
+          <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-30 origin-top-right max-w-[calc(100%-2rem)] max-h-[calc(100%-2rem)]">
             {keyVisible ? (
-              <div className="w-56 md:w-64 bg-white/90 backdrop-blur-xl p-3 sm:p-4 md:p-6 rounded-xl sm:rounded-2xl border border-white/10 shadow-2xl scale-95 sm:scale-90 md:scale-100">
+              <div className="w-56 md:w-64 bg-white/90 backdrop-blur-xl p-3 sm:p-4 md:p-6 rounded-xl sm:rounded-2xl border border-white/10 shadow-2xl scale-[0.7] sm:scale-90 md:scale-100 origin-top-right">
                 <button
                   type="button"
                   onClick={() => setKeyVisible(false)}
@@ -121,13 +215,13 @@ export const MasterPlan: React.FC<Props> = ({ config, isEditMode, onUpdateMap })
                     <span className="text-[8px] font-bold text-zinc-700 uppercase tracking-widest">Proposed Fitness Court Studio</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <div className="w-5 h-5 rounded-full flex items-center justify-center border border-white/20 shadow-lg" style={{ backgroundColor: config.primaryColor }}>
+                    <div className="w-5 h-5 rounded-full flex items-center justify-center border border-white/20 shadow-lg bg-[#00AEEF] shadow-[#00AEEF]/40">
                       <div className="w-2 h-2 bg-white rounded-full"></div>
                     </div>
                     <span className="text-[8px] font-bold text-zinc-700 uppercase tracking-widest">Proposed Fitness Court</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <div className="w-5 h-5 rounded-full bg-gray-600 flex items-center justify-center border border-white/20">
+                    <div className="w-5 h-5 rounded-full bg-gray-500 flex items-center justify-center border border-white/20">
                       <div className="w-2 h-2 bg-white rounded-full"></div>
                     </div>
                     <span className="text-[8px] font-bold text-zinc-700 uppercase tracking-widest">Existing Fitness Court</span>
@@ -139,7 +233,7 @@ export const MasterPlan: React.FC<Props> = ({ config, isEditMode, onUpdateMap })
                     <span className="text-[8px] font-bold text-zinc-700 uppercase tracking-widest">Proposed Fitness Court Pod</span>
                   </div>
                   <div className="flex items-center gap-3 pt-1">
-                    <div className="w-5 h-5 rounded-full border border-white/20" style={{ backgroundColor: `${config.primaryColor}33` }}></div>
+                    <div className="w-5 h-5 rounded-full border border-white/20 bg-[#00AEEF]/20"></div>
                     <span className="text-[8px] font-bold text-zinc-700 uppercase tracking-widest leading-tight">10 Min Bike Radius Accessibility</span>
                   </div>
                 </div>
@@ -165,78 +259,123 @@ export const MasterPlan: React.FC<Props> = ({ config, isEditMode, onUpdateMap })
                 top: `${m.y}%`, 
                 width: '14%', 
                 height: '24%',
-                backgroundColor: `${config.primaryColor}1A`,
+                backgroundColor: '#00AEEF1A',
                 opacity: hovered === m.id ? 0.8 : 0.4
               }}
             />
           ))}
 
-          {/* Interactive Custom Markers — hidden on mobile to reduce clutter; visible from md up */}
-          {markers.map((m) => (
+          {/* Interactive Custom Markers — visible on all breakpoints */}
+          {markers.map((m) => {
+            const callout = getCalloutForMarkerType(callouts, m.type);
+            const isSelected = selectedMarkerId === m.id;
+            return (
             <div
               key={m.id}
-              className={`absolute -translate-x-1/2 -translate-y-1/2 z-20 group/marker hidden md:block ${isEditMode ? 'cursor-move' : 'cursor-pointer'}`}
+              className={`absolute -translate-x-1/2 -translate-y-1/2 flex items-center justify-center w-12 h-12 group/marker block z-20 ${isEditMode ? 'cursor-move' : 'cursor-pointer'}`}
               style={{ left: `${m.x}%`, top: `${m.y}%` }}
               onMouseEnter={() => !dragItem && setHovered(m.id)}
               onMouseLeave={() => !dragItem && setHovered(null)}
               onMouseDown={(e) => handleMouseDown(e, m.id, 'marker')}
+              onClick={(e) => {
+                if (isEditMode) return;
+                e.stopPropagation();
+                setSelectedMarkerId((prev) => (prev === m.id ? null : m.id));
+              }}
             >
-              <div className={`w-3.5 h-3.5 sm:w-8 sm:h-8 rounded-full border-2 sm:border-[2px] border-white flex items-center justify-center shadow-xl transition-all ${hovered === m.id ? 'scale-125' : ''} ${
+              <div className={`w-[15.3px] h-[15.3px] sm:w-[21.3px] sm:h-[21.3px] rounded-full border border-[1px] sm:border-[2px] border-white flex items-center justify-center shadow-xl transition-transform ${(hovered === m.id || isSelected) ? 'scale-125' : ''} ${
                 m.type === 'studio' ? 'bg-[#002D72]' : 
                 m.type === 'pod' ? 'bg-[#1DBBB4]' : 
-                m.type === 'existing' ? 'bg-gray-700' : ''
-              }`} style={m.type === 'standard' ? { backgroundColor: config.primaryColor } : {}}>
-                <div className="w-1 h-1 sm:w-2 sm:h-2 bg-white rounded-full animate-pulse"></div>
-              </div>
-              
-              {/* Popup: hidden on mobile, visible from sm up */}
-              {(hovered === m.id || (dragItem && dragItem.id === m.id)) && (
-                <div className="hidden sm:block absolute top-full left-1/2 -translate-x-1/2 mt-1 glass p-4 rounded-xl border-white/10 shadow-2xl min-w-[150px] z-50 pointer-events-none">
-                  <div className="text-[9px] font-black uppercase tracking-widest mb-1" style={{ color: config.primaryColor }}>
-                    {m.type === 'studio' ? 'Proposed Fitness Court Studio' : 
-                     m.type === 'pod' ? 'Proposed Fitness Court Pod' :
-                     m.type === 'existing' ? 'Existing Fitness Court' : 'Proposed Fitness Court'}
-                  </div>
-                  <div className="mt-2 h-[1px] bg-white/10 w-full"></div>
-                  <div className="text-[8px] text-gray-500 mt-2 uppercase font-black">{m.name}</div>
-                  {isEditMode && <div className="text-[7px] text-[#009cdc] font-black uppercase mt-1">Dragging Enabled</div>}
-                </div>
-              )}
-            </div>
-          ))}
-
-          {/* Isometric Callouts — hidden on mobile to avoid clutter */}
-          {callouts.map((c) => (
-            <div 
-              key={c.id}
-              className={`absolute z-10 -translate-x-1/2 -translate-y-1/2 transition-transform hidden md:block ${isEditMode ? 'cursor-move' : ''}`}
-              style={{ left: `${c.x}%`, top: `${c.y}%` }}
-              onMouseDown={(e) => handleMouseDown(e, c.id, 'callout')}
-            >
-              <div className="relative group">
-                <div 
-                  className={`absolute w-[1px] h-32 -left-10 -top-16 opacity-40 transition-transform ${c.x > 50 ? 'rotate-[130deg]' : '-rotate-[130deg]'}`}
-                  style={{ backgroundImage: `linear-gradient(to top, ${c.colorType === 'primary' ? config.primaryColor : c.colorType === 'secondary' ? config.secondaryColor : '#1DBBB4'}, transparent)` }}
-                ></div>
-                <div className="glass p-3 rounded-2xl border-white/10 w-48 shadow-2xl backdrop-blur-2xl transition-transform hover:-translate-y-1">
-                  <div className="w-full aspect-[16/10] bg-white/5 rounded-lg mb-3 overflow-hidden border border-white/5">
-                    <img src={c.image} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" />
-                  </div>
-                  <div 
-                    className="text-[10px] font-black tracking-[0.2em] uppercase" 
-                    style={{ color: c.colorType === 'primary' ? config.primaryColor : c.colorType === 'secondary' ? config.secondaryColor : '#1DBBB4' }}
-                  >
-                    {c.title}
-                  </div>
-                  {isEditMode && (
-                     <div className="mt-2 text-[7px] font-black text-zinc-600 uppercase tracking-widest text-center border-t border-white/5 pt-2">Drag to Reposition</div>
-                  )}
-                </div>
+                m.type === 'existing' ? 'bg-gray-500' : ''
+              }`} style={m.type === 'standard' ? { backgroundColor: '#00AEEF' } : {}}>
+                <div className="w-[4.4px] h-[4.4px] sm:w-[5.3px] sm:h-[5.3px] bg-white rounded-full animate-pulse"></div>
               </div>
             </div>
-          ))}
+          );})}
 
-        </div>
+          {/* Fixed detail panel — shows when a pin is selected */}
+          {(() => {
+            const selectedMarker = markers.find((m) => m.id === selectedMarkerId);
+            const selectedCallout = selectedMarker ? getCalloutForMarkerType(callouts, selectedMarker.type) : null;
+            const isPanelVisible = !!(selectedMarker && selectedCallout);
+            const backContent = selectedMarker && selectedMarker.type !== 'existing' ? CALLOUT_BACK_CONTENT[selectedMarker.type] : null;
+            const pinColor = selectedMarker ? (selectedMarker.type === 'studio' ? '#002D72' : selectedMarker.type === 'pod' ? '#1DBBB4' : '#00AEEF') : '';
+            return (
+              <div
+                className={`absolute top-4 right-4 sm:top-6 sm:right-6 w-[32%] h-[48%] min-w-[160px] min-h-[200px] z-50 transition-opacity duration-200 rounded-2xl md:rounded-3xl bg-white/95 backdrop-blur-xl p-2 sm:p-4 md:p-5 shadow-2xl flex flex-col overflow-hidden ${isPanelVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+                onClick={(e) => e.stopPropagation()}
+              >
+                {isPanelVisible && (
+                  <>
+                    <button
+                      type="button"
+                      onClick={(e) => { e.stopPropagation(); setSelectedMarkerId(null); }}
+                      className="absolute top-1 right-1 z-10 w-6 h-6 sm:top-2 sm:right-2 sm:w-8 sm:h-8 flex items-center justify-center rounded-full hover:bg-black/10 text-zinc-500 hover:text-zinc-800 transition-colors text-base sm:text-lg leading-none"
+                      aria-label="Close"
+                    >
+                      ×
+                    </button>
+                    <div className="flex-1 min-h-0 flex flex-col" style={{ perspective: '1000px' }}>
+                      <div
+                        className="relative w-full h-full flex-1 min-h-0 transition-transform duration-500"
+                        style={{ transformStyle: 'preserve-3d', transform: calloutFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)' }}
+                      >
+                        {/* Front */}
+                        <div className="absolute inset-0 flex flex-col" style={{ backfaceVisibility: 'hidden' }}>
+                          <div className="flex-1 min-h-0 rounded-lg overflow-hidden border border-white/10 mb-1 sm:mb-2">
+                            <img src={selectedCallout!.image} alt="" className="w-full h-full object-contain opacity-80" />
+                          </div>
+                          <div className="text-[10px] sm:text-xs md:text-sm font-black tracking-[0.15em] sm:tracking-[0.2em] uppercase flex-shrink-0 leading-tight" style={{ color: pinColor }}>
+                            {selectedCallout!.title}
+                          </div>
+                          {backContent && (
+                            <button
+                              type="button"
+                              onClick={(e) => { e.stopPropagation(); setCalloutFlipped(true); }}
+                              className="mt-1 sm:mt-2 w-full flex items-center justify-center gap-0.5 sm:gap-1 py-1 sm:py-2 rounded-lg border border-white/10 hover:bg-black/5 transition-colors text-[8px] sm:text-[10px] md:text-xs font-black uppercase tracking-widest text-slate-600"
+                            >
+                              More info
+                              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                            </button>
+                          )}
+                        </div>
+                        {/* Back */}
+                        {backContent && (
+                          <div
+                            className="absolute inset-0 flex flex-col overflow-y-auto"
+                            style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
+                          >
+                            <div className="text-[10px] sm:text-[11px] md:text-xs font-black tracking-[0.1em] sm:tracking-[0.15em] uppercase mb-1 sm:mb-2 text-center flex-shrink-0 pt-2 sm:pt-[25pt] leading-tight" style={{ color: pinColor }}>
+                              {backContent.title}
+                              <div className="text-[9px] sm:text-[9px] md:text-[10px] font-bold normal-case tracking-wide mt-0.5" style={{ color: pinColor }}>{backContent.dimensions}</div>
+                            </div>
+                            <ul className="space-y-0.5 sm:space-y-1.5 text-[10px] sm:text-[10px] md:text-xs text-slate-600 font-medium leading-snug flex-1 min-h-0 mb-2 sm:mb-3 flex flex-col max-w-[95%] sm:max-w-[80%] mx-auto w-full text-left">
+                              {backContent.bullets.map((b, i) => (
+                                <li key={i} className="flex items-center gap-1.5">
+                                  <span className="text-slate-500 flex-shrink-0">•</span>
+                                  <span>{b}</span>
+                                </li>
+                              ))}
+                            </ul>
+                            <button
+                              type="button"
+                              onClick={(e) => { e.stopPropagation(); setCalloutFlipped(false); }}
+                              className="w-full flex items-center justify-center gap-0.5 sm:gap-1 py-1 sm:py-2 rounded-lg border border-white/10 hover:bg-black/5 transition-colors text-[8px] sm:text-[10px] md:text-xs font-black uppercase tracking-widest text-slate-600 flex-shrink-0"
+                            >
+                              <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+                              Back
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </>
+                )}
+              </div>
+            );
+          })()}
+
+                  </div>
       </div>
     </div>
   );
