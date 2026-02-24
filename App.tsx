@@ -474,6 +474,17 @@ const App: React.FC = () => {
       () => allSponsorsMerged.find((s) => s.id === id) || allSponsorsMerged[0],
       [id, allSponsorsMerged]
     );
+
+    useEffect(() => {
+      if (active && (window as any).gtag) {
+        (window as any).gtag('event', 'portal_opened', {
+          portal_id: active.id,
+          portal_sponsor: active.sponsorName,
+          portal_city: active.projectCity,
+        });
+      }
+    }, [active?.id]);
+
     return active ? (
       <Suspense fallback={<div className="min-h-screen bg-[#020617] flex items-center justify-center"><span className="text-white/60 text-sm">Loading...</span></div>}>
         <SitePreviewPage config={active} />
