@@ -22,7 +22,7 @@ const Section3Reality: React.FC<Props> = ({ config }) => {
   const textX = useTransform(scrollYProgress, [0, 0.5, 1], [-30, 0, 30]);
 
   return (
-    <section ref={containerRef} className="relative min-h-[100vh] flex items-center justify-center py-12 sm:py-24 bg-[#020617] w-full max-w-[100vw] overflow-hidden">
+    <section ref={containerRef} className="relative min-h-[100vh] flex items-center justify-center pt-5 pb-10 sm:pt-16 sm:pb-20 bg-[#020617] w-full max-w-[100vw] overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 relative z-10 w-full min-w-0">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-24 items-center">
           

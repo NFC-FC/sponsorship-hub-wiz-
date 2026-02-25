@@ -21,7 +21,7 @@ const SectionProgramAlignment: React.FC<Props> = ({ config }) => {
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
-          className="text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-black text-white mb-6 uppercase italic tracking-tighter leading-tight break-words text-center"
+          className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-white mb-10 uppercase italic tracking-tighter leading-tight break-words text-center"
         >
           <span style={{ color: config.primaryColor }}>{config.sponsorName}</span> PROGRAM ALIGNMENT
         </motion.h2>
