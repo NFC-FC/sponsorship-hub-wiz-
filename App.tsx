@@ -85,6 +85,7 @@ export interface SiteConfig {
   existingSiteLaunchDate?: string;
   existingSiteName?: string;
   existingSiteAddress?: string;
+  programAlignmentCards?: string[];
 }
 
 /**
@@ -119,6 +120,7 @@ export interface CityTemplate {
   existingSiteLaunchDate?: string;
   existingSiteName?: string;
   existingSiteAddress?: string;
+  programAlignmentCards?: string[];
 }
 
 /**

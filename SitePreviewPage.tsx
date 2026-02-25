@@ -6,6 +6,7 @@ import type { SiteConfig } from './App';
 import Section1Splash from './components/marketing/Section1Splash';
 import Section2Hero from './components/marketing/Section2Hero';
 import { FullWidthVideo } from './components/marketing/FullWidthVideo';
+import SectionProgramAlignment from './components/marketing/SectionProgramAlignment';
 import Section3Reality from './components/marketing/Section3Reality';
 import { CivicLeadership } from './components/marketing/CivicLeadership';
 import { MasterPlan } from './components/marketing/MasterPlan';
@@ -55,6 +56,7 @@ export const SitePreviewPage: React.FC<{ config: SiteConfig }> = ({ config }) =>
       >
         <Section2Hero config={config} />
         <FullWidthVideo config={config} />
+        <SectionProgramAlignment config={config} />
         <Section3Reality config={config} />
         <CivicLeadership config={config} />
         <MasterPlan config={config} />

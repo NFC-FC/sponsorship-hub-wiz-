@@ -8,6 +8,7 @@ import Section1Splash from './marketing/Section1Splash';
 import Section2Hero from './marketing/Section2Hero';
 import { FullWidthVideo } from './marketing/FullWidthVideo';
 import { CivicLeadership } from './marketing/CivicLeadership';
+import SectionProgramAlignment from './marketing/SectionProgramAlignment';
 import Section3Reality from './marketing/Section3Reality';
 import { MasterPlan } from './marketing/MasterPlan';
 import { Impact } from './marketing/Impact';
@@ -239,6 +240,24 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ city, sponsorId, isOpen,
     handleUpdateField('wardNames', nextWardNames);
   };
 
+  const programAlignmentCards = isEditingSponsor
+    ? (localSponsor?.overrides.programAlignmentCards ?? localTemplate.programAlignmentCards ?? [])
+    : (localTemplate.programAlignmentCards ?? []);
+
+  const handleAddProgramAlignmentCard = () => {
+    handleUpdateField('programAlignmentCards', [...programAlignmentCards, '']);
+  };
+
+  const handleRemoveProgramAlignmentCard = (index: number) => {
+    handleUpdateField('programAlignmentCards', programAlignmentCards.filter((_, i) => i !== index));
+  };
+
+  const handleUpdateProgramAlignmentCard = (index: number, value: string) => {
+    const next = [...programAlignmentCards];
+    next[index] = value;
+    handleUpdateField('programAlignmentCards', next);
+  };
+
   const handleSave = () => {
     if (isEditingSponsor) {
       onUpdate(localSponsor);
@@ -336,6 +355,41 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ city, sponsorId, isOpen,
                   onChange={(val) => handleUpdateField('sponsorRender', val)}
                   isOverridden={localSponsor.overrides.sponsorRender !== undefined}
                 />
+                <section className="space-y-8">
+                  <div className="flex justify-between items-center border-b border-white/5 pb-4">
+                    <h3 className="text-[10px] font-black text-[#009cdc] uppercase tracking-[0.4em]">Program Alignment</h3>
+                    <button
+                      onClick={handleAddProgramAlignmentCard}
+                      className="text-[8px] font-black uppercase tracking-widest px-3 py-1 bg-white/5 hover:bg-white/10 rounded-lg text-zinc-400 hover:text-white transition-colors"
+                    >
+                      + Add card
+                    </button>
+                  </div>
+                  <p className="text-[9px] text-zinc-500 font-bold leading-relaxed">Cards for “{localSponsor.sponsorName} program alignment” (overrides city default).</p>
+                  <div className="space-y-4">
+                    {programAlignmentCards.map((text, index) => (
+                      <div key={index} className="p-4 bg-white/5 rounded-2xl border border-white/5 relative group/card">
+                        <button
+                          onClick={() => handleRemoveProgramAlignmentCard(index)}
+                          className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white flex items-center justify-center transition-all opacity-0 group-hover/card:opacity-100"
+                        >
+                          ✕
+                        </button>
+                        <label className="text-[7px] font-black uppercase text-zinc-600 tracking-widest block mb-2">Card {index + 1}</label>
+                        <textarea
+                          value={text}
+                          onChange={(e) => handleUpdateProgramAlignmentCard(index, e.target.value)}
+                          placeholder="e.g. CHNA Priority Alignment: Chronic disease prevention..."
+                          rows={4}
+                          className="w-full bg-black/40 border border-white/5 rounded-lg p-2 text-[11px] text-white placeholder:text-zinc-600 outline-none focus:border-[#009cdc] resize-y min-h-[80px]"
+                        />
+                      </div>
+                    ))}
+                    {programAlignmentCards.length === 0 && (
+                      <p className="text-[9px] text-zinc-700 font-bold uppercase tracking-widest text-center py-2">No cards — click + Add card to add one.</p>
+                    )}
+                  </div>
+                </section>
               </section>
             ) : (
               <>
@@ -473,6 +527,42 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ city, sponsorId, isOpen,
                 </section>
 
                 <section className="space-y-8">
+                  <div className="flex justify-between items-center border-b border-white/5 pb-4">
+                    <h3 className="text-[10px] font-black text-[#009cdc] uppercase tracking-[0.4em]">Program Alignment</h3>
+                    <button
+                      onClick={handleAddProgramAlignmentCard}
+                      className="text-[8px] font-black uppercase tracking-widest px-3 py-1 bg-white/5 hover:bg-white/10 rounded-lg text-zinc-400 hover:text-white transition-colors"
+                    >
+                      + Add card
+                    </button>
+                  </div>
+                  <p className="text-[9px] text-zinc-500 font-bold leading-relaxed">Cards shown in “{isEditingSponsor ? (localSponsor?.sponsorName || 'Sponsor') : 'Sponsor'} program alignment” section. Add 0 or more.</p>
+                  <div className="space-y-4">
+                    {programAlignmentCards.map((text, index) => (
+                      <div key={index} className="p-4 bg-white/5 rounded-2xl border border-white/5 relative group/card">
+                        <button
+                          onClick={() => handleRemoveProgramAlignmentCard(index)}
+                          className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white flex items-center justify-center transition-all opacity-0 group-hover/card:opacity-100"
+                        >
+                          ✕
+                        </button>
+                        <label className="text-[7px] font-black uppercase text-zinc-600 tracking-widest block mb-2">Card {index + 1}</label>
+                        <textarea
+                          value={text}
+                          onChange={(e) => handleUpdateProgramAlignmentCard(index, e.target.value)}
+                          placeholder="e.g. CHNA Priority Alignment: Chronic disease prevention..."
+                          rows={4}
+                          className="w-full bg-black/40 border border-white/5 rounded-lg p-2 text-[11px] text-white placeholder:text-zinc-600 outline-none focus:border-[#009cdc] resize-y min-h-[80px]"
+                        />
+                      </div>
+                    ))}
+                    {programAlignmentCards.length === 0 && (
+                      <p className="text-[9px] text-zinc-700 font-bold uppercase tracking-widest text-center py-2">No cards — click + Add card to add one.</p>
+                    )}
+                  </div>
+                </section>
+
+                <section className="space-y-8">
                   <h3 className="text-[10px] font-black text-[#009cdc] uppercase tracking-[0.4em] border-b border-white/5 pb-4">Ward Council Members</h3>
                   <div className="space-y-4">
                     {Array.from({ length: wardCountNum }).map((_, i) => (
@@ -595,6 +685,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ city, sponsorId, isOpen,
              <div className="bg-[#020617] shadow-[0_0_100px_rgba(0,0,0,0.5)] rounded-2xl sm:rounded-[4rem] overflow-hidden">
                 <Section2Hero config={previewConfig} />
                 <FullWidthVideo config={previewConfig} />
+                <SectionProgramAlignment config={previewConfig} />
                 <Section3Reality config={previewConfig} />
                 <CivicLeadership config={previewConfig} />
                 <MasterPlan config={previewConfig} isEditMode={true} onUpdateMap={handleUpdateMapData} />
