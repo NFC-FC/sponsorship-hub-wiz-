@@ -47,7 +47,7 @@ const SectionProgramAlignment: React.FC<Props> = ({ config }) => {
                   {hasKeyPoint ? (
                     <>
                       <p className="font-bold italic whitespace-pre-line" style={{ color: config.secondaryColor }}>
-                        {keyPoint}:
+                        {keyPoint}
                       </p>
                       <p className="text-white/90 whitespace-pre-line">{subtext}</p>
                     </>
