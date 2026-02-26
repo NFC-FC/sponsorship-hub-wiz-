@@ -367,24 +367,48 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ city, sponsorId, isOpen,
                   </div>
                   <p className="text-[9px] text-zinc-500 font-bold leading-relaxed">Cards for “{localSponsor.sponsorName} program alignment” (overrides city default).</p>
                   <div className="space-y-4">
-                    {programAlignmentCards.map((text, index) => (
-                      <div key={index} className="p-4 bg-white/5 rounded-2xl border border-white/5 relative group/card">
-                        <button
-                          onClick={() => handleRemoveProgramAlignmentCard(index)}
-                          className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white flex items-center justify-center transition-all opacity-0 group-hover/card:opacity-100"
-                        >
-                          ✕
-                        </button>
-                        <label className="text-[7px] font-black uppercase text-zinc-600 tracking-widest block mb-2">Card {index + 1}</label>
-                        <textarea
-                          value={text}
-                          onChange={(e) => handleUpdateProgramAlignmentCard(index, e.target.value)}
-                          placeholder="e.g. CHNA Priority Alignment: Chronic disease prevention..."
-                          rows={4}
-                          className="w-full bg-black/40 border border-white/5 rounded-lg p-2 text-[11px] text-white placeholder:text-zinc-600 outline-none focus:border-[#009cdc] resize-y min-h-[80px]"
-                        />
-                      </div>
-                    ))}
+                    {programAlignmentCards.map((text, index) => {
+                      const raw = (text ?? '').trim();
+                      const colonIndex = raw.indexOf(':');
+                      const hasTitle = colonIndex > 0;
+                      const title = hasTitle ? raw.slice(0, colonIndex).trim() : '';
+                      const body = hasTitle ? raw.slice(colonIndex + 1).trim() : raw;
+
+                      const updateCard = (nextTitle: string, nextBody: string) => {
+                        const t = nextTitle.trim();
+                        const b = nextBody.trim();
+                        const combined = t ? `${t}: ${b}` : b;
+                        handleUpdateProgramAlignmentCard(index, combined);
+                      };
+
+                      return (
+                        <div key={index} className="p-4 bg-white/5 rounded-2xl border border-white/5 relative group/card">
+                          <button
+                            onClick={() => handleRemoveProgramAlignmentCard(index)}
+                            className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white flex items-center justify-center transition-all opacity-0 group-hover/card:opacity-100"
+                          >
+                            ✕
+                          </button>
+                          <label className="text-[7px] font-black uppercase text-zinc-600 tracking-widest block mb-2">Card {index + 1}</label>
+                          <div className="space-y-2">
+                            <input
+                              type="text"
+                              value={title}
+                              onChange={(e) => updateCard(e.target.value, body)}
+                              placeholder="Title text (e.g. CHNA Priority Alignment)"
+                              className="w-full bg-black/40 border border-white/5 rounded-lg p-2 text-[11px] text-white placeholder:text-zinc-600 outline-none focus:border-[#009cdc]"
+                            />
+                            <textarea
+                              value={body}
+                              onChange={(e) => updateCard(title, e.target.value)}
+                              placeholder="Body text (e.g. Chronic disease prevention + health equity are top 3 CHNA priorities.)"
+                              rows={3}
+                              className="w-full bg-black/40 border border-white/5 rounded-lg p-2 text-[11px] text-white placeholder:text-zinc-600 outline-none focus:border-[#009cdc] resize-y min-h-[60px]"
+                            />
+                          </div>
+                        </div>
+                      );
+                    })}
                     {programAlignmentCards.length === 0 && (
                       <p className="text-[9px] text-zinc-700 font-bold uppercase tracking-widest text-center py-2">No cards — click + Add card to add one.</p>
                     )}
@@ -538,24 +562,48 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ city, sponsorId, isOpen,
                   </div>
                   <p className="text-[9px] text-zinc-500 font-bold leading-relaxed">Cards shown in “{isEditingSponsor ? (localSponsor?.sponsorName || 'Sponsor') : 'Sponsor'} program alignment” section. Add 0 or more.</p>
                   <div className="space-y-4">
-                    {programAlignmentCards.map((text, index) => (
-                      <div key={index} className="p-4 bg-white/5 rounded-2xl border border-white/5 relative group/card">
-                        <button
-                          onClick={() => handleRemoveProgramAlignmentCard(index)}
-                          className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white flex items-center justify-center transition-all opacity-0 group-hover/card:opacity-100"
-                        >
-                          ✕
-                        </button>
-                        <label className="text-[7px] font-black uppercase text-zinc-600 tracking-widest block mb-2">Card {index + 1}</label>
-                        <textarea
-                          value={text}
-                          onChange={(e) => handleUpdateProgramAlignmentCard(index, e.target.value)}
-                          placeholder="e.g. CHNA Priority Alignment: Chronic disease prevention..."
-                          rows={4}
-                          className="w-full bg-black/40 border border-white/5 rounded-lg p-2 text-[11px] text-white placeholder:text-zinc-600 outline-none focus:border-[#009cdc] resize-y min-h-[80px]"
-                        />
-                      </div>
-                    ))}
+                    {programAlignmentCards.map((text, index) => {
+                      const raw = (text ?? '').trim();
+                      const colonIndex = raw.indexOf(':');
+                      const hasTitle = colonIndex > 0;
+                      const title = hasTitle ? raw.slice(0, colonIndex).trim() : '';
+                      const body = hasTitle ? raw.slice(colonIndex + 1).trim() : raw;
+
+                      const updateCard = (nextTitle: string, nextBody: string) => {
+                        const t = nextTitle.trim();
+                        const b = nextBody.trim();
+                        const combined = t ? `${t}: ${b}` : b;
+                        handleUpdateProgramAlignmentCard(index, combined);
+                      };
+
+                      return (
+                        <div key={index} className="p-4 bg-white/5 rounded-2xl border border-white/5 relative group/card">
+                          <button
+                            onClick={() => handleRemoveProgramAlignmentCard(index)}
+                            className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white flex items-center justify-center transition-all opacity-0 group-hover/card:opacity-100"
+                          >
+                            ✕
+                          </button>
+                          <label className="text-[7px] font-black uppercase text-zinc-600 tracking-widest block mb-2">Card {index + 1}</label>
+                          <div className="space-y-2">
+                            <input
+                              type="text"
+                              value={title}
+                              onChange={(e) => updateCard(e.target.value, body)}
+                              placeholder="Title text (e.g. CHNA Priority Alignment)"
+                              className="w-full bg-black/40 border border-white/5 rounded-lg p-2 text-[11px] text-white placeholder:text-zinc-600 outline-none focus:border-[#009cdc]"
+                            />
+                            <textarea
+                              value={body}
+                              onChange={(e) => updateCard(title, e.target.value)}
+                              placeholder="Body text (e.g. Chronic disease prevention + health equity are top 3 CHNA priorities.)"
+                              rows={3}
+                              className="w-full bg-black/40 border border-white/5 rounded-lg p-2 text-[11px] text-white placeholder:text-zinc-600 outline-none focus:border-[#009cdc] resize-y min-h-[60px]"
+                            />
+                          </div>
+                        </div>
+                      );
+                    })}
                     {programAlignmentCards.length === 0 && (
                       <p className="text-[9px] text-zinc-700 font-bold uppercase tracking-widest text-center py-2">No cards — click + Add card to add one.</p>
                     )}
