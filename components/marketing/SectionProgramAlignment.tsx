@@ -26,12 +26,34 @@ const SectionProgramAlignment: React.FC<Props> = ({ config }) => {
           <span style={{ color: config.primaryColor }}>{config.sponsorName}</span> PROGRAM ALIGNMENT
         </motion.h2>
         <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
-          {cards.map((text, i) => {
-            const raw = text.trim();
-            const colonIndex = raw.indexOf(':');
-            const hasKeyPoint = colonIndex > 0;
-            const keyPoint = hasKeyPoint ? raw.slice(0, colonIndex).trim() : '';
-            const subtext = hasKeyPoint ? raw.slice(colonIndex + 1).trim() : raw;
+          {cards.map((card, i) => {
+            let title = '';
+            let body = '';
+
+            if (typeof card === 'string') {
+              const raw = card.trim();
+              if (raw) {
+                try {
+                  const parsed = JSON.parse(raw);
+                  if (parsed && typeof parsed === 'object') {
+                    title = (parsed.title ?? '').trim();
+                    body = (parsed.body ?? '').trim();
+                  } else {
+                    title = raw;
+                    body = '';
+                  }
+                } catch {
+                  title = raw;
+                  body = '';
+                }
+              }
+            } else if (card && typeof card === 'object') {
+              title = (card as any).title?.trim?.() ?? '';
+              body = (card as any).body?.trim?.() ?? '';
+            }
+
+            const hasKeyPoint = !!title;
+            const subtext = body;
 
             return (
               <motion.div
@@ -47,12 +69,16 @@ const SectionProgramAlignment: React.FC<Props> = ({ config }) => {
                   {hasKeyPoint ? (
                     <>
                       <p className="font-bold italic whitespace-pre-line" style={{ color: config.secondaryColor }}>
-                        {keyPoint}
+                        {title}
                       </p>
-                      <p className="text-white/90 whitespace-pre-line">{subtext}</p>
+                      {subtext && (
+                        <p className="text-white/90 whitespace-pre-line">{subtext}</p>
+                      )}
                     </>
                   ) : (
-                    <p className="text-white/90 whitespace-pre-line">{subtext}</p>
+                    <p className="text-white/90 whitespace-pre-line">
+                      {body || title}
+                    </p>
                   )}
                 </div>
               </motion.div>

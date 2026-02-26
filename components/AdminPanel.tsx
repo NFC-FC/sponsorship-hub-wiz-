@@ -368,17 +368,32 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ city, sponsorId, isOpen,
                   <p className="text-[9px] text-zinc-500 font-bold leading-relaxed">Cards for “{localSponsor.sponsorName} program alignment” (overrides city default).</p>
                   <div className="space-y-4">
                     {programAlignmentCards.map((text, index) => {
-                      const raw = (text ?? '').trim();
-                      const colonIndex = raw.indexOf(':');
-                      const hasTitle = colonIndex > 0;
-                      const title = hasTitle ? raw.slice(0, colonIndex).trim() : '';
-                      const body = hasTitle ? raw.slice(colonIndex + 1).trim() : raw;
+                      const raw = (text ?? '').toString().trim();
+                      let title = '';
+                      let body = '';
+
+                      if (raw) {
+                        try {
+                          const parsed = JSON.parse(raw);
+                          if (parsed && typeof parsed === 'object') {
+                            title = (parsed.title ?? '').trim();
+                            body = (parsed.body ?? '').trim();
+                          } else {
+                            title = raw;
+                            body = '';
+                          }
+                        } catch {
+                          title = raw;
+                          body = '';
+                        }
+                      }
 
                       const updateCard = (nextTitle: string, nextBody: string) => {
-                        const t = nextTitle.trim();
-                        const b = nextBody.trim();
-                        const combined = t ? `${t}: ${b}` : b;
-                        handleUpdateProgramAlignmentCard(index, combined);
+                        const payload = {
+                          title: nextTitle.trim(),
+                          body: nextBody.trim(),
+                        };
+                        handleUpdateProgramAlignmentCard(index, JSON.stringify(payload));
                       };
 
                       return (
@@ -563,17 +578,32 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ city, sponsorId, isOpen,
                   <p className="text-[9px] text-zinc-500 font-bold leading-relaxed">Cards shown in “{isEditingSponsor ? (localSponsor?.sponsorName || 'Sponsor') : 'Sponsor'} program alignment” section. Add 0 or more.</p>
                   <div className="space-y-4">
                     {programAlignmentCards.map((text, index) => {
-                      const raw = (text ?? '').trim();
-                      const colonIndex = raw.indexOf(':');
-                      const hasTitle = colonIndex > 0;
-                      const title = hasTitle ? raw.slice(0, colonIndex).trim() : '';
-                      const body = hasTitle ? raw.slice(colonIndex + 1).trim() : raw;
+                      const raw = (text ?? '').toString().trim();
+                      let title = '';
+                      let body = '';
+
+                      if (raw) {
+                        try {
+                          const parsed = JSON.parse(raw);
+                          if (parsed && typeof parsed === 'object') {
+                            title = (parsed.title ?? '').trim();
+                            body = (parsed.body ?? '').trim();
+                          } else {
+                            title = raw;
+                            body = '';
+                          }
+                        } catch {
+                          title = raw;
+                          body = '';
+                        }
+                      }
 
                       const updateCard = (nextTitle: string, nextBody: string) => {
-                        const t = nextTitle.trim();
-                        const b = nextBody.trim();
-                        const combined = t ? `${t}: ${b}` : b;
-                        handleUpdateProgramAlignmentCard(index, combined);
+                        const payload = {
+                          title: nextTitle.trim(),
+                          body: nextBody.trim(),
+                        };
+                        handleUpdateProgramAlignmentCard(index, JSON.stringify(payload));
                       };
 
                       return (
